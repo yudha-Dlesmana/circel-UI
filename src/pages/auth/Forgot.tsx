@@ -1,3 +1,4 @@
+import { NavLink } from "react-router"
 import logo from "../../assets/logo.svg"
 import { ForgotForm } from "../../components/Form/ForgotForm"
 
@@ -10,11 +11,11 @@ export function Forgot(){
         Forgot Password</h1> 
       <ForgotForm />
       <p className="text-white">
-      Already have an account? <a href="/login" className="
+      Already have an account? <NavLink to="/login" className="
       text-[var(--primary-color)]
       hover:text-[var(--hover-color)]
       font-bold">
-        Login</a></p>  
+        Login</NavLink></p>  
     </div>
   )
 }

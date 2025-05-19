@@ -1,3 +1,4 @@
+import { NavLink } from "react-router"
 import logo from "../../assets/logo.svg"
 import { LoginForm } from "../../components/Form/LoginForm"
 
@@ -10,11 +11,11 @@ export function Login(){
         Login to Circel</h1>
       <LoginForm />
       <p className="text-white">
-      Don't have an account yet? <a href="/register" className="
+      Don't have an account yet? <NavLink to="/register" className="
       text-[var(--primary-color)] 
       hover:text-[var(--hover-color)]
       font-bold">
-        Create account</a></p>
+        Create account</NavLink></p>
     </div>
   )
 }

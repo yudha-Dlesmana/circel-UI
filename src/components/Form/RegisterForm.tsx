@@ -1,26 +1,46 @@
+
+import { useForm } from "react-hook-form";
+import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
+import { RegisterFormInputs, registerSchema } from "../../types/AuthTypes";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuthStore } from "../../store/AuthStore";
+import { useNavigate } from "react-router";
+
 export function RegisterForm(){
+  const {setUser} = useAuthStore()
+  const navigate = useNavigate()
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<RegisterFormInputs>({
+    resolver: zodResolver(registerSchema),
+    mode: "onChange"
+  })
+  const submit = (data: RegisterFormInputs) => {
+    setUser(data)
+    navigate('/login')
+  }
+
   return(
-    <form className= "flex flex-col w-[412px] space-y-3">
-      <input type="text" placeholder="Full Name" className="
-      p-2
-      text-white placeholder-[var(--gray-color)]
-      focus:outline-0 focus:border-[var(--primary-color)]
-      border-1 border-[var(--gray-color)] rounded-md"/>
-      <input type="text" placeholder="Email" className="
-      p-2
-      text-white placeholder-[var(--gray-color)]
-      focus:outline-0 focus:border-[var(--primary-color)] 
-      border-1 border-[var(--gray-color)] rounded-md"/>
-      <input type="password" placeholder="Password" className="
-      p-2
-      text-white placeholder-[var(--gray-color)]
-      focus:outline-0 focus:border-[var(--primary-color)] 
-      border-1 border-[var(--gray-color)] rounded-md"/>
-      <button className="bg-[var(--primary-color)] 
-      py-2 px-4
-      text-white font-bold text-xl
-      rounded-full
-      hover:bg-[var(--hover-color)]">
+    <form className= {formStyles} onSubmit={handleSubmit(submit)}>
+      <div className="flex flex-col">
+        <input type="text" placeholder="Full Name" 
+        {...register("fullname")} className= {inputStyles}/>
+        {errors.fullname && <p className={errorMessageStyles}>{errors.fullname.message}</p>}
+        </div>
+      <div className="flex flex-col">
+        <input type="text" placeholder="Email"
+        {...register("email")} className={inputStyles}/>
+        {errors.email && <p className={errorMessageStyles}>{errors.email.message}</p>}
+        </div>
+      <div className="flex flex-col">
+        <input type="password" placeholder="Password"
+        {...register("password")} className={inputStyles}/>
+        {errors.password && <p className={errorMessageStyles}>{errors.password.message}</p>}
+        </div>
+      <button className={buttonStyles}>
         Create</button>
       </form>
   )

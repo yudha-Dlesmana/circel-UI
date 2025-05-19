@@ -1,22 +1,39 @@
+import { useForm } from "react-hook-form";
+import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
+import { ResetFormInputs, resetSchema } from "../../types/AuthTypes";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuthStore } from "../../store/AuthStore";
+import { useNavigate } from "react-router";
+
 export function ResetForm(){
+  const {resetPassword} = useAuthStore()
+  const navigate = useNavigate()
+
+  const {
+    register,
+    handleSubmit,
+    formState: {errors}
+  } = useForm<ResetFormInputs>({
+    resolver: zodResolver(resetSchema),
+    mode: "onChange"
+  })
+
+  const submit = (data: ResetFormInputs) => {
+    resetPassword(data.newPass)
+    navigate('/login')
+  }
+
   return(
-    <form className= "flex flex-col w-[412px] space-y-3">
-      <input type="password" placeholder="New Password" className="
-        p-2
-        text-white placeholder-[var(--gray-color)]
-        focus:outline-0 focus:border-[var(--primary-color)] 
-        border-1 border-[var(--gray-color)] rounded-md"/>
-        <input type="password" placeholder="Confirm New Password" className="
-        p-2
-        text-white placeholder-[var(--gray-color)]
-        focus:outline-0 focus:border-[var(--primary-color)] 
-        border-1 border-[var(--gray-color)] rounded-md"/>
-        <button className="bg-[var(--primary-color)] 
-        py-2 px-4
-        text-white font-bold text-xl
-        rounded-full
-        hover:bg-[var(--hover-color)]">
-          Create New Password</button>
-        </form>
+    <form className= {formStyles} onSubmit={handleSubmit(submit)}>
+      <input type="password" placeholder="New Password" 
+      {...register("newPass")}className={inputStyles}/>
+      <div className="flex flex-col">
+      <input type="password" placeholder="Confirm New Password"
+      {...register("confirmPass")} className={inputStyles}/>
+      {errors.confirmPass && <p className={errorMessageStyles}>{errors.confirmPass.message}</p>}
+      </div>
+      <button className={buttonStyles}>
+        Create New Password</button>
+      </form>
   )
 }
