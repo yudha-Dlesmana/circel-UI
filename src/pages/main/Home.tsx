@@ -1,9 +1,9 @@
 
-import { useAuth } from "@/contexts/AuthContext"
+import { useAuthContext } from "@/contexts/AuthContext"
 import { TbLogout2 } from "react-icons/tb"
 
 export function Home(){
-  const {logOut} = useAuth()
+  const {logOut} = useAuthContext()
   return (
     <div className="flex-col space-y-10">
     <button className="

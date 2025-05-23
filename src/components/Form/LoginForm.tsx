@@ -1,42 +1,44 @@
 import { useForm } from "react-hook-form"
-import { LoginFormInputs, loginSchema } from "../../types/AuthTypes"
+import { LoginFormDTO, loginSchema } from "../../types/AuthTypes"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useAuth } from "../../contexts/AuthContext"
 
-import { NavLink, useNavigate } from "react-router"
+import { NavLink } from "react-router"
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles"
-import { api } from "@/utils/Apis"
-import axios from "axios"
+import { useAuth } from "@/hooks/AuthHooks"
 
 export function LoginForm(){
-  const { logIn } = useAuth()
-  const navigate = useNavigate()
+  // const { logIn } = useAuthContext()
+  // const navigate = useNavigate()
+  const {login} = useAuth()
   
   const {
     register, 
     handleSubmit, 
     formState: { errors }
-  } = useForm<LoginFormInputs>({
+  } = useForm<LoginFormDTO>({
     resolver: zodResolver(loginSchema),
     mode:"onChange" 
   })
 
-  const submit = async (data : LoginFormInputs) => {
-    try{
-      const res = await api.post("/login", data)
-      const token = res.data.token;
-      logIn(token)
-      navigate('/')
-    } catch(error){
-      if(axios.isAxiosError(error)){
-        const message = 
-          error.response?.data.message || 
-          error.message || "Unknown Error"
-        alert(message)
-      } else {
-        console.error("Unexpected Error:", error)
-      } 
-    }
+  // const submit = async (data : LoginFormDTO) => {
+  //   try{
+  //     const res = await api.post("/login", data)
+  //     const token = res.data.token;
+  //     logIn(token)
+  //     navigate('/')
+  //   } catch(error){
+  //     if(axios.isAxiosError(error)){
+  //       const message = 
+  //         error.response?.data.message || 
+  //         error.message || "Unknown Error"
+  //       alert(message)
+  //     } else {
+  //       console.error("Unexpected Error:", error)
+  //     } 
+  //   }
+  // }
+  const submit = (data: LoginFormDTO) => {
+    login.mutate(data)
   }
   
 

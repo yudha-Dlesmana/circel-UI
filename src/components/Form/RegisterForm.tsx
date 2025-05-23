@@ -1,7 +1,7 @@
 
 import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
-import { RegisterFormInputs, registerSchema } from "../../types/AuthTypes";
+import { RegisterFormDTO, registerSchema } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { api } from "@/utils/Apis";
@@ -15,12 +15,12 @@ export function RegisterForm(){
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<RegisterFormInputs>({
+  } = useForm<RegisterFormDTO>({
     resolver: zodResolver(registerSchema),
     mode: "onChange"
   })
 
-  const submit = async (data: RegisterFormInputs) => {
+  const submit = async (data: RegisterFormDTO) => {
     try{
       await api.post('/register', data)
       navigate("/login")

@@ -1,10 +1,10 @@
 import { Center } from "@/layout/Centers";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { Navigate, Outlet } from "react-router";
 
 
 export function Protected(){
-  const {isAuthenticated} = useAuth()
+  const {isAuthenticated} = useAuthContext()
   return(
     isAuthenticated ?
       <Center>

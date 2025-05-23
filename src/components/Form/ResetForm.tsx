@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
-import { ResetFormInputs, resetSchema } from "../../types/AuthTypes";
+import { ResetFormDTO, resetSchema } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router";
+import { api } from "@/utils/Apis";
 
 export function ResetForm(){
   const navigate = useNavigate()
@@ -11,12 +12,13 @@ export function ResetForm(){
     register,
     handleSubmit,
     formState: {errors}
-  } = useForm<ResetFormInputs>({
+  } = useForm<ResetFormDTO>({
     resolver: zodResolver(resetSchema),
     mode: "onChange"
   })
 
-  const submit = (data: ResetFormInputs) => {
+  const submit = async (data: ResetFormDTO) => {
+    await api.patch("/reset", data)
     navigate('/login')
   }
 

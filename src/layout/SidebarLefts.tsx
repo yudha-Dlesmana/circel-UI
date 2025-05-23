@@ -7,14 +7,15 @@ import { NavLink } from "react-router"
 import { LuUserRoundSearch } from "react-icons/lu";
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuthContext } from "@/contexts/AuthContext";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
+import { useForm } from "react-hook-form";
 
 const listMenuStyle = cn("text-white text-lg flex gap-4 items-center hover:text-[var(--hover-color)]")
 
 export function SidebarLeft(){
-  const {logOut} = useAuth()
+  const {logOut} = useAuthContext()
   return ( 
     <div className={cn("fixed",
     "left-0 top-0 w-1/5 h-screen",
@@ -55,6 +56,13 @@ export function SidebarLeft(){
 }
 
 function CreatePostDialog(){
+  const {
+    register,
+    handleSubmit,
+  } = useForm()
+
+  const submit = () =>{}
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -64,7 +72,10 @@ function CreatePostDialog(){
             Create Post</button>
       </DialogTrigger>
       <DialogContent>
-        <h1>lalalallaa</h1>
+        <form onSubmit={handleSubmit(submit)}>
+          <input {...register}></input>
+
+          </form>
       </DialogContent>
     </Dialog>
   )
