@@ -89,7 +89,3 @@ export function Home(){
     </div>
   )
 }
-
-function useAuthStore(): { logOut: any } {
-  throw new Error("Function not implemented.")
-}
