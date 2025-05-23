@@ -8,7 +8,7 @@ export function Register(){
       <img src={logo} className="w-28"/>
       <h1 className="text-white
       font-bold text-3xl">
-        Create Account Circel</h1>
+        Create Account Circle</h1>
       <RegisterForm />
       <p className="text-white">
         Already have an account? <NavLink to="/login" className="

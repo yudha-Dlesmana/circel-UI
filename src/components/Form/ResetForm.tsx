@@ -2,11 +2,9 @@ import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
 import { ResetFormInputs, resetSchema } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuthStore } from "../../store/AuthStore";
 import { useNavigate } from "react-router";
 
 export function ResetForm(){
-  const {resetPassword} = useAuthStore()
   const navigate = useNavigate()
 
   const {
@@ -19,7 +17,6 @@ export function ResetForm(){
   })
 
   const submit = (data: ResetFormInputs) => {
-    resetPassword(data.newPass)
     navigate('/login')
   }
 

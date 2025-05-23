@@ -1,17 +1,17 @@
 import { useForm } from "react-hook-form"
 import { LoginFormInputs, loginSchema } from "../../types/AuthTypes"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useContext } from "react"
-import { AuthContext } from "../../contexts/AuthContext"
-import { useAuthStore } from "../../store/AuthStore"
+import { useAuth } from "../../contexts/AuthContext"
+
 import { NavLink, useNavigate } from "react-router"
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles"
+import { api } from "@/utils/Apis"
+import axios from "axios"
 
 export function LoginForm(){
-  const { logIn } = useAuthStore()
-  const { user } = useContext(AuthContext)
+  const { logIn } = useAuth()
   const navigate = useNavigate()
-
+  
   const {
     register, 
     handleSubmit, 
@@ -21,18 +21,25 @@ export function LoginForm(){
     mode:"onChange" 
   })
 
-  const submit = (data: LoginFormInputs) => {
-    if (data.email == user.email){
-      if(data.password == user.password){
-        logIn()
-        navigate("/home")
-      }else{
-        alert("wrong password")
-      }
-    } else {
-      alert("wrong email/username")
+  const submit = async (data : LoginFormInputs) => {
+    try{
+      const res = await api.post("/login", data)
+      const token = res.data.token;
+      logIn(token)
+      navigate('/')
+    } catch(error){
+      if(axios.isAxiosError(error)){
+        const message = 
+          error.response?.data.message || 
+          error.message || "Unknown Error"
+        alert(message)
+      } else {
+        console.error("Unexpected Error:", error)
+      } 
     }
   }
+  
+
   return (
     <form 
       onSubmit={handleSubmit(submit)}

@@ -1,17 +1,15 @@
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { Center } from "@/layout/Centers";
+import { useAuth } from "../../contexts/AuthContext";
 import { Navigate, Outlet } from "react-router";
 
-export function Protected(){
-  const {user} = useContext(AuthContext)
 
-  if(user.login){
-    return(
-      <Outlet/>
-    )
-  } else {
-    return(
-      <Navigate to={'/login'}/>
-    )
-  }
+export function Protected(){
+  const {isAuthenticated} = useAuth()
+  return(
+    isAuthenticated ?
+      <Center>
+        <Outlet/>
+        </Center> : 
+      <Navigate to={"/login"}/>
+  )
 }

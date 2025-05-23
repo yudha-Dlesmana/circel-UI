@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
 import { RegisterFormInputs, registerSchema } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuthStore } from "../../store/AuthStore";
+
+import { api } from "@/utils/Apis";
+import axios from "axios";
 import { useNavigate } from "react-router";
 
 export function RegisterForm(){
-  const {setUser} = useAuthStore()
   const navigate = useNavigate()
   
   const {
@@ -18,9 +19,21 @@ export function RegisterForm(){
     resolver: zodResolver(registerSchema),
     mode: "onChange"
   })
-  const submit = (data: RegisterFormInputs) => {
-    setUser(data)
-    navigate('/login')
+
+  const submit = async (data: RegisterFormInputs) => {
+    try{
+      await api.post('/register', data)
+      navigate("/login")
+    } catch(error){
+      if(axios.isAxiosError(error)){
+        const message = 
+          error.response?.data.message ||
+          error.message || "Unknown Error"
+          alert(message)
+      }else{
+        console.error("Unexpected Error:", error)
+      }
+    }
   }
 
   return(
