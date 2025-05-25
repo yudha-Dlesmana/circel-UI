@@ -2,11 +2,21 @@ import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
 import { ResetFormDTO, resetSchema } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router";
-import { api } from "@/utils/Apis";
+import { useAuth } from "@/hooks/AuthHooks";
+import { useNavigate, useSearchParams } from "react-router";
+import { useEffect } from "react";
 
 export function ResetForm(){
+  const {resetPassword} = useAuth()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const token = searchParams.get('token')
+  
+  useEffect( () => {
+    if (!token){
+      navigate('/forgot')
+    }
+  }, [token])
 
   const {
     register,
@@ -17,19 +27,19 @@ export function ResetForm(){
     mode: "onChange"
   })
 
-  const submit = async (data: ResetFormDTO) => {
-    await api.patch("/reset", data)
-    navigate('/login')
+  const submit = (data: ResetFormDTO) => {
+    if(!token){return}
+    resetPassword.mutate( {token, data} )
   }
 
   return(
     <form className= {formStyles} onSubmit={handleSubmit(submit)}>
       <input type="password" placeholder="New Password" 
-      {...register("newPass")}className={inputStyles}/>
+      {...register("password")}className={inputStyles}/>
       <div className="flex flex-col">
       <input type="password" placeholder="Confirm New Password"
-      {...register("confirmPass")} className={inputStyles}/>
-      {errors.confirmPass && <p className={errorMessageStyles}>{errors.confirmPass.message}</p>}
+      {...register("confirmPassword")} className={inputStyles}/>
+      {errors.confirmPassword && <p className={errorMessageStyles}>{errors.confirmPassword.message}</p>}
       </div>
       <button className={buttonStyles}>
         Create New Password</button>

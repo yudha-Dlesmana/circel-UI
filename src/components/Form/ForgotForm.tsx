@@ -2,11 +2,10 @@ import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
 import { ForgotFormDTO, forgotSchema } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router";
-import { api } from "@/utils/Apis";
+import { useAuth } from "@/hooks/AuthHooks";
 
 export function ForgotForm(){
-  const navigate = useNavigate()
+  const {forgotPassword} = useAuth()
 
   const {
     register,
@@ -18,8 +17,7 @@ export function ForgotForm(){
   })
 
   const submit = async (data: ForgotFormDTO) => {
-    const res = await api.get('/user', {params: data})
-    !!res ? navigate("/reset") : alert(`email ${data} is not registered`)
+    forgotPassword.mutate(data)
   }
 
   return(

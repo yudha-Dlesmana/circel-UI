@@ -27,10 +27,10 @@ type ForgotFormDTO = z.infer<typeof forgotSchema>
 
 export const resetSchema = z
   .object({
-  newPass: z.string().min(6),
-  confirmPass: z.string().min(6)
+  password: z.string().min(6),
+  confirmPassword: z.string().min(6)
   })
-  .refine((data) => data.newPass === data.confirmPass, {
+  .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPass"],
     message: "Password confirmation does not match"
   })

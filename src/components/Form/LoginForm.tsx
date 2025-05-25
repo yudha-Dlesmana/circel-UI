@@ -7,9 +7,8 @@ import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./For
 import { useAuth } from "@/hooks/AuthHooks"
 
 export function LoginForm(){
-  // const { logIn } = useAuthContext()
-  // const navigate = useNavigate()
-  const {login} = useAuth()
+
+  const {loginAccount} = useAuth()
   
   const {
     register, 
@@ -20,28 +19,10 @@ export function LoginForm(){
     mode:"onChange" 
   })
 
-  // const submit = async (data : LoginFormDTO) => {
-  //   try{
-  //     const res = await api.post("/login", data)
-  //     const token = res.data.token;
-  //     logIn(token)
-  //     navigate('/')
-  //   } catch(error){
-  //     if(axios.isAxiosError(error)){
-  //       const message = 
-  //         error.response?.data.message || 
-  //         error.message || "Unknown Error"
-  //       alert(message)
-  //     } else {
-  //       console.error("Unexpected Error:", error)
-  //     } 
-  //   }
-  // }
   const submit = (data: LoginFormDTO) => {
-    login.mutate(data)
+    loginAccount.mutate(data)
   }
   
-
   return (
     <form 
       onSubmit={handleSubmit(submit)}

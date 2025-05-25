@@ -4,12 +4,10 @@ import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./For
 import { RegisterFormDTO, registerSchema } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { api } from "@/utils/Apis";
-import axios from "axios";
-import { useNavigate } from "react-router";
+import { useAuth } from "@/hooks/AuthHooks";
 
 export function RegisterForm(){
-  const navigate = useNavigate()
+  const {registerAccount} = useAuth()
   
   const {
     register,
@@ -20,20 +18,24 @@ export function RegisterForm(){
     mode: "onChange"
   })
 
-  const submit = async (data: RegisterFormDTO) => {
-    try{
-      await api.post('/register', data)
-      navigate("/login")
-    } catch(error){
-      if(axios.isAxiosError(error)){
-        const message = 
-          error.response?.data.message ||
-          error.message || "Unknown Error"
-          alert(message)
-      }else{
-        console.error("Unexpected Error:", error)
-      }
-    }
+  // const submit = async (data: RegisterFormDTO) => {
+  //   try{
+  //     await api.post('/register', data)
+  //     navigate("/login")
+  //   } catch(error){
+  //     if(axios.isAxiosError(error)){
+  //       const message = 
+  //         error.response?.data.message ||
+  //         error.message || "Unknown Error"
+  //         alert(message)
+  //     }else{
+  //       console.error("Unexpected Error:", error)
+  //     }
+  //   }
+  // }
+  const submit = (data: RegisterFormDTO) => {
+    registerAccount.mutate(data)
+    
   }
 
   return(
