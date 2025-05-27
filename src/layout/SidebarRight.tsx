@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import  AnyaSxF  from "@/assets/AnyaSxF.jpeg"
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
-import { ImagePlus, XCircleIcon } from "lucide-react";
+import { XCircleIcon } from "lucide-react";
 import TextareaAutosize from "react-textarea-autosize"
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
