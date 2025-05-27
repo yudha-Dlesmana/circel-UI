@@ -69,7 +69,7 @@ function CreatePostDialog(){
           "text-white text-xl font-medium")}>
             Create Post</button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-2xl"> 
+      <DialogContent className="sm:max-w-2xl gap-2"> 
         <DialogHeader>
           <DialogClose className="flex justify-end">
             <XCircleIcon className="text-gray-500 hover:text-[#dc2626] " />
@@ -79,9 +79,9 @@ function CreatePostDialog(){
         onSubmit={handleSubmit(submit)}>
           <div className="flex justify-center items-center gap-3 border-b border-[var(--gray-color)] mb-3 pb-3">
             <Avatar className="size-20">
-              <AvatarImage src={AnyaSxF} className={"size-1000"}/>
+              <AvatarImage src={AnyaSxF}/>
               </Avatar>
-            <TextareaAutosize {...register("text")} placeholder="what is happening?!" className="resize-none w-full text-white p-3 focus"/>
+            <TextareaAutosize {...register("text")} placeholder="what is happening?!" className="resize-none w-full text-xl text-white p-3 focus:outline-0"/>
           </div>
           
               {preview && ( 

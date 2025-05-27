@@ -5,6 +5,13 @@ import { cn } from "tailwind-cn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import  AnyaSxF  from "@/assets/AnyaSxF.jpeg"
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
+import { ImagePlus, XCircleIcon } from "lucide-react";
+import TextareaAutosize from "react-textarea-autosize"
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { LuImagePlus } from "react-icons/lu";
+import { Button } from "@/components/ui/button";
 
 
 export const backgoundStyle = cn("text-[#B2B2B2] bg-[#262626] py-3 px-4 rounded-lg")
@@ -18,7 +25,6 @@ export function SidebarRight(){
     "flex flex-col gap-2")}>
       <Profile/>
       <UserSuggestion />
-      
       <Meta />
     </div>
   )
@@ -33,10 +39,9 @@ export function Profile(){
       <Avatar className="size-20 -mt-10 ml-5"> 
         <AvatarImage src={AnyaSxF} className="" />
         </Avatar>
-      <div className="flex justify-end -mt-7 mb-1">
-        <button className="border px-3 py-1 rounded-full font-bold text-sm">Edit Profile</button>
-        </div>
-      <div className="space-y-1">
+      <EditProfileDialog/>
+        
+      <div className="">
         <h1 className="font-bold text-lg text-white">Anya Forger</h1>
         <p className="text-sm text-[var(--gray-color)]">@anyaForger</p>
         <p>Loves peanuts & Bondman</p>
@@ -57,64 +62,43 @@ export function Profile(){
       </div>
   )
 }
-// export function EditProfileDialog(){
-//   return (
-//     <Dialog>
-//       <DialogTrigger asChild>
-//         <button className="rounded-full border-1 border-white px-3 py-1">
-//           Edit Profile </button>
-//       </DialogTrigger>
-//           <DialogContent className="bg-[#1D1D1D]">
-//             <DialogHeader>
-//               <div className="flex items-center mb-2">
-//                 <DialogTitle className="text-white flex-1/2">Edit Profile</DialogTitle>
-//                 <DialogClose>
-//                   <XCircleIcon className="text-gray-500 hover:text-white " /></DialogClose>
-//                 </div>
-//               <img src={Backgound} className="w-full h-40 rounded-lg"/>
-//               <div className="-mt-15 pl-4 flex items-center  justify-center w-fit">
-//                 <Avatar className="w-25 h-25">
-//                     <AvatarImage src={AnyaSxF} className={`
-//                       rounded-full w-24 p-0.5 bg-black`}/> 
-//                   </Avatar>
-//                 <button
-//                   type="button"
-//                   className="absolute size-16 flex items-center justify-center 
-//                   bg-black/40 text-white rounded-full hover:bg-black/60"
-//                 >
-//                   <ImagePlus className="size-8" /></button>
-//                   </div>
-//               </DialogHeader>
-//             <form className="space-y-2">
-//             <label className="border-1 border-gray-500
-//             p-0 flex-col items-start rounded-lg gap-0">
-//               <h1 className="text-gray-500 pt-2 pl-2">Name</h1>
-//               <input className="text-white
-//               pl-2 h-fit border-0 
-//               focus-visible:ring-0" type="text"/>
-//               </label>
-//             <label className="border-1 border-gray-500
-//             p-0 flex-col items-start rounded-lg gap-0">
-//               <h1 className="text-gray-500 pt-2 pl-2">Username</h1>
-//               <input className="text-white
-//               pl-2 h-fit border-0 
-//               focus-visible:ring-0" type="text" />
-//               </label>
-//             <label className="border-1 border-gray-500
-//             p-0 flex-col items-start rounded-lg gap-0">
-//               <h1 className="text-gray-500 pt-2 pl-2">Bio</h1>
-//               <textarea className="text-white
-//               pl-2 h-fit border-0 
-//               focus-visible:ring-0 resize-none" />
-//               </label>
-//               <div className="flex justify-end">
-//                 <button className="bg-[#04A51E] text-lg font-bold rounded-full hover:bg-[#005E0E]">Save</button>
-//                 </div>
-//             </form>
-//           </DialogContent>
-//           </Dialog>
-//   )
-// }
+export function EditProfileDialog(){
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <div className="flex justify-end -mt-7 mb-1">
+          <button className="border px-3 py-1 rounded-full font-bold text-sm">Edit Profile</button>
+          </div>
+        </DialogTrigger>
+      <DialogContent className="sm:max-w-2xl"> 
+        <DialogHeader>
+          <DialogClose className="flex justify-end">
+            <XCircleIcon className="text-gray-500 hover:text-[#dc2626] " />
+            </DialogClose>
+          </DialogHeader>
+        <form className="">
+          <div className="flex justify-center items-center gap-3 border-b border-[var(--gray-color)] mb-3 pb-3">
+            <Avatar className="size-20">
+              <AvatarImage src={AnyaSxF} className={"size-1000"}/>
+              </Avatar>
+            <TextareaAutosize  placeholder="what is happening?!" className="resize-none w-full text-white p-3 focus"/>
+          </div>
+          
+              
+          <div className="flex justify-between">
+            <Input id="image" type="file" accept="image/" className="hidden"/>
+            <Label htmlFor="image">
+              <LuImagePlus className="size-7 text-[var(--primary-color)] hover:text-[var(--hover-color)]"/></Label>
+            <Button className="text-lg font-bold bg-[var(--primary-color)] hover:bg-[var(--hover-color)]">
+              Post</Button>
+            </div>
+
+          
+          </form>
+      </DialogContent>
+      </Dialog>
+  )
+}
 
 export function UserSuggestion(){
   return(
