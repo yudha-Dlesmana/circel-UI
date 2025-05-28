@@ -1,10 +1,10 @@
 
 import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
-import { RegisterFormDTO, registerSchema } from "../../types/AuthTypes";
+import { RegisterFormDTO, registerSchema } from "../../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useAuth } from "@/hooks/AuthHooks";
+import { useAuth } from "@/features/auth/hooks/AuthHooks";
 
 export function RegisterForm(){
   const {registerAccount} = useAuth()

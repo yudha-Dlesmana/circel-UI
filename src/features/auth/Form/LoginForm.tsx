@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form"
-import { LoginFormDTO, loginSchema } from "../../types/AuthTypes"
+import { LoginFormDTO, loginSchema } from "../../../types/AuthTypes"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { NavLink } from "react-router"
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles"
-import { useAuth } from "@/hooks/AuthHooks"
+import { useAuth } from "@/features/auth/hooks/AuthHooks"
 
 export function LoginForm(){
 

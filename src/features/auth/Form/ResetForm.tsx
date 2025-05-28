@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
-import { ResetFormDTO, resetSchema } from "../../types/AuthTypes";
+import { ResetFormDTO, resetSchema } from "../../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "@/hooks/AuthHooks";
+import { useAuth } from "@/features/auth/hooks/AuthHooks";
 import { useNavigate, useSearchParams } from "react-router";
 import { useEffect } from "react";
 

@@ -1,4 +1,4 @@
-import { Center } from "@/layout/Centers";
+import { Main } from "@/components/layout/MainLayouts";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { Navigate, Outlet, useLocation } from "react-router";
 import { useEffect } from "react";
@@ -35,9 +35,9 @@ export function Protected(){
 
   return(
     !!token ?
-      <Center>
+      <Main>
         <Outlet/>
-        </Center> : 
+        </Main> : 
       <Navigate to={"/login"}/>
   )
 }

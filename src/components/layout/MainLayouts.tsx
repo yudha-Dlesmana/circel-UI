@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
-import { SidebarLeft } from "./SidebarLefts";
-import { SidebarRight } from "./SidebarRight";
+import { SidebarLeft } from "./LeftSidebars";
+import { SidebarRight } from "./RightSidebars";
 
 
-export function Center({children} : {children: ReactNode}){
+export function Main({children} : {children: ReactNode}){
   return (
     <div className="flex min-h-screen">
       <SidebarLeft/>

@@ -1,5 +1,5 @@
 import logo from "../../assets/logo.svg"
-import { ResetForm } from "../../components/Form/ResetForm"
+import { ResetForm } from "../../features/auth/Form/ResetForm"
 
 export function Reset(){
   return(

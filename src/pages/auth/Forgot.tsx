@@ -1,6 +1,6 @@
 import { NavLink } from "react-router"
 import logo from "../../assets/logo.svg"
-import { ForgotForm } from "../../components/Form/ForgotForm"
+import { ForgotForm } from "../../features/auth/Form/ForgotForm"
 
 export function Forgot(){
   return (

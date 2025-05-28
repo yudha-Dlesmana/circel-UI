@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
-import { ForgotFormDTO, forgotSchema } from "../../types/AuthTypes";
+import { ForgotFormDTO, forgotSchema } from "../../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "@/hooks/AuthHooks";
+import { useAuth } from "@/features/auth/hooks/AuthHooks";
 
 export function ForgotForm(){
   const {forgotPassword} = useAuth()
