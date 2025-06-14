@@ -1,6 +1,6 @@
 import { NavLink } from "react-router"
-import logo from "../../assets/logo.svg"
-import { LoginForm } from "../../features/auth/Form/LoginForm"
+import logo from "@/assets/logo.svg"
+import { LoginForm } from "@/features/auth/Login/LoginForm"
 
 
 export function Login(){
@@ -11,7 +11,6 @@ export function Login(){
       <h1 className="text-white
       font-bold text-3xl">
         Login to Circle</h1>
-      {/* {message && <h1 className="text-center text-white text-xl font-semibold">{message}</h1>} */}
       <LoginForm />
       <p className="text-white">
       Don't have an account yet? <NavLink to="/register" className="

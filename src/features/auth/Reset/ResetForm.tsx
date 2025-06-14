@@ -1,23 +1,15 @@
 import { useForm } from "react-hook-form";
-import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
+import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
 import { ResetFormDTO, resetSchema } from "../../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "@/features/auth/hooks/AuthHooks";
-import { useNavigate, useSearchParams } from "react-router";
-import { useEffect } from "react";
+import { useAuth } from "@/features/auth/Reset/ResetHooks";
+import { useSearchParams } from "react-router";
 
 export function ResetForm(){
-  const {resetPassword} = useAuth()
-  const navigate = useNavigate()
+  const { mutate, isPending } = useAuth()
   const [searchParams] = useSearchParams()
   const token = searchParams.get('token')
   
-  useEffect( () => {
-    if (!token){
-      navigate('/forgot')
-    }
-  }, [token])
-
   const {
     register,
     handleSubmit,
@@ -29,7 +21,7 @@ export function ResetForm(){
 
   const submit = (data: ResetFormDTO) => {
     if(!token){return}
-    resetPassword.mutate( {token, data} )
+    mutate( {token, data} )
   }
 
   return(
@@ -42,7 +34,14 @@ export function ResetForm(){
       {errors.confirmPassword && <p className={errorMessageStyles}>{errors.confirmPassword.message}</p>}
       </div>
       <button className={buttonStyles}>
-        Create New Password</button>
+        {
+          isPending? 
+            <span>
+              Create New Password</span> :
+            <span>
+              ... new password</span>
+        }
+        </button>
       </form>
   )
 }

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router"
 import logo from "../../assets/logo.svg"
-import { RegisterForm } from "../../features/auth/Form/RegisterForm"
+import { RegisterForm } from "../../features/auth/Register/RegisterForm"
 
 export function Register(){
   return(

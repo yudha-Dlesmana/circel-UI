@@ -1,7 +1,8 @@
 import logo from "../../assets/logo.svg"
-import { ResetForm } from "../../features/auth/Form/ResetForm"
+import { ResetForm } from "../../features/auth/Reset/ResetForm"
 
 export function Reset(){
+  
   return(
     <div className="space-y-5 pt-32">
       <img src={logo} className="w-28"/>

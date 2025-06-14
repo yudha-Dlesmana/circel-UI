@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
-import { ForgotFormDTO, forgotSchema } from "../../../types/AuthTypes";
+import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
+import { ForgotFormDTO, forgotSchema } from "@/types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "@/features/auth/hooks/AuthHooks";
+import { useForgot } from "./ForgotHooks";
 
 export function ForgotForm(){
-  const {forgotPassword} = useAuth()
+  const {mutate, isPending} = useForgot()
 
   const {
     register,
@@ -17,7 +17,7 @@ export function ForgotForm(){
   })
 
   const submit = async (data: ForgotFormDTO) => {
-    forgotPassword.mutate(data)
+    mutate(data)
   }
 
   return(
@@ -28,7 +28,13 @@ export function ForgotForm(){
         {errors.email && <p className={errorMessageStyles}>{errors.email.message}</p>}
         </div>
       <button className={buttonStyles}>
-        Send Instruction</button>
+        {isPending? 
+          <span>
+            Sending email</span>: 
+          <span> 
+            Send Instruction</span>
+        }
+        </button>
       </form>
   )
 }

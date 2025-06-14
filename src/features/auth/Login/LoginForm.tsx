@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form"
-import { LoginFormDTO, loginSchema } from "../../../types/AuthTypes"
+import { LoginFormDTO, loginSchema } from "@/types/AuthTypes"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { NavLink } from "react-router"
-import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles"
-import { useAuth } from "@/features/auth/hooks/AuthHooks"
+import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "@/features/auth/FormStyles"
+import { useLogin } from "./LoginHooks"
 
 export function LoginForm(){
 
-  const {loginAccount} = useAuth()
+  const {mutate, isPending} = useLogin()
   
   const {
     register, 
@@ -20,7 +20,7 @@ export function LoginForm(){
   })
 
   const submit = (data: LoginFormDTO) => {
-    loginAccount.mutate(data)
+    mutate(data)
   }
   
   return (
@@ -40,7 +40,17 @@ export function LoginForm(){
       <NavLink to="/forgot" className="self-end text-white hover:text-[var(--hover-color)]">
         Forgot password?</NavLink>
       <button className={buttonStyles}>
-        Login</button>
+        { 
+          isPending?   
+            <span>
+              Loading</span> : 
+            <span>
+              Login</span> 
+        }
+      </button>
+        
+
+      
       </form>
   )
 }

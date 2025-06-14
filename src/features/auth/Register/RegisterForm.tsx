@@ -1,13 +1,11 @@
-
 import { useForm } from "react-hook-form";
-import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "./FormStyles";
-import { RegisterFormDTO, registerSchema } from "../../../types/AuthTypes";
+import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
+import { RegisterFormDTO, registerSchema } from "@/types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { useAuth } from "@/features/auth/hooks/AuthHooks";
+import { useRegister } from "./RegisterHooks";
 
 export function RegisterForm(){
-  const {registerAccount} = useAuth()
+  const {mutate, isPending} = useRegister()
   
   const {
     register,
@@ -18,24 +16,8 @@ export function RegisterForm(){
     mode: "onChange"
   })
 
-  // const submit = async (data: RegisterFormDTO) => {
-  //   try{
-  //     await api.post('/register', data)
-  //     navigate("/login")
-  //   } catch(error){
-  //     if(axios.isAxiosError(error)){
-  //       const message = 
-  //         error.response?.data.message ||
-  //         error.message || "Unknown Error"
-  //         alert(message)
-  //     }else{
-  //       console.error("Unexpected Error:", error)
-  //     }
-  //   }
-  // }
   const submit = (data: RegisterFormDTO) => {
-    registerAccount.mutate(data)
-    
+    mutate(data) 
   }
 
   return(
@@ -56,7 +38,13 @@ export function RegisterForm(){
         {errors.password && <p className={errorMessageStyles}>{errors.password.message}</p>}
         </div>
       <button className={buttonStyles}>
-        Create</button>
+        {isPending ? 
+          <span>
+            Loading ...</span>:
+          <span>
+            Create</span> 
+        }
+        </button>
       </form>
   )
 }

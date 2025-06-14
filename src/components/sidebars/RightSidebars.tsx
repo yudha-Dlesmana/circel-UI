@@ -33,19 +33,19 @@ export function SidebarRight(){
 export function Profile(){
   return(
     <div className={backgoundStyle}>
-      <h1 className="font-bold text-xl text-white mb-1">
+      <h1 className="font-bold text-lg text-white mb-1">
         My Profile</h1>
-      <img src={BackgoundProfile} className="w-full h-25"/>
+      <img src={BackgoundProfile} className="w-full h-25 rounded-md"/>
       <Avatar className="size-20 -mt-10 ml-5"> 
         <AvatarImage src={AnyaSxF} className="" />
         </Avatar>
       <EditProfileDialog/>
         
       <div className="">
-        <h1 className="font-bold text-lg text-white">Anya Forger</h1>
-        <p className="text-sm text-[var(--gray-color)]">@anyaForger</p>
-        <p>Loves peanuts & Bondman</p>
-        <div className="flex gap-3">
+        <h1 className="text-base font-bold text-white">Anya Forger</h1>
+        <p className="text-xs text-[var(--gray-color)]">@anyaForger</p>
+        <p className="text-sm">Loves peanuts & Bondman</p>
+        <div className="text-sm flex gap-3">
           <div className="flex gap-1">
             <p className="font-bold text-white">291</p>
             <p>Following</p>
@@ -103,7 +103,7 @@ export function EditProfileDialog(){
 export function UserSuggestion(){
   return(
     <div className={backgoundStyle}>
-      <h1 className="font-bold text-xl text-white mb-1">
+      <h1 className="font-bold text-lg text-white mb-1">
         Suggested for you</h1>
       <ListUser />
       
@@ -118,12 +118,13 @@ function ListUser() {
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <div className="flex flex-1 items-center justify-between">
+        <div className="flex flex-1 text-sm items-center justify-between">
           <div>
             <h1>Loid Forger</h1>
             <p>@Twilight</p>
             </div>
-          <button className="border px-3 py-1 rounded-full font-bold text-sm">Follow</button>
+          <button className="border px-3 py-1 rounded-full font-bold text-sm">
+            Follow</button>
           </div>
         </li>
       <li className="flex items-center gap-3">
@@ -131,7 +132,7 @@ function ListUser() {
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <div className="flex flex-1 items-center justify-between">
+        <div className="flex flex-1 items-center justify-between text-sm">
           <div>
             <h1>Yor Forger</h1>
             <p>@Thorn Princess</p>
@@ -144,37 +145,11 @@ function ListUser() {
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <div className="flex flex-1 items-center justify-between">
+        <div className="flex flex-1 items-center justify-between text-sm">
           <div>
             <h1>Bond</h1>
             <p>@woff</p>
             </div>
-          <button className="border px-3 py-1 rounded-full font-bold text-sm">Follow</button>
-          </div>
-        </li>
-      <li className="flex items-center gap-3">
-        <Avatar className="size-10">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <div className="flex flex-1 items-center justify-between">
-          <div>
-            <h1>Franky Franklin</h1>
-            <p>@TheInformant</p>
-            </div>
-            <button className="border px-3 py-1 rounded-full font-bold text-sm">Follow</button>
-          </div>
-        </li>
-      <li className="flex items-center gap-3">
-        <Avatar className="size-10">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <div className="flex flex-1 items-center justify-between">
-          <div className="">
-            <h1>Becky Blackbell</h1>
-            <p>@Blackbell</p>
-          </div>
           <button className="border px-3 py-1 rounded-full font-bold text-sm">Follow</button>
           </div>
         </li>
@@ -185,13 +160,13 @@ function ListUser() {
 export function Meta(){
   return(
     <div className={backgoundStyle}>
-      <div className="flex items-center gap-3">
-      <p>Developed by Your Name</p>
-      <p>•</p>
-      <FaGithub />
-      <FaLinkedin />
-      <FaFacebook />
-      <AiFillInstagram />
+      <div className="flex items-center gap-2">
+        <p className="text-xs">Developed by yudha dwi lesmana</p>
+        <p>•</p>
+        <FaGithub />
+        <FaLinkedin />
+        <FaFacebook />
+        <AiFillInstagram />
       </div>
 
         <div id="row2" className=" text-xs
@@ -199,8 +174,7 @@ export function Meta(){
           <p>Powered by</p>
           <img src={logodw} />
           <p>Dumbways Indonesia</p>
-          <p>•</p>
-          <p>#1 Coding Bootcamp</p></div>
+          </div>
       </div>
   )
 }

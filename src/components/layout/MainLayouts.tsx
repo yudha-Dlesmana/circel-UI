@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { SidebarLeft } from "./LeftSidebars";
-import { SidebarRight } from "./RightSidebars";
+import { SidebarLeft } from "../sidebars/LeftSidebars";
+import { SidebarRight } from "../sidebars/RightSidebars";
 
 
 export function Main({children} : {children: ReactNode}){
@@ -13,5 +13,4 @@ export function Main({children} : {children: ReactNode}){
       <SidebarRight/>
     </div>
   )
-  
 }

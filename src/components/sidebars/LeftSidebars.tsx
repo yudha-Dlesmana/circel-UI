@@ -1,12 +1,11 @@
-import logo from "../assets/logo.svg"
+import logo from "@/assets/logo.svg"
 import { TbSmartHome } from "react-icons/tb";
 import { TbLogout2 } from "react-icons/tb"
 import { cn } from "tailwind-cn"
-import { NavLink } from "react-router"
+import { Link } from "react-router"
 import { LuImagePlus, LuUserRoundSearch } from "react-icons/lu";
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
-import { useAuthContext } from "@/contexts/AuthContext";
 import { Dialog, DialogClose, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { useForm } from "react-hook-form";
@@ -24,7 +23,7 @@ import { Input } from "@/components/ui/input";
 const listMenuStyle = cn("text-white text-lg flex gap-4 items-center hover:text-[var(--hover-color)]")
 
 export function SidebarLeft(){
-  const {logOut} = useAuthContext()
+
   return ( 
     <div className={cn("fixed",
     "left-0 top-0 w-1/6 h-screen",
@@ -36,7 +35,7 @@ export function SidebarLeft(){
         <ListMenu />
         <CreatePostDialog/>
       </div>
-      <button className="flex items-center gap-1 hover:text-[var(--hover-color)]" onClick={logOut}>
+      <button className="flex items-center gap-1 hover:text-[var(--hover-color)]">
         <TbLogout2 className="size-8"/> LogOut
         </button>
     </div>
@@ -59,7 +58,9 @@ function CreatePostDialog(){
     mode:"onTouched"
   })
 
-  const submit = () => {}
+  const submit = (data: PostFormDTO) => {
+    console.log(data)
+  }
 
   return (
     <Dialog>
@@ -83,13 +84,12 @@ function CreatePostDialog(){
               </Avatar>
             <TextareaAutosize {...register("text")} placeholder="what is happening?!" className="resize-none w-full text-xl text-white p-3 focus:outline-0"/>
           </div>
-          
-              {preview && ( 
-                <div className="flex justify-center mb-2">
-                  <img src={preview} className="max-h-96"/> 
-                  <XCircleIcon onClick={()=>{setPreview(null)}} className="-ml-6 text-[var(--gray-color)] hover:text-[#dc2626]" />
-                  </div>
-                )}
+          {preview && ( 
+            <div className="flex justify-center mb-2">
+              <img src={preview} className="max-h-96"/> 
+              <XCircleIcon onClick={()=>{setPreview(null)}} className="-ml-6 text-[var(--gray-color)] hover:text-[#dc2626]" />
+              </div>
+            )}
           <div className="flex justify-between">
             <Input id="image" type="file" accept="image/"
               onChange={handlerImageChange} className="hidden"/>
@@ -105,25 +105,26 @@ function CreatePostDialog(){
     </Dialog>
   )
 }
+
 function ListMenu(){
   return (
     <ul className="space-y-5 mb-5">
       <li>
-        <NavLink to={"/"} className={listMenuStyle}>
+        <Link to={"/"} className={listMenuStyle}>
         <TbSmartHome className="size-8"/> Home
-          </NavLink></li>
+          </Link></li>
       <li> 
-        <NavLink to={'/search'} className={listMenuStyle}>
+        <Link to={'/search'} className={listMenuStyle}>
           <LuUserRoundSearch className="size-8"/> Search
-          </NavLink></li>
+          </Link></li>
       <li>
-        <NavLink to={'/follow'} className={listMenuStyle}>
+        <Link to={'/follow'} className={listMenuStyle}>
           <AiOutlineHeart className="size-8"/> Follow
-          </NavLink></li>
+          </Link></li>
       <li>
-        <NavLink to={"/profile"} className={listMenuStyle}>
+        <Link to={"/profile"} className={listMenuStyle}>
           <CgProfile className="size-8"/> Profile
-        </NavLink></li>
+        </Link></li>
       </ul>
     
   )
