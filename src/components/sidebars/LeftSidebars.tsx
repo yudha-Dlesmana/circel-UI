@@ -23,12 +23,11 @@ import { Input } from "@/components/ui/input";
 const listMenuStyle = cn("text-white text-lg flex gap-4 items-center hover:text-[var(--hover-color)]")
 
 export function SidebarLeft(){
-
   return ( 
     <div className={cn("fixed",
     "left-0 top-0 w-1/6 h-screen",
     "border-r border-[#3F3F3F]", 
-    "p-10 z-50", 
+    "py-10 px-5 z-50", 
     "flex flex-col justify-between")}>
       <div>
         <img src={logo} className="mb-6 w-40"/>
@@ -65,9 +64,9 @@ function CreatePostDialog(){
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className={cn("w-full py-2 rounded-full",
+        <button className={cn("w-full py-1 rounded-full",
           "bg-[var(--primary-color)] hover:bg-[var(--hover-color)]",
-          "text-white text-xl font-medium")}>
+          "text-white text-lg font-bold")}>
             Create Post</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-2xl gap-2"> 

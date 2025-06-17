@@ -1,23 +1,21 @@
-import { RegisterFormDTO } from "@/types/AuthTypes";
+import { RegisterProfileFormData } from "@/types/ProfileTypes";
 import { api } from "@/utils/Apis";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import Cookies from "cookies-js";
 
-export function useRegister() {
+export function useRegisterProfile() {
   const navigate = useNavigate();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: async (data: RegisterFormDTO) => {
-      const res = await api.post("/register", data);
-      return res.data.token;
+    mutationFn: async (formData: RegisterProfileFormData) => {
+      const res = await api.post("/profile", formData);
+
+      return res.data.message;
     },
-    onSuccess: (token) => {
-      Cookies.set("token", token);
-      navigate("/register/profile");
-      toast.success(`your account has created`);
+    onSuccess: () => {
+      toast.success("Profile Created");
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {
@@ -28,8 +26,5 @@ export function useRegister() {
       }
     },
   });
-  return {
-    mutate,
-    isPending,
-  };
+  return { mutate, isPending };
 }

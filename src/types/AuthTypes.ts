@@ -13,7 +13,6 @@ export const loginSchema = z.object({
 type LoginFormDTO = z.infer<typeof loginSchema>;
 
 export const registerSchema = z.object({
-  fullname: z.string(),
   email: z.string().email(),
   password: z.string().min(6),
 });

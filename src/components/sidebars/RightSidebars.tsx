@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LuImagePlus } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
+import { useUser } from "@/hooks/useUsers";
 
 
 export const backgoundStyle = cn("text-[#B2B2B2] bg-[#262626] py-3 px-4 rounded-lg")
@@ -31,20 +32,21 @@ export function SidebarRight(){
 }
 
 export function Profile(){
+  const {data} = useUser()
   return(
     <div className={backgoundStyle}>
       <h1 className="font-bold text-lg text-white mb-1">
         My Profile</h1>
       <img src={BackgoundProfile} className="w-full h-25 rounded-md"/>
       <Avatar className="size-20 -mt-10 ml-5"> 
-        <AvatarImage src={AnyaSxF} className="" />
+        <AvatarImage src={data?.image} className="" />
         </Avatar>
       <EditProfileDialog/>
         
       <div className="">
-        <h1 className="text-base font-bold text-white">Anya Forger</h1>
-        <p className="text-xs text-[var(--gray-color)]">@anyaForger</p>
-        <p className="text-sm">Loves peanuts & Bondman</p>
+        <h1 className="text-base font-bold text-white">{data?.name}</h1>
+        <p className="text-xs text-[var(--gray-color)]">{data?.username}</p>
+        <p className="text-sm">{data?.bio}</p>
         <div className="text-sm flex gap-3">
           <div className="flex gap-1">
             <p className="font-bold text-white">291</p>

@@ -23,11 +23,6 @@ export function RegisterForm(){
   return(
     <form className= {formStyles} onSubmit={handleSubmit(submit)}>
       <div className="flex flex-col">
-        <input type="text" placeholder="Full Name" 
-        {...register("fullname")} className= {inputStyles}/>
-        {errors.fullname && <p className={errorMessageStyles}>{errors.fullname.message}</p>}
-        </div>
-      <div className="flex flex-col">
         <input type="text" placeholder="Email"
         {...register("email")} className={inputStyles}/>
         {errors.email && <p className={errorMessageStyles}>{errors.email.message}</p>}

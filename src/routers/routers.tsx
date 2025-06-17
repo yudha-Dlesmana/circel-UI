@@ -13,6 +13,7 @@ import { Follow } from "../pages/main/Follows";
 import { Profile } from "../pages/main/Profiles";
 import { MainProtected } from "@/components/protected/main";
 import { AuthProtected } from "@/components/protected/auth";
+import { RegisterProfile } from "@/pages/auth/RegisterProfile";
 
 
 
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register />},
       { path: "/forgot", element: <Forgot />},
       { path: "/reset", element: <Reset />},
+      { path: "/register/profile", element: <RegisterProfile/> },
     ]
   },
   {

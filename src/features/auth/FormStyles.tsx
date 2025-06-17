@@ -10,6 +10,7 @@ export const formStyles = cn(
   "w-[412px] space-y-3")
 
 export const inputStyles =  cn(
+  "w-full",
   "p-2",
   "text-white placeholder-[var(--gray-color)]",
   "focus:outline-0 focus:border-[var(--primary-color)]",
