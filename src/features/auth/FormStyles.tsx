@@ -17,6 +17,17 @@ export const inputStyles =  cn(
   "rounded-md",
   "border-1 border-[var(--gray-color)]"
 )
+
+export const textareaStyles = cn(
+  "w-full",
+  "p-2",
+  "text-white placeholder-[var(--gray-color)]",
+  "focus:outline-0 focus:border-[var(--primary-color)]",
+  "rounded-md",
+  "border-1 border-[var(--gray-color)]",
+  "resize-none"
+)
+
 export const buttonStyles = cn(
   "bg-[var(--primary-color)]",
   "py-2 px-4",

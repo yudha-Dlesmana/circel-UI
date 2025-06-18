@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { LuImagePlus } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/hooks/useUsers";
+import { EditProfile } from "@/features/dashboard/EditProfile/EditProfile";
 
 
 export const backgoundStyle = cn("text-[#B2B2B2] bg-[#262626] py-3 px-4 rounded-lg")
@@ -40,8 +41,10 @@ export function Profile(){
       <img src={BackgoundProfile} className="w-full h-25 rounded-md"/>
       <Avatar className="size-20 -mt-10 ml-5"> 
         <AvatarImage src={data?.image} className="" />
+        <AvatarFallback className="text-[var(--primary-color)] text-2xl font-bold">
+          {data?.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
-      <EditProfileDialog/>
+        <EditProfile/>
         
       <div className="">
         <h1 className="text-base font-bold text-white">{data?.name}</h1>

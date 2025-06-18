@@ -1,9 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Camera } from "lucide-react"
 import { useState } from "react"
-import { errorMessageStyles, inputStyles } from "../FormStyles"
+import { errorMessageStyles } from "../FormStyles"
 import { useRegisterProfile } from "./RegisterProfileHooks"
-import { RegisterProfileDTO, registerProfileSchema } from "@/types/ProfileTypes"
+import { ProfileDTO, ProfileSchema } from "@/types/ProfileTypes"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
@@ -18,8 +18,8 @@ export function RegisterProfileForm(){
     handleSubmit,
     setValue,
     formState: { errors }
-  } = useForm<RegisterProfileDTO>({
-    resolver: zodResolver(registerProfileSchema),
+  } = useForm<ProfileDTO>({
+    resolver: zodResolver(ProfileSchema),
     mode: "onChange"
   })
   
@@ -33,13 +33,12 @@ export function RegisterProfileForm(){
 
   }
 
-  const submit = (data: RegisterProfileDTO) => {
+  const submit = (data: ProfileDTO) => {
     const formData = new FormData()
     formData.append('name', data.name);
     if(data.bio) formData.append('bio', data.bio);
-    if(data.bio) formData.append('image', data.image)
+    if(data.image) formData.append('image', data.image)
 
-    
     mutate(formData)
   }
 

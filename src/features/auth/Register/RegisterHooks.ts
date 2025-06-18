@@ -15,7 +15,7 @@ export function useRegister() {
       return res.data.token;
     },
     onSuccess: (token) => {
-      Cookies.set("token", token);
+      Cookies.set("access-token", token);
       navigate("/register/profile");
       toast.success(`your account has created`);
     },

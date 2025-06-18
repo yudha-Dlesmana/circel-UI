@@ -1,13 +1,33 @@
 import z from "zod";
 
-export const registerProfileSchema = z.object({
+export const ProfileSchema = z.object({
   name: z.string().nonempty("name is required"),
   bio: z.string().max(50, "maximum character is 50").optional(),
-  image: z.instanceof(File),
+  image: z.instanceof(File).optional(),
 });
 
-type RegisterProfileDTO = z.infer<typeof registerProfileSchema>;
+type ProfileDTO = z.infer<typeof ProfileSchema>;
 
-type RegisterProfileFormData = FormData;
+type ProfileFormData = FormData;
 
-export type { RegisterProfileDTO, RegisterProfileFormData };
+export const EditProfileSchema = z.object({
+  name: z.string().nonempty("name is required"),
+  username: z
+    .string()
+    .nonempty("username is required")
+    .regex(/^@/)
+    .max(15, { message: "max 15 character" }),
+  bio: z.string().max(50, { message: "max 50 character" }),
+  image: z.instanceof(File).optional(),
+});
+
+type EditProfileDTO = z.infer<typeof EditProfileSchema>;
+
+type EditProfileFormData = FormData;
+
+export type {
+  ProfileDTO,
+  ProfileFormData,
+  EditProfileDTO,
+  EditProfileFormData,
+};
