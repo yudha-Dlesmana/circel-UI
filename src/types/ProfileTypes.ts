@@ -19,6 +19,7 @@ export const EditProfileSchema = z.object({
     .max(15, { message: "max 15 character" }),
   bio: z.string().max(50, { message: "max 50 character" }),
   image: z.instanceof(File).optional(),
+  deleteImage: z.boolean().optional(),
 });
 
 type EditProfileDTO = z.infer<typeof EditProfileSchema>;
