@@ -2,7 +2,7 @@ import z from "zod";
 
 export const ProfileSchema = z.object({
   name: z.string().nonempty("name is required"),
-  bio: z.string().max(50, "maximum character is 50").optional(),
+  bio: z.string().max(50, "maximum character is 50"),
   image: z.instanceof(File).optional(),
 });
 

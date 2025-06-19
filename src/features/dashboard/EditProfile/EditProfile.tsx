@@ -14,9 +14,14 @@ import { useEditProfile } from "./EditProfileHooks";
 export function EditProfile(){
   const {data} = useUser()
 
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const {mutate, isPending} = useEditProfile( () =>  setIsOpen(false))
+
   const [oriImage, setOriImage] = useState<string | undefined>(data?.image)
   
   const [preview, setPreview] = useState<string | undefined>(data?.image)
+
 
   const imageSrc = preview === oriImage ? oriImage : preview
 
@@ -44,7 +49,6 @@ export function EditProfile(){
       setValue("image", file, {shouldValidate: true})
     }
   }
-
   const handlerResetImage = () => {
     setPreview(oriImage)
     setValue('image', undefined)
@@ -52,21 +56,19 @@ export function EditProfile(){
   const handlerDeleteImage = () => {
     setPreview(undefined)
     setOriImage(undefined)
+    setValue("image", undefined)
   }
 
   const submit = (dataEdit: EditProfileDTO) => {
     const formData = new FormData()
     formData.append('name', dataEdit.name)
     formData.append('username', dataEdit.username)
-    if(dataEdit.bio) formData.append('bio', dataEdit.bio)
+    formData.append('bio', dataEdit.bio)
     if(dataEdit.image) formData.append('image', dataEdit.image)
-    if( oriImage && !dataEdit.image){
-      if(dataEdit.deleteImage) formData.append('deleteImage', "true")
+    if( !preview ){
+      formData.append('deleteImage', "true")
     }
-
-    for (const pair of formData.entries()){
-      console.log(`${pair[0]}: ${pair[1]}`); 
-    }
+    mutate(formData)
   }
 
   useEffect(() => {
@@ -79,30 +81,44 @@ export function EditProfile(){
     }
     setOriImage(data?.image)
     setPreview(data?.image)
-  }, [data, reset])
+  }, [isOpen, data, reset])
 
   return(
-    <Dialog>
+    <Dialog open={isOpen} 
+      onOpenChange={ (open) =>{
+        setIsOpen(open)
+        if(!open){
+          reset({
+            name: data?.name,
+            username: data?.username,
+            bio: data?.bio
+          })
+          setOriImage(data?.image)
+          setPreview(data?.image)
+        }
+    }}>
       <DialogTrigger asChild>
         <div className="flex justify-end -mt-7 mb-1">
-          <button className="border px-3 py-1 rounded-full font-bold text-sm">Edit Profile</button>
+          <button 
+          onClick={() => setIsOpen(true)}
+          className="border px-3 py-1 rounded-full font-bold text-sm"
+          >
+              Edit Profile</button>
           </div>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <div className="flex justify-between">
             <DialogTitle className="text-white font-bold">Edit Profile</DialogTitle>
-            <DialogClose><CircleX className="text-white hover:text-red-800"/></DialogClose>
+            <DialogClose onClick={() => setIsOpen(false)}>
+              <CircleX className="text-white hover:text-red-800"/></DialogClose>
             </div>  
           </DialogHeader>
 
         <form onSubmit={handleSubmit(submit)}>
           <div>
             <img src={BackgoundProfile} className="max-h-35 w-full rounded-md"/>
-            <div className="-mt-17 mb-2 flex items-end justify-center">
-              { oriImage || preview &&
-              <Trash2 onClick={handlerDeleteImage} className="text-red-700 cursor-pointer mt-"/>
-              } 
+            <div className="-mt-17 ml-7 mb-2 flex items-end gap-2"> 
               <label 
                 htmlFor="image" 
                 className="relative group cursor-pointer w-fit block"
@@ -118,9 +134,14 @@ export function EditProfile(){
                     <ImagePlus className="text-white"/>
                     </div>
                 </label>
-              {preview !== oriImage &&
-                <History onClick={handlerResetImage} className="text-white cursor-pointer"/>
-              }
+              <div className="flex flex-col gap-4">
+                {preview !== oriImage &&
+                  <History onClick={handlerResetImage} className="text-white cursor-pointer"/>
+                }
+                { (oriImage || preview) && (
+                <Trash2 onClick={handlerDeleteImage} className="text-red-700 cursor-pointer mt-"/>
+                )}
+                </div>
               <input id="image" type="file" className="hidden" onChange={handlerChangeImage}/>              
             </div>
           </div>
@@ -137,6 +158,16 @@ export function EditProfile(){
             className={textareaStyles}/>
             </div>
           <div className="flex justify-end">
+            {isPending ? 
+            <button
+              disabled
+              className="
+            text-white font-bold
+              bg-[var(--primary-color)] hover:bg-[var(--hover-color)]
+              py-1 px-3
+              rounded-sm
+            ">
+              update</button> :
             <button
               type="submit"
               className="
@@ -145,7 +176,8 @@ export function EditProfile(){
               py-1 px-3
               rounded-sm
             ">
-              save</button>
+              save</button>}
+            
             </div>
         </form>
       </DialogContent>

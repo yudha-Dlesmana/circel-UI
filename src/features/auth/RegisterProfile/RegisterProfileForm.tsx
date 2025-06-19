@@ -36,7 +36,7 @@ export function RegisterProfileForm(){
   const submit = (data: ProfileDTO) => {
     const formData = new FormData()
     formData.append('name', data.name);
-    if(data.bio) formData.append('bio', data.bio);
+    formData.append('bio', data.bio);
     if(data.image) formData.append('image', data.image)
 
     mutate(formData)
