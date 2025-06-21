@@ -6,4 +6,10 @@ type UserType = {
   image: string;
 };
 
-export type { UserType };
+type SuggestionType = {
+  username: string;
+  name: string;
+  image: string;
+};
+
+export type { UserType, SuggestionType };

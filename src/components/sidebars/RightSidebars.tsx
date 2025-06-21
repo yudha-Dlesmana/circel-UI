@@ -3,17 +3,10 @@ import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 import logodw from "@/assets/logodw.svg"
 import { cn } from "tailwind-cn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import  AnyaSxF  from "@/assets/AnyaSxF.jpeg"
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
-import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
-import { XCircleIcon } from "lucide-react";
-import TextareaAutosize from "react-textarea-autosize"
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { LuImagePlus } from "react-icons/lu";
-import { Button } from "@/components/ui/button";
 import { useUser } from "@/hooks/useUsers";
-import { EditProfile } from "@/features/dashboard/EditProfile/EditProfile";
+import { EditProfile } from "@/components/sidebars/EditProfile/EditProfile";
+import { SuggestionCard } from "./SuggestedForYou/SuggestionCard";
 
 
 export const backgoundStyle = cn("text-[#B2B2B2] bg-[#262626] py-3 px-4 rounded-lg")
@@ -25,14 +18,14 @@ export function SidebarRight(){
     "border-l border-[#3F3F3F]" ,
     "p-4 z-50",
     "flex flex-col gap-2")}>
-      <Profile/>
-      <UserSuggestion />
+      <ProfileCard/>
+      <SuggestionCard />
       <Meta />
     </div>
   )
 }
 
-export function Profile(){
+export function ProfileCard(){
   const {data} = useUser()
   return(
     <div className={backgoundStyle}>
@@ -46,7 +39,7 @@ export function Profile(){
         </Avatar>
         <EditProfile/>
         
-      <div className="">
+      <div>
         <h1 className="text-base font-bold text-white">{data?.name}</h1>
         <p className="text-xs text-[var(--gray-color)]">{data?.username}</p>
         <p className="text-sm">{data?.bio}</p>
@@ -65,100 +58,6 @@ export function Profile(){
 
 
       </div>
-  )
-}
-export function EditProfileDialog(){
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <div className="flex justify-end -mt-7 mb-1">
-          <button className="border px-3 py-1 rounded-full font-bold text-sm">Edit Profile</button>
-          </div>
-        </DialogTrigger>
-      <DialogContent className="sm:max-w-2xl"> 
-        <DialogHeader>
-          <DialogClose className="flex justify-end">
-            <XCircleIcon className="text-gray-500 hover:text-[#dc2626] " />
-            </DialogClose>
-          </DialogHeader>
-        <form className="">
-          <div className="flex justify-center items-center gap-3 border-b border-[var(--gray-color)] mb-3 pb-3">
-            <Avatar className="size-20">
-              <AvatarImage src={AnyaSxF} className={"size-1000"}/>
-              </Avatar>
-            <TextareaAutosize  placeholder="what is happening?!" className="resize-none w-full text-white p-3 focus"/>
-          </div>
-          
-              
-          <div className="flex justify-between">
-            <Input id="image" type="file" accept="image/" className="hidden"/>
-            <Label htmlFor="image">
-              <LuImagePlus className="size-7 text-[var(--primary-color)] hover:text-[var(--hover-color)]"/></Label>
-            <Button className="text-lg font-bold bg-[var(--primary-color)] hover:bg-[var(--hover-color)]">
-              Post</Button>
-            </div>
-
-          
-          </form>
-      </DialogContent>
-      </Dialog>
-  )
-}
-
-export function UserSuggestion(){
-  return(
-    <div className={backgoundStyle}>
-      <h1 className="font-bold text-lg text-white mb-1">
-        Suggested for you</h1>
-      <ListUser />
-      
-      </div>
-  )
-}
-function ListUser() {
-  return (
-    <ul className="space-y-2">
-      <li className="flex items-center gap-3">
-        <Avatar className="size-10">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <div className="flex flex-1 text-sm items-center justify-between">
-          <div>
-            <h1>Loid Forger</h1>
-            <p>@Twilight</p>
-            </div>
-          <button className="border px-3 py-1 rounded-full font-bold text-sm">
-            Follow</button>
-          </div>
-        </li>
-      <li className="flex items-center gap-3">
-        <Avatar className="size-10">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <div className="flex flex-1 items-center justify-between text-sm">
-          <div>
-            <h1>Yor Forger</h1>
-            <p>@Thorn Princess</p>
-            </div>
-          <button className="border px-3 py-1 rounded-full font-bold text-sm">Follow</button>
-          </div>
-        </li>
-      <li className="flex items-center gap-3">
-        <Avatar className="size-10">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <div className="flex flex-1 items-center justify-between text-sm">
-          <div>
-            <h1>Bond</h1>
-            <p>@woff</p>
-            </div>
-          <button className="border px-3 py-1 rounded-full font-bold text-sm">Follow</button>
-          </div>
-        </li>
-      </ul>
   )
 }
 
