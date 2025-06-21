@@ -45,11 +45,11 @@ export function ProfileCard(){
         <p className="text-sm">{data?.bio}</p>
         <div className="text-sm flex gap-3">
           <div className="flex gap-1">
-            <p className="font-bold text-white">291</p>
+            <p className="font-bold text-white">{data?.following}</p>
             <p>Following</p>
             </div>
           <div className="flex gap-1">
-            <p className="font-bold text-white">23</p>
+            <p className="font-bold text-white">{data?.follower}</p>
             <p>Followers</p>
             </div>
 

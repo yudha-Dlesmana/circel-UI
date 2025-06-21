@@ -4,6 +4,8 @@ type UserType = {
   name: string;
   bio: string;
   image: string;
+  follower: number;
+  following: number;
 };
 
 type SuggestionType = {
