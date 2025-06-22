@@ -8,10 +8,10 @@ type UserType = {
   following: number;
 };
 
-type SuggestionType = {
+type otherUserType = {
   username: string;
   name: string;
   image: string;
 };
 
-export type { UserType, SuggestionType };
+export type { UserType, otherUserType };

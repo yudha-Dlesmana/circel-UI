@@ -1,10 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSuggestion } from "./suggestionUserHooks";
-import { useFollow } from "@/hooks/userFollows";
+import { useFollow } from "@/hooks/useFollows";
+import { useFollowCheck } from "@/hooks/useFollowsCheck";
+import { useUnfollow } from "@/hooks/useUnfollow";
 
 export function SuggestionCard(){
   const { data } = useSuggestion()
-  const { followUser } = useFollow()
 
   return(
     <div className="text-[#B2B2B2] bg-[#262626] py-3 px-4 rounded-lg">
@@ -24,16 +25,28 @@ export function SuggestionCard(){
                 <h1>{item.name}</h1>
                 <h1>{item.username}</h1>
                 </div>
-              <button 
-              onClick={() => followUser({targetUsername: item.username})}
-              className="border px-3 py-1 rounded-full font-bold">
-                Follow
-                </button>
             </div>
+            <FollowButton username={item.username}/>
 
           </li>
         ))}
         </ul>
     </div>
   ) 
+}
+
+export function FollowButton({username}: {username: string}){
+  const {data} = useFollowCheck(username)
+  const { followUser } = useFollow()
+  const { unfollowUser} = useUnfollow()
+  return(
+    <>
+    {data ? 
+    <button onClick={()=> unfollowUser({targetUsername: username})}>
+      unfollow</button>:
+    <button onClick={()=> followUser({targetUsername: username})}>
+      follow</button>}
+    </>
+  )
+
 }

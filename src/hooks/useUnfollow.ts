@@ -1,21 +1,17 @@
-import { followTypes } from "@/types/followTypes";
 import { api } from "@/utils/Apis";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 
-export function useFollow() {
+export function useUnfollow() {
   const queryClient = useQueryClient();
-  const { mutate: followUser, isPending } = useMutation({
+  const { mutate: unfollowUser, isPending } = useMutation({
     mutationFn: async ({ targetUsername }: { targetUsername: string }) => {
-      const res = await api.post<followTypes>(`/follow/${targetUsername}`);
-      return res.data;
+      await api.delete(`/unfollow/${targetUsername}`);
     },
-    onSuccess: (data) => {
-      toast.success(
-        `${data.followerUsername} following ${data.followingUsername}`
-      );
-      queryClient.invalidateQueries({ queryKey: ["suggestion"] });
+    onSuccess: () => {
+      toast.success(`unfollowing user`);
+      queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {
@@ -26,5 +22,6 @@ export function useFollow() {
       }
     },
   });
-  return { followUser, isPending };
+
+  return { unfollowUser, isPending };
 }
