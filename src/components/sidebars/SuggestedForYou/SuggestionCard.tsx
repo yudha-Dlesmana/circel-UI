@@ -1,8 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSuggestion } from "./suggestionUserHooks";
-import { useFollow } from "@/hooks/useFollows";
-import { useFollowCheck } from "@/hooks/useFollowsCheck";
-import { useUnfollow } from "@/hooks/useUnfollow";
+import { FollowButton } from "@/components/customUI/followButtons";
 
 export function SuggestionCard(){
   const { data } = useSuggestion()
@@ -35,18 +33,3 @@ export function SuggestionCard(){
   ) 
 }
 
-export function FollowButton({username}: {username: string}){
-  const {data} = useFollowCheck(username)
-  const { followUser } = useFollow()
-  const { unfollowUser} = useUnfollow()
-  return(
-    <>
-    {data ? 
-    <button onClick={()=> unfollowUser({targetUsername: username})}>
-      unfollow</button>:
-    <button onClick={()=> followUser({targetUsername: username})}>
-      follow</button>}
-    </>
-  )
-
-}

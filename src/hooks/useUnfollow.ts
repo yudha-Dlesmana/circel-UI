@@ -12,6 +12,7 @@ export function useUnfollow() {
     onSuccess: () => {
       toast.success(`unfollowing user`);
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["isFollowed"] });
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {

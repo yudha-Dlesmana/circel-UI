@@ -8,7 +8,7 @@ export function Main({children} : {children: ReactNode}){
     <>
       <SidebarLeft/>
       <div className="w-full pl-[16.7%] pr-[25%]">
-        <main className="p-2 ">
+        <main className="">
           {children}
           </main>
         </div>

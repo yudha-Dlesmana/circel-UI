@@ -12,6 +12,7 @@ type otherUserType = {
   username: string;
   name: string;
   image: string;
+  bio: string;
 };
 
 export type { UserType, otherUserType };

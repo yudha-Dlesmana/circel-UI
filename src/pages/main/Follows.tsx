@@ -1,20 +1,35 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Followers } from "@/features/follows/followers";
 import { Followings } from "@/features/follows/following";
+import { cn } from "@/lib/utils";
 
 export function Follow(){
+  const active = cn("text-[#FFFFFF] rounded-none",
+    "data-[state=active]:bg-transparent", 
+    "data-[state=active]:border-b-4", 
+    "data-[state=active]:border-b-[var(--primary-color)]")
+
   return (
     <>
-      <h1>Follows</h1>
-      <Tabs>
-        <TabsList className="w-full">
-          <TabsTrigger value="following">Following</TabsTrigger>
-          <TabsTrigger value="follower">Follower</TabsTrigger>
+      <h1 className="
+        pt-10 px-5
+        mb-2 text-[#FFFFFF] text-3xl
+        font-bold 
+        rounded-b-none"
+      >
+        Follows</h1>
+      <Tabs defaultValue="follower">
+        <TabsList className="
+        w-full pb-0
+        bg-transparent rounded-none 
+        border-b-1 border-b-[#3F3F3F]">
+          <TabsTrigger value="follower"  className={active}>Follower</TabsTrigger>
+          <TabsTrigger value="following" className={active}>Following</TabsTrigger>
         </TabsList>
-        <TabsContent value="following"><Followings/></TabsContent>
         <TabsContent value="follower"><Followers/></TabsContent>
+        <TabsContent value="following"><Followings/></TabsContent>
       </Tabs>
-      {/* <Followers/> */}
+      
 
     </>
   )

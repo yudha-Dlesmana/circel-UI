@@ -13,7 +13,6 @@ export function useFollowCheck(targetUsername: string) {
 async function checkFollow({ queryKey }: { queryKey: [string, string] }) {
   const [, targetUsername] = queryKey;
 
-  const res = await api.get<boolean>(`/follow-check/${targetUsername}`);
-  console.log(res.data);
+  const res = await api.get<boolean>(`/isFollowed/${targetUsername}`);
   return res.data;
 }
