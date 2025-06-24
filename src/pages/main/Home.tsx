@@ -1,89 +1,18 @@
-import { TbLogout2 } from "react-icons/tb"
+import { Feeds } from "@/features/dashboard/feeds";
+import { TweetsInput } from "@/features/dashboard/tweetsInputs";
 
 export function Home(){
   
   return (
-    <div className="flex-col space-y-10">
-    <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
+    <>
+      <h1 className="
+        pt-10 px-5
+        mb-5 text-[#FFFFFF] text-3xl
+        font-bold "
       >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-    <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
-      >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-      <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
-      >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-      <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
-      >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-      <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
-      >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-      <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
-      >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-      <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
-      >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-      <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
-      >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-      <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
-      >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-      <button className="
-      text-xl
-      px-5 
-      flex gap-3 items-center"
-      >
-      <TbLogout2 className="size-10"/>
-      LogOut
-      </button>
-    </div>
+        Home</h1>
+      <TweetsInput/>
+      <Feeds />
+    </>
   )
 }

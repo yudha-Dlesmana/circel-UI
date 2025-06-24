@@ -1,9 +1,18 @@
-import {z} from "zod"
+import { z } from "zod";
 
 export const postSchema = z.object({
-  // image: z.instanceof(File)
-  //         .refine((file) => file.type.startsWith("image/"), {message: "Not image file"})
-  //         .optional().nullable(),
-  text: z.string().optional().nullable()
-})
-export type PostFormDTO = z.infer<typeof postSchema>
+  text: z.string().optional().nullable(),
+  image: z.instanceof(File).optional(),
+});
+export type PostFormDTO = z.infer<typeof postSchema>;
+
+export type PostDTO = {
+  text: string;
+  image?: string;
+  createAt: Date;
+  username: string;
+  name: string;
+  userImage?: string;
+  likes: number;
+  comments: number;
+};
