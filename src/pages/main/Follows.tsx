@@ -22,7 +22,8 @@ export function Follow(){
         <TabsList className="
         w-full pb-0
         bg-transparent rounded-none 
-        border-b-1 border-b-[#3F3F3F]">
+        border-b-1 border-b-[#3F3F3F]
+        ">
           <TabsTrigger value="follower"  className={active}>Follower</TabsTrigger>
           <TabsTrigger value="following" className={active}>Following</TabsTrigger>
         </TabsList>

@@ -1,9 +1,9 @@
 import { useFollow } from "@/hooks/useFollows"
-import { useFollowCheck } from "@/hooks/useFollowsCheck"
+import { useIsFollow } from "@/hooks/useIsFollows"
 import { useUnfollow } from "@/hooks/useUnfollow"
 
 export function FollowButton({username}: {username: string}){
-  const {data} = useFollowCheck(username)
+  const {data} = useIsFollow(username)
   const { followUser } = useFollow()
   const { unfollowUser} = useUnfollow()
   return(
@@ -19,7 +19,7 @@ export function FollowButton({username}: {username: string}){
 }
 
 export function FollowButton2({username}: {username: string}){
-  const {data} = useFollowCheck(username)
+  const {data} = useIsFollow(username)
   const { followUser } = useFollow()
   return(
     <>

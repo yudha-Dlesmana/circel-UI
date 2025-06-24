@@ -32,7 +32,8 @@ export function ProfileCard(){
       <h1 className="font-bold text-lg text-white mb-1">
         My Profile</h1>
       <img src={BackgoundProfile} className="w-full h-25 rounded-md"/>
-      <Avatar className="size-20 -mt-10 ml-5"> 
+
+      <Avatar className="size-20 -mt-10 ml-5 "> 
         <AvatarImage src={data?.image} className="" />
         <AvatarFallback className="text-[var(--primary-color)] text-2xl font-bold">
           {data?.name.charAt(0).toUpperCase()}</AvatarFallback>

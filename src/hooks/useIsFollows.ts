@@ -1,7 +1,7 @@
 import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
 
-export function useFollowCheck(targetUsername: string) {
+export function useIsFollow(targetUsername: string) {
   const { data, isLoading } = useQuery({
     queryKey: ["isFollowed", targetUsername],
     queryFn: checkFollow,
