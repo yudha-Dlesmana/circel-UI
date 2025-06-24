@@ -16,6 +16,7 @@ export function useFollow() {
         `${data.followerUsername} following ${data.followingUsername}`
       );
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["following"] });
       queryClient.invalidateQueries({ queryKey: ["isFollowed"] });
     },
     onError: (error) => {
