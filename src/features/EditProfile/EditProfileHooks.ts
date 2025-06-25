@@ -15,6 +15,7 @@ export function useEditProfile(onClose: () => void) {
     onSuccess: () => {
       toast.success(`your profile updated`);
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["feeds"] });
       onClose();
     },
     onError: (error) => {

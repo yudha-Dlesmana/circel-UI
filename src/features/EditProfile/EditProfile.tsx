@@ -20,10 +20,10 @@ export function EditProfile(){
 
   const [oriImage, setOriImage] = useState<string | undefined>(data?.image)
   
-  const [preview, setPreview] = useState<string | undefined>(data?.image)
+  const [previewEdit, setPreviewEdit] = useState<string | undefined>(data?.image)
 
 
-  const imageSrc = preview === oriImage ? oriImage : preview
+  const imageSrc = previewEdit === oriImage ? oriImage : previewEdit
 
   const {
     register,
@@ -45,16 +45,16 @@ export function EditProfile(){
     const file = e.target.files?.[0]
 
     if(file){
-      setPreview(URL.createObjectURL(file))
+      setPreviewEdit(URL.createObjectURL(file))
       setValue("image", file, {shouldValidate: true})
     }
   }
   const handlerResetImage = () => {
-    setPreview(oriImage)
+    setPreviewEdit(oriImage)
     setValue('image', undefined)
   }
   const handlerDeleteImage = () => {
-    setPreview(undefined)
+    setPreviewEdit(undefined)
     setOriImage(undefined)
     setValue("image", undefined)
   }
@@ -65,7 +65,7 @@ export function EditProfile(){
     formData.append('username', dataEdit.username)
     formData.append('bio', dataEdit.bio)
     if(dataEdit.image) formData.append('image', dataEdit.image)
-    if( !preview ){
+    if( !previewEdit ){
       formData.append('deleteImage', "true")
     }
     mutate(formData)
@@ -80,7 +80,7 @@ export function EditProfile(){
       })
     }
     setOriImage(data?.image)
-    setPreview(data?.image)
+    setPreviewEdit(data?.image)
   }, [isOpen, data, reset])
 
   return(
@@ -94,7 +94,7 @@ export function EditProfile(){
             bio: data?.bio
           })
           setOriImage(data?.image)
-          setPreview(data?.image)
+          setPreviewEdit(data?.image)
         }
     }}>
       <DialogTrigger asChild>
@@ -120,7 +120,7 @@ export function EditProfile(){
             <img src={BackgoundProfile} className="max-h-35 w-full rounded-md"/>
             <div className="-mt-17 ml-7 mb-2 flex items-end gap-2"> 
               <label 
-                htmlFor="image" 
+                htmlFor="imageProfile" 
                 className="relative group cursor-pointer w-fit block"
                 > 
                 <Avatar 
@@ -135,14 +135,14 @@ export function EditProfile(){
                     </div>
                 </label>
               <div className="flex flex-col gap-4">
-                {preview !== oriImage &&
+                {previewEdit !== oriImage &&
                   <History onClick={handlerResetImage} className="text-white cursor-pointer"/>
                 }
-                { (oriImage || preview) && (
+                { (oriImage || previewEdit) && (
                 <Trash2 onClick={handlerDeleteImage} className="text-red-700 cursor-pointer mt-"/>
                 )}
                 </div>
-              <input id="image" type="file" className="hidden" onChange={handlerChangeImage}/>              
+              <input id="imageProfile" type="file" className="hidden" onChange={handlerChangeImage}/>              
             </div>
           </div>
           <div className="space-y-2 border-b-1 border-[#3F3F3F] pb-2 mb-2">
