@@ -4,6 +4,7 @@ import { useFeeds } from "@/hooks/useFeeds";
 import { formatTweetDate } from "@/utils/Times";
 
 import { AiOutlineComment } from "react-icons/ai";
+import { Link } from "react-router";
 
 export function Feeds(){
   
@@ -28,14 +29,13 @@ export function Feeds(){
             <h1>•</h1>
             <h1>{formatTweetDate(tweets?.createAt.toLocaleString())}</h1>
             </div>
-          <div>
+          <Link to={`/status/${tweets.id}`}>
             <p className="text-white text-lg">{tweets?.text}</p>
             <img className="max-h-75" src={tweets?.image} alt="" />
-            </div>
+            </Link>
           <div className="flex gap-3 items-center text-[#909090] text-xl">
             <p className="flex gap-1 items-center">
-              <LikeButton tweetId={tweets.id}/> 
-              {tweets?.likes}</p>
+              <LikeButton tweetId={tweets.id}/></p>
             <p className="flex gap-1 items-center">
               <AiOutlineComment/> {tweets?.comments} comments</p>
             </div>

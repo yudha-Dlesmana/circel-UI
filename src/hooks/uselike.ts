@@ -3,17 +3,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 
-export function useLike() {
+export function useLike(tweetId: number) {
   const queryClient = useQueryClient();
   const { mutate: likeTweet } = useMutation({
-    mutationFn: async ({ tweetId }: { tweetId: number }) => {
+    mutationFn: async () => {
       const res = await api.post(`like?tweetId=${tweetId}`);
       return res.data;
     },
     onSuccess: () => {
       toast.success("liked");
-      queryClient.invalidateQueries({ queryKey: ["feeds"] });
-      queryClient.invalidateQueries({ queryKey: ["isLiked"] });
+      queryClient.invalidateQueries({ queryKey: ["isLiked", tweetId] });
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {

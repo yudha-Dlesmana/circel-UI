@@ -3,18 +3,17 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 
-export function useUnlike() {
+export function useUnlike(tweetId: number) {
   const queryClient = useQueryClient();
   const { mutate: unlike } = useMutation({
-    mutationFn: async ({ tweetId }: { tweetId: number }) => {
+    mutationFn: async () => {
       await api.delete("/unlike", {
         params: { tweetId },
       });
     },
     onSuccess: () => {
       toast.success("remove like");
-      queryClient.invalidateQueries({ queryKey: ["feeds"] });
-      queryClient.invalidateQueries({ queryKey: ["isLiked"] });
+      queryClient.invalidateQueries({ queryKey: ["isLiked", tweetId] });
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {

@@ -14,7 +14,7 @@ export const backgoundStyle = cn("text-[#B2B2B2] bg-[#262626] py-3 px-4 rounded-
 export function SidebarRight(){
   return (
     <div className={cn("fixed",
-    "right-0 top-0 w-3/12 h-screen",
+    "right-0 top-0 w-1/4 h-screen",
     "border-l border-[#3F3F3F]" ,
     "p-4 z-50",
     "flex flex-col gap-2")}>

@@ -1,3 +1,4 @@
+import { IsLikesDTO } from "@/types/PostTypes";
 import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
 
@@ -13,6 +14,6 @@ export function useIsLiked(tweetId: number) {
 async function checkLiked({ queryKey }: { queryKey: [string, number] }) {
   const [, tweetId] = queryKey;
 
-  const res = await api.get<boolean>(`/isliked`, { params: { tweetId } });
+  const res = await api.get<IsLikesDTO>(`/isliked`, { params: { tweetId } });
   return res.data;
 }
