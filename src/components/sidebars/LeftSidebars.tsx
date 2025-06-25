@@ -10,7 +10,7 @@ import { Dialog, DialogClose, DialogContent, DialogHeader } from "@/components/u
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize"
-import { PostFormDTO, postSchema } from "@/types/PostTypes";
+import { PostTweetsDTO, PostTweetsSchema  } from "@/types/PostTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import AnyaSxF from '@/assets/AnyaSxF.jpeg';
@@ -52,12 +52,12 @@ function CreatePostDialog(){
   const {
     register,
     handleSubmit,
-  } = useForm<PostFormDTO>({
-    resolver: zodResolver(postSchema),
+  } = useForm<PostTweetsDTO>({
+    resolver: zodResolver(PostTweetsSchema),
     mode:"onTouched"
   })
 
-  const submit = (data: PostFormDTO) => {
+  const submit = (data: PostTweetsDTO) => {
     console.log(data)
   }
 

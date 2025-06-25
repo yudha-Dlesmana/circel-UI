@@ -3,7 +3,12 @@ import { useSearch } from "./useSearch";
 import { FollowButton2 } from "@/components/customUI/followButtons";
 
 export function ListUser({name}: {name: string}){
-  const {data} = useSearch(name)
+  const {data, isLoading, error} = useSearch(name)
+  
+  if(isLoading) return <h1>Loading</h1>
+  if(error) return <h1>Error</h1>
+  if(data?.length === 0 || !data) return <h1>User Not Found</h1>
+
   return (
     <div className="px-5">
       <ul className="space-y-5">

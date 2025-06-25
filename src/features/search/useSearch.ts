@@ -3,11 +3,11 @@ import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
 
 export function useSearch(name: string) {
-  const { data } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["search", name],
     queryFn: search,
   });
-  return { data };
+  return { data, isLoading, error };
 }
 
 async function search({ queryKey }: { queryKey: [string, string] }) {

@@ -12,7 +12,7 @@ export function Feeds(){
   return(
     <>
     {data?.map((tweets) => 
-      <div>
+      <div className="border-b border-[var(--gray-color)] px-5 pb-4">
         <Avatar>
           <AvatarImage src={tweets?.userImage}/>
           <AvatarFallback>{tweets?.name.charAt(0)}</AvatarFallback>

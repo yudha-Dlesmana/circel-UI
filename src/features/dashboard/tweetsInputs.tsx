@@ -2,15 +2,17 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { usePostTweets } from "@/hooks/usePostTweets";
 import { useUser } from "@/hooks/useUsers";
-import { PostFormDTO, postSchema } from "@/types/PostTypes";
+import { PostTweetsDTO, PostTweetsSchema } from "@/types/PostTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { XCircleIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { LuImagePlus } from "react-icons/lu";
 import TextareaAutosize from "react-textarea-autosize"
+import { toast } from "sonner";
 
 export function TweetsInput(){
   const {data} = useUser()
@@ -19,9 +21,11 @@ export function TweetsInput(){
   const {
     register,
     handleSubmit,
-    setValue
-  } = useForm<PostFormDTO>({
-    resolver: zodResolver(postSchema),
+    formState: {errors},
+    setValue,
+    reset
+  } = useForm<PostTweetsDTO>({
+    resolver: zodResolver(PostTweetsSchema),
     mode:"onTouched"
   })
 
@@ -29,19 +33,30 @@ export function TweetsInput(){
     const file = e.target.files?.[0];
     if (file) {
       setPreview(URL.createObjectURL(file))
-      setValue("image", file)
+      setValue("image", file, {shouldValidate: true})
     }
   }
+  const onSuccessCallback = () => {
+    reset(),
+    setPreview(undefined)
+  }
 
-  const submit = (data: PostFormDTO) => {
+  const {mutate, isPending} = usePostTweets(onSuccessCallback)
+
+  const submit = (data: PostTweetsDTO) => {
     const formData = new FormData()
-    if(data.text) formData.append("text", data.text)
+    formData.append("text", data.text || "")
     if(data.image) formData. append("image", data.image)
 
-    for(let [key, value] of formData.entries()){
-      console.log(`${key}: ${value}`)
-    }
+    mutate(formData)
   }
+
+  useEffect( () => {
+    if(errors.image){
+      toast.error(errors.image.message)
+    }
+  }, [errors])
+
   return (
     <form className="border-b border-[var(--gray-color)] px-5 pb-4"
       onSubmit={handleSubmit(submit)}>
@@ -56,8 +71,12 @@ export function TweetsInput(){
           onChange={handlerImageChange} className="hidden"/>
           <Label htmlFor="image">
             <LuImagePlus className="size-7 text-[var(--primary-color)] hover:text-[var(--hover-color)]"/></Label>
+          {isPending ? 
+          <Button  disabled className="text-lg font-bold bg-[var(--primary-color)] ">
+            Loading</Button> :
           <Button className="text-lg font-bold bg-[var(--primary-color)] hover:bg-[var(--hover-color)]">
             Post</Button>
+          }
           
           </div>
       </div>

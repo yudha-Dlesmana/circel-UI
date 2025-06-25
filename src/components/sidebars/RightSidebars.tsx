@@ -5,8 +5,8 @@ import { cn } from "tailwind-cn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { useUser } from "@/hooks/useUsers";
-import { EditProfile } from "@/components/sidebars/EditProfile/EditProfile";
-import { SuggestionCard } from "./SuggestedForYou/SuggestionCard";
+import { EditProfile } from "@/features/EditProfile/EditProfile";
+import { SuggestionCard } from "../../features/SuggestedForYou/SuggestionCard";
 
 
 export const backgoundStyle = cn("text-[#B2B2B2] bg-[#262626] py-3 px-4 rounded-lg")
