@@ -1,8 +1,8 @@
+import { LikeButton } from "@/components/customUI/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useFeeds } from "@/hooks/useFeeds";
 import { formatTweetDate } from "@/utils/Times";
-import { GoHeart } from "react-icons/go";
-// import { GoHeartFill } from "react-icons/go";
+
 import { AiOutlineComment } from "react-icons/ai";
 
 export function Feeds(){
@@ -16,7 +16,7 @@ export function Feeds(){
   return(
     <>
     {data?.map((tweets) => 
-      <div className="flex gap-4 border-b border-[var(--gray-color)] px-5 py-4 ">
+      <div key={tweets.id} className="flex gap-4 border-b border-[var(--gray-color)] px-5 py-4 ">
         <Avatar className="size-13">
           <AvatarImage src={tweets?.userImage}/>
           <AvatarFallback>{tweets?.name.charAt(0)}</AvatarFallback>
@@ -34,7 +34,8 @@ export function Feeds(){
             </div>
           <div className="flex gap-3 items-center text-[#909090] text-xl">
             <p className="flex gap-1 items-center">
-              <GoHeart/> {tweets?.likes}</p>
+              <LikeButton tweetId={tweets.id}/> 
+              {tweets?.likes}</p>
             <p className="flex gap-1 items-center">
               <AiOutlineComment/> {tweets?.comments} comments</p>
             </div>

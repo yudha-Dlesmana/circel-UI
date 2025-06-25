@@ -20,6 +20,7 @@ export type PostTweetsDTO = z.infer<typeof PostTweetsSchema>;
 export type PostTweesFormData = FormData;
 
 export type PostDTO = {
+  id: number;
   text: string;
   image?: string;
   createAt: Date;

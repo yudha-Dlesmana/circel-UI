@@ -7,7 +7,6 @@ export function useFeeds() {
     queryKey: ["feeds"],
     queryFn: async () => {
       const res = await api.get<PostDTO[]>("/feeds");
-      console.log(res.data);
       return res.data;
     },
   });

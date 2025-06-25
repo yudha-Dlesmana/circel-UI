@@ -14,6 +14,7 @@ import { Profile } from "../pages/main/Profiles";
 import { MainProtected } from "@/components/protected/main";
 import { AuthProtected } from "@/components/protected/auth";
 import { RegisterProfile } from "@/pages/auth/RegisterProfile";
+import { Status } from "@/pages/main/Status";
 
 
 
@@ -34,7 +35,8 @@ export const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: "/search", element: <Search /> },
       { path: "/follow", element: <Follow /> },
-      { path: "/profile", element: <Profile />}
+      { path: "/profile", element: <Profile />},
+      { path: "/status/:id", element: <Status/>}
     ]
   }
 
