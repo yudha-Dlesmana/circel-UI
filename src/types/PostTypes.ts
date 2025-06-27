@@ -31,12 +31,16 @@ export type PostDTO = {
   comments: number;
 }; // ganti jadi tweets
 
-export type tweetDTO = {
+export type RepliesDTO = {
   id: number;
-  username: string;
   text: string;
-  image: string;
+  image?: string;
   createAt: Date;
+  username: string;
+  name: string;
+  userImage?: string;
+  likes: number;
+  replies: number;
 };
 
 export type IsLikesDTO = {
