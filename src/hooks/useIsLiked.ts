@@ -14,6 +14,6 @@ export function useIsLiked(tweetId: number) {
 async function checkLiked({ queryKey }: { queryKey: [string, number] }) {
   const [, tweetId] = queryKey;
 
-  const res = await api.get<IsLikesDTO>(`/isliked`, { params: { tweetId } });
+  const res = await api.get<IsLikesDTO>(`/isliked-tweet/${tweetId}`);
   return res.data;
 }

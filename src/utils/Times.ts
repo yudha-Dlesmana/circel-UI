@@ -42,3 +42,11 @@ export function formatTweetDate(isoString: string): string {
 
   return format(postDate, "dd MMM yyyy");
 }
+
+export function formatFullTweetDate(isoString: string) {
+  const date = new Date(isoString);
+  const timePart = format(date, "hh:mm A");
+  const datePart = format(date, "MMM DD, YYYY");
+
+  return `${timePart} • ${datePart}`;
+}

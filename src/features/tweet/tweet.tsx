@@ -2,6 +2,7 @@ import { LikeButton } from "@/components/customUI/likeButton";
 import { useTweets } from "@/hooks/tweet/useTweets";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AiOutlineComment } from "react-icons/ai";
+import { formatFullTweetDate } from "@/utils/Times";
 
 
 export function Tweet({ tweetId }: { tweetId: number }) {
@@ -18,16 +19,15 @@ export function Tweet({ tweetId }: { tweetId: number }) {
           <AvatarFallback>{data.name.charAt(0)}</AvatarFallback>
           </Avatar>
         <div className="space-y-2">
-          <div className="text-[#909090] flex gap-1 text-xl">
-            <h1 className="text-white font-medium">{data?.name}</h1>
-            <h1>{data?.username}</h1>
-            <h1>•</h1>
-            {/* <h1>{formatTweetDate(data?.createAt.toLocaleString())}</h1> */}
+          <div>
+            <h1 className="text-white font-medium text-lg">{data?.name}</h1>
+            <h1 className="text-[#909090] text-sm">{data?.username}</h1>
             </div>
           <div>
             <p className="text-white text-lg">{data?.text}</p>
             <img className="max-h-75" src={data?.image} alt="" />
             </div>
+          <div className="text-[#909090]"> {formatFullTweetDate(data.createAt.toLocaleString())}</div>
           <div className="flex gap-3 items-center text-[#909090] text-xl">
             <p className="flex gap-1 items-center">
               <LikeButton tweetId={data.id}/></p>

@@ -39,7 +39,7 @@ export type RepliesDTO = {
   username: string;
   name: string;
   userImage?: string;
-  likes: number;
+  like: number;
   replies: number;
 };
 

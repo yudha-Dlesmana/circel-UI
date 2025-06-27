@@ -7,7 +7,7 @@ export function useLike(tweetId: number) {
   const queryClient = useQueryClient();
   const { mutate: likeTweet } = useMutation({
     mutationFn: async () => {
-      const res = await api.post(`like?tweetId=${tweetId}`);
+      const res = await api.post(`/like-tweet/${tweetId}`);
       return res.data;
     },
     onSuccess: () => {

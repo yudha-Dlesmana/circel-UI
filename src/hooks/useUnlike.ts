@@ -7,9 +7,7 @@ export function useUnlike(tweetId: number) {
   const queryClient = useQueryClient();
   const { mutate: unlike } = useMutation({
     mutationFn: async () => {
-      await api.delete("/unlike", {
-        params: { tweetId },
-      });
+      await api.delete(`/remove-like-tweet/${tweetId}`);
     },
     onSuccess: () => {
       toast.success("remove like");
