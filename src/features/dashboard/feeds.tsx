@@ -1,4 +1,4 @@
-import { LikeButton } from "@/components/customUI/likeButton";
+import { LikeTweetButton } from "@/components/customUI/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useFeeds } from "@/hooks/useFeeds";
 import { formatTweetDate } from "@/utils/Times";
@@ -35,7 +35,7 @@ export function Feeds(){
             </Link>
           <div className="flex gap-3 items-center text-[#909090] text-xl">
             <p className="flex gap-1 items-center">
-              <LikeButton tweetId={tweets.id}/></p>
+              <LikeTweetButton tweetId={tweets.id}/></p>
             <p className="flex gap-1 items-center">
               <AiOutlineComment/> {tweets.comments} comments</p>
             </div>

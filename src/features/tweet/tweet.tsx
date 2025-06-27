@@ -1,4 +1,4 @@
-import { LikeButton } from "@/components/customUI/likeButton";
+import { LikeTweetButton } from "@/components/customUI/likeButton";
 import { useTweets } from "@/hooks/tweet/useTweets";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AiOutlineComment } from "react-icons/ai";
@@ -28,11 +28,11 @@ export function Tweet({ tweetId }: { tweetId: number }) {
             <img className="max-h-75" src={data?.image} alt="" />
             </div>
           <div className="text-[#909090]"> {formatFullTweetDate(data.createAt.toLocaleString())}</div>
-          <div className="flex gap-3 items-center text-[#909090] text-xl">
+          <div className="flex gap-3 items-center text-[#909090] text-lg">
             <p className="flex gap-1 items-center">
-              <LikeButton tweetId={data.id}/></p>
+              <LikeTweetButton tweetId={data.id}/></p>
             <p className="flex gap-1 items-center">
-              <AiOutlineComment/> {data?.comments} comments</p>
+              <AiOutlineComment/> {data.comments} comments</p>
             </div>
           </div>
       </div>

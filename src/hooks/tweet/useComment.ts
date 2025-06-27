@@ -4,14 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useComments(tweetId: number) {
   const {
-    data: comment,
+    data: comments,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["comment", tweetId],
+    queryKey: ["comments", tweetId],
     queryFn: getComment,
   });
-  return { comment, isLoading, error };
+  return { comments, isLoading, error };
 }
 
 async function getComment({ queryKey }: { queryKey: [string, number] }) {

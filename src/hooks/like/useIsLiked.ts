@@ -10,10 +10,24 @@ export function useIsLiked(tweetId: number) {
 
   return { data, isLoading };
 }
-
 async function checkLiked({ queryKey }: { queryKey: [string, number] }) {
   const [, tweetId] = queryKey;
 
   const res = await api.get<IsLikesDTO>(`/isliked-tweet/${tweetId}`);
+  return res.data;
+}
+
+export function useCheckCommentLiked(commentId: number) {
+  const { data: CommentIsLiked, isLoading } = useQuery({
+    queryKey: ["CommentIsLiked", commentId],
+    queryFn: checkCommentLiked,
+  });
+
+  return { CommentIsLiked, isLoading };
+}
+async function checkCommentLiked({ queryKey }: { queryKey: [string, number] }) {
+  const [, commentId] = queryKey;
+
+  const res = await api.get<IsLikesDTO>(`/isliked-comment/${commentId}`);
   return res.data;
 }

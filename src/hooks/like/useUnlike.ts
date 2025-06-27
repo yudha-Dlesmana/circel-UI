@@ -24,3 +24,27 @@ export function useUnlike(tweetId: number) {
   });
   return { unlike };
 }
+
+export function useRemoveLikeComment(commentId: number) {
+  const queryClient = useQueryClient();
+  const { mutate: removeLikeComment } = useMutation({
+    mutationFn: async () => {
+      await api.delete(`/remove-like-comment/${commentId}`);
+    },
+    onSuccess: () => {
+      toast.success("remove like");
+      queryClient.invalidateQueries({
+        queryKey: ["CommentIsLiked", commentId],
+      });
+    },
+    onError: (error) => {
+      if (axios.isAxiosError(error)) {
+        const message = error.response?.data.message;
+        toast.error(message);
+      } else {
+        console.error(error.stack);
+      }
+    },
+  });
+  return { removeLikeComment };
+}
