@@ -2,9 +2,13 @@ import { LikeCommentButton } from "@/components/customUI/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useComments } from "@/hooks/tweet/useComment";
 import { formatTweetDate } from "@/utils/Times";
+import { Replies } from "./replies";
+import { useState } from "react";
 
 export function Comments({tweetId}: {tweetId: number}){
   const {comments, isLoading, error} = useComments(tweetId)
+
+  const [showReplies, setShowReplies] = useState<boolean>(false)
 
   if(isLoading) return <h1>loading</h1>
   if(error)return <h1>{error.message}</h1>
@@ -17,7 +21,7 @@ export function Comments({tweetId}: {tweetId: number}){
           <AvatarImage src={comment.userImage}/>
           <AvatarFallback>{comment.name.charAt(0)}</AvatarFallback>
           </Avatar>
-        <div className="space-y-2">
+        <div className="space-y-2 w-full">
           <div className="text-[#909090]  flex gap-1">
             <h1 className="text-white font-medium">{comment?.name}</h1>
             <h1 className="">{comment?.username}</h1>
@@ -32,9 +36,11 @@ export function Comments({tweetId}: {tweetId: number}){
           <div className="flex gap-3 items-center text-[#909090]">
             <p className="flex gap-1 items-center">
               <LikeCommentButton tweetId={tweetId} commentId={comment.id}/></p>
-            <p>
-              {comment.replies} replies</p> 
+            <p onClick={() => setShowReplies(!showReplies)} className="cursor-pointer">
+              {comment.replies} replies</p>
             </div>
+          
+          {showReplies && <Replies parentId={comment.id}/>}
           </div>
       </div>
     )}
