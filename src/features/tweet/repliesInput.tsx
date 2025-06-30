@@ -10,7 +10,7 @@ import TextareaAutosize from "react-textarea-autosize"
 import { toast } from "sonner"
 
 export function RepliesInput({tweetId, parentId}: {tweetId: number, parentId: number}){
-  const {data} = useUser()
+  const {user} = useUser()
   const {
     register,
     handleSubmit,
@@ -41,8 +41,8 @@ export function RepliesInput({tweetId, parentId}: {tweetId: number, parentId: nu
       onSubmit={handleSubmit(submit)}>
       <div className="flex gap-2 items-center">
         <Avatar className="size-10">
-          <AvatarImage src={data?.image}/>
-          <AvatarFallback>{data?.name}</AvatarFallback>
+          <AvatarImage src={user?.image}/>
+          <AvatarFallback>{user?.name}</AvatarFallback>
           </Avatar>
         <TextareaAutosize {...register("text")} 
           className="resize-none w-full text-sm text-white px-3 focus:outline-0"

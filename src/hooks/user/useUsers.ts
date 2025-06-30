@@ -3,12 +3,16 @@ import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
 
 export function useUser() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["users"],
+  const {
+    data: user,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["user"],
     queryFn: async () => {
       const res = await api.get<UserType>("/user");
       return res.data;
     },
   });
-  return { data, isLoading, error };
+  return { user, isLoading, error };
 }

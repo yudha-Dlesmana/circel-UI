@@ -15,6 +15,7 @@ import { MainProtected } from "@/components/protected/main";
 import { AuthProtected } from "@/components/protected/auth";
 import { RegisterProfile } from "@/pages/auth/RegisterProfile";
 import { Status } from "@/pages/main/Status";
+import { DetailImage } from "@/pages/main/DetailImages";
 
 
 
@@ -36,7 +37,8 @@ export const router = createBrowserRouter([
       { path: "/search", element: <Search /> },
       { path: "/follow", element: <Follow /> },
       { path: "/profile", element: <Profile />},
-      { path: "/status/:id", element: <Status/>}
+      { path: "/status/:id", element: <Status/>},
+      { path: "/detail-image/:id", element:<DetailImage />}
     ]
   }
 

@@ -15,7 +15,7 @@ import TextareaAutosize from "react-textarea-autosize"
 import { toast } from "sonner";
 
 export function CommentInput({tweetId}:{tweetId: number}){
-  const {data} = useUser()
+  const {user} = useUser()
   const [preview, setPreview] = useState<string | undefined>(undefined)
   
   const {
@@ -63,8 +63,8 @@ export function CommentInput({tweetId}:{tweetId: number}){
       onSubmit={handleSubmit(submit)}>
       <div className="flex gap-2 items-center">
         <Avatar className="size-14">
-          <AvatarImage src={data?.image}/>
-          <AvatarFallback>{data?.name.charAt(0)}</AvatarFallback>
+          <AvatarImage src={user?.image}/>
+          <AvatarFallback>{user?.name.charAt(0)}</AvatarFallback>
           </Avatar>
         <TextareaAutosize {...register("text")} 
           className="resize-none w-full text-lg text-white px-3 focus:outline-0"

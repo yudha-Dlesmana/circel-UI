@@ -11,7 +11,7 @@ import { inputStyles, textareaStyles } from "@/features/auth/FormStyles";
 import { History } from "lucide-react";
 import { useEditProfile } from "./EditProfileHooks";
 
-export function EditProfile(){
+export function EditProfileCard(){
   const {user} = useUser()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -98,7 +98,7 @@ export function EditProfile(){
         }
     }}>
       <DialogTrigger asChild>
-        <div className="flex justify-end -mt-17 mb-1">
+        <div className="flex justify-end -mt-7 mb-1">
           <button 
           onClick={() => setIsOpen(true)}
           className="border px-3 py-1 rounded-full font-bold text-sm"

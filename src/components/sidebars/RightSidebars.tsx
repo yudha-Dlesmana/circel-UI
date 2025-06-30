@@ -5,7 +5,7 @@ import { cn } from "tailwind-cn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { useUser } from "@/hooks/user/useUsers";
-import { EditProfile } from "@/features/EditProfile/EditProfile";
+import { EditProfileCard } from "@/features/EditProfile/EditProfileCard";
 import { SuggestionCard } from "../../features/SuggestedForYou/SuggestionCard";
 import { useLocation } from "react-router";
 
@@ -16,7 +16,6 @@ export function SidebarRight(){
   
   const location = useLocation()
   const hideSuggestion = location.pathname === "/profile"
-  console.log(location.pathname)
 
   return (
     <div className={cn("fixed",
@@ -34,7 +33,8 @@ export function SidebarRight(){
 }
 
 export function ProfileCard(){
-  const {data} = useUser()
+  const {user} = useUser()
+  
   return(
     <div className={backgoundStyle}>
       <h1 className="font-bold text-lg text-white mb-1">
@@ -42,23 +42,23 @@ export function ProfileCard(){
       <img src={BackgoundProfile} className="w-full h-25 rounded-md"/>
 
       <Avatar className="size-20 -mt-10 ml-5 "> 
-        <AvatarImage src={data?.image} className="" />
+        <AvatarImage src={user?.image} className="" />
         <AvatarFallback className="text-[var(--primary-color)] text-2xl font-bold">
-          {data?.name.charAt(0).toUpperCase()}</AvatarFallback>
+          {user?.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
-        <EditProfile/>
+        <EditProfileCard/>
         
       <div>
-        <h1 className="text-base font-bold text-white">{data?.name}</h1>
-        <p className="text-xs text-[var(--gray-color)]">{data?.username}</p>
-        <p className="text-sm">{data?.bio}</p>
+        <h1 className="text-base font-bold text-white">{user?.name}</h1>
+        <p className="text-xs text-[var(--gray-color)]">{user?.username}</p>
+        <p className="text-sm">{user?.bio}</p>
         <div className="text-sm flex gap-3">
           <div className="flex gap-1">
-            <p className="font-bold text-white">{data?.following}</p>
+            <p className="font-bold text-white">{user?.following}</p>
             <p>Following</p>
             </div>
           <div className="flex gap-1">
-            <p className="font-bold text-white">{data?.follower}</p>
+            <p className="font-bold text-white">{user?.follower}</p>
             <p>Followers</p>
             </div>
 
