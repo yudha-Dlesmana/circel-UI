@@ -22,7 +22,8 @@ export type PostTweesFormData = FormData;
 export const PostRepliesSchema = z.object({
   text: z.string().nonempty(),
 });
-export type PostRepliesType = z.infer<typeof PostRepliesSchema>;
+export type PostRepliesDTO = z.infer<typeof PostRepliesSchema>;
+export type PostRepliesSearchParam = URLSearchParams;
 
 export type PostDTO = {
   id: number;
@@ -35,7 +36,6 @@ export type PostDTO = {
   likes: number;
   comments: number;
 }; // ganti jadi tweets
-
 export type RepliesDTO = {
   id: number;
   text: string;
@@ -47,7 +47,6 @@ export type RepliesDTO = {
   like: number;
   replies: number;
 };
-
 export type IsLikesDTO = {
   isLiked: boolean;
   countlikes: number;

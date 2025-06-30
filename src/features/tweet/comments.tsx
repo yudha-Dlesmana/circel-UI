@@ -52,7 +52,7 @@ export function Comments({tweetId}: {tweetId: number}){
           
           {openReplies[comment.id] && 
           <>
-            <RepliesInput />
+            <RepliesInput tweetId={tweetId} parentId={comment.id} />
             <Replies parentId={comment.id}/>
             </>
           }

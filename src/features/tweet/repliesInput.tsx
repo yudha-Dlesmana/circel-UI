@@ -1,28 +1,43 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import { usePostReplies } from "@/hooks/tweet/usePostReplies"
 import { useUser } from "@/hooks/useUsers"
-import { PostTweetsDTO, PostTweetsSchema } from "@/types/PostTypes"
+import { PostRepliesDTO, PostRepliesSchema } from "@/types/PostTypes"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
+import { toast } from "sonner"
 
-export function RepliesInput(){
+export function RepliesInput({tweetId, parentId}: {tweetId: number, parentId: number}){
   const {data} = useUser()
   const {
     register,
     handleSubmit,
     formState: {errors},
-  } = useForm<PostTweetsDTO>({
-    resolver: zodResolver(PostTweetsSchema),
+    reset
+  } = useForm<PostRepliesDTO>({
+    resolver: zodResolver(PostRepliesSchema),
     mode:"onTouched"
   })
+  
+  useEffect( () => {
+      if(errors.text){
+        toast.error(errors.text.message)
+      }
+    }, [errors])
+  
 
-  const submit = (data: PostTweetsDTO) => {
-    console.log(data)
+  const {mutate} = usePostReplies(tweetId, parentId, reset )
+
+  const submit = (data: PostRepliesDTO) => {
+    const params = new URLSearchParams()
+    params.append("text", data.text)
+    mutate(params)
   }
 
   return(
-    <form className="border-b border-[var(--gray-color)] py-2 "
+    <form className="border-y border-[var(--gray-color)] py-2 "
       onSubmit={handleSubmit(submit)}>
       <div className="flex gap-2 items-center">
         <Avatar className="size-10">

@@ -1,4 +1,4 @@
-import { PostRepliesType } from "@/types/PostTypes";
+import { PostRepliesSearchParam } from "@/types/PostTypes";
 import { api } from "@/utils/Apis";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -11,8 +11,12 @@ export function usePostReplies(
 ) {
   const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
-    mutationFn: async (data: PostRepliesType) => {
-      await api.post(`/replies/${tweetId}/${parentId}`, data);
+    mutationFn: async (data: PostRepliesSearchParam) => {
+      await api.post(`/replies/${tweetId}/${parentId}`, data, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["replies"] });
