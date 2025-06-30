@@ -7,19 +7,27 @@ import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { useUser } from "@/hooks/user/useUsers";
 import { EditProfile } from "@/features/EditProfile/EditProfile";
 import { SuggestionCard } from "../../features/SuggestedForYou/SuggestionCard";
+import { useLocation } from "react-router";
 
 
 export const backgoundStyle = cn("text-[#B2B2B2] bg-[#262626] py-3 px-4 rounded-lg")
 
 export function SidebarRight(){
+  
+  const location = useLocation()
+  const hideSuggestion = location.pathname === "/profile"
+  console.log(location.pathname)
+
   return (
     <div className={cn("fixed",
     "right-0 top-0 w-1/4 h-screen",
     "border-l border-[#3F3F3F]" ,
     "p-4 z-50",
     "flex flex-col gap-2")}>
-      <ProfileCard/>
+      
+      {!hideSuggestion && <ProfileCard/>}
       <SuggestionCard />
+      
       <Meta />
     </div>
   )
@@ -66,7 +74,7 @@ export function Meta(){
   return(
     <div className={backgoundStyle}>
       <div className="flex items-center gap-2">
-        <p className="text-xs">Developed by yudha dwi lesmana</p>
+        <p className="text-xs">Developed by Yudha Dwi L</p>
         <p>•</p>
         <FaGithub />
         <FaLinkedin />
