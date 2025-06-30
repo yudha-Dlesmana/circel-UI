@@ -22,7 +22,6 @@ export function CommentInput(){
     handleSubmit,
     formState: {errors},
     setValue,
-    reset
   } = useForm<PostTweetsDTO>({
     resolver: zodResolver(PostTweetsSchema),
     mode:"onTouched"
@@ -66,7 +65,7 @@ export function CommentInput(){
       <div className="flex gap-2 items-center">
         <Avatar className="size-14">
           <AvatarImage src={data?.image}/>
-          <AvatarFallback>{data?.name}</AvatarFallback>
+          <AvatarFallback>{data?.name.charAt(0)}</AvatarFallback>
           </Avatar>
         <TextareaAutosize {...register("text")} 
           className="resize-none w-full text-lg text-white px-3 focus:outline-0"
@@ -76,14 +75,14 @@ export function CommentInput(){
           onChange={handlerImageChange} className="hidden"/>
           <Label htmlFor="image">
             <LuImagePlus className="size-6 text-[var(--primary-color)] hover:text-[var(--hover-color)]"/></Label>
-          <Button className="text-base font-bold bg-[var(--primary-color)] hover:bg-[var(--hover-color)]">
+          <Button type="submit" className="text-base font-bold bg-[var(--primary-color)] hover:bg-[var(--hover-color)]">
             Post</Button>
           
           </div>
       </div>
         {preview && ( 
           <div className="flex justify-center mb-2">
-            <img src={preview} className="max-h-96"/> 
+            <img src={preview} className="max-h-60"/> 
             <XCircleIcon onClick={()=>{setPreview(undefined)}} className="-ml-6 text-[var(--gray-color)] hover:text-[#dc2626]" />
             </div>
           )}

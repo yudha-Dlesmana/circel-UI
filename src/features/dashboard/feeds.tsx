@@ -23,15 +23,15 @@ export function Feeds(){
           <AvatarFallback>{tweets.name.charAt(0)}</AvatarFallback>
           </Avatar>
         <div className="space-y-2">
-          <div className="text-[#909090] flex gap-1 text-xl">
+          <div className="text-[#909090] flex gap-1 text-lg">
             <h1 className="text-white font-medium">{tweets.name}</h1>
             <h1>{tweets?.username}</h1>
             <h1>•</h1>
             <h1>{formatTweetDate(tweets?.createAt.toLocaleString())}</h1>
             </div>
-          <Link to={`/status/${tweets.id}`}>
-            <p className="text-white text-lg">{tweets.text}</p>
-            <img className="max-h-75" src={tweets.image} alt="" />
+          <Link to={`/status/${tweets.id}`} className="flex flex-col gap-2">
+            <p className="text-white text-xl">{tweets.text}</p>
+            <img className="max-h-60" src={tweets.image} alt="" />
             </Link>
           <div className="flex gap-3 items-center text-[#909090] text-xl">
             <p className="flex gap-1 items-center">

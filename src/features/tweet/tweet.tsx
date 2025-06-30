@@ -9,8 +9,8 @@ export function Tweet({ tweetId }: { tweetId: number }) {
   const { data, isLoading, error } = useTweets(tweetId);
 
   if(isLoading) return <h1> Loading ... </h1>
-  if(error) return <h1> Error loading Feeds </h1>
-  if(!data) return <h1>No Feeds</h1>
+  if(error) return <h1> Error loading Tweet </h1>
+  if(!data) return <h1>No Tweets</h1>
 
   return (
      <div key={data.id} className="flex gap-4 border-b border-[var(--gray-color)] px-5 py-4 ">
@@ -24,7 +24,7 @@ export function Tweet({ tweetId }: { tweetId: number }) {
             <h1 className="text-[#909090] text-sm">{data?.username}</h1>
             </div>
           <div>
-            <p className="text-white text-lg">{data?.text}</p>
+            <p className="text-white text-xl">{data?.text}</p>
             <img className="max-h-75" src={data?.image} alt="" />
             </div>
           <div className="text-[#909090]"> {formatFullTweetDate(data.createAt.toLocaleString())}</div>

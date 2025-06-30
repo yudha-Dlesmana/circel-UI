@@ -2,7 +2,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { usePostTweets } from "@/hooks/usePostTweets";
+import { usePostTweets } from "@/hooks/tweet/usePostTweets";
 import { useUser } from "@/hooks/useUsers";
 import { PostTweetsDTO, PostTweetsSchema } from "@/types/PostTypes";
 import { zodResolver } from "@hookform/resolvers/zod";

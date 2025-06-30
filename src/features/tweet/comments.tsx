@@ -4,11 +4,19 @@ import { useComments } from "@/hooks/tweet/useComment";
 import { formatTweetDate } from "@/utils/Times";
 import { Replies } from "./replies";
 import { useState } from "react";
+import { RepliesInput } from "./repliesInput";
 
 export function Comments({tweetId}: {tweetId: number}){
   const {comments, isLoading, error} = useComments(tweetId)
 
-  const [showReplies, setShowReplies] = useState<boolean>(false)
+  const [openReplies, setOpenReplies] = useState<Record<number, boolean>>({})
+
+  const toggleReplies = (commentId: number) => {
+    setOpenReplies( (prev) => ({
+      ...prev,
+      [commentId]: !prev[commentId],
+    }));
+  };
 
   if(isLoading) return <h1>loading</h1>
   if(error)return <h1>{error.message}</h1>
@@ -29,22 +37,28 @@ export function Comments({tweetId}: {tweetId: number}){
             <h1 className="">{formatTweetDate(comment?.createAt.toLocaleString())}</h1>
             </div>
           <div className="space-y-2">
-            <p className="text-white">{comment?.text}</p>
+            <p className="text-white text-lg">{comment?.text}</p>
             <img className="max-h-75" src={comment?.image} alt="" />
             </div>
           
           <div className="flex gap-3 items-center text-[#909090]">
             <p className="flex gap-1 items-center">
               <LikeCommentButton tweetId={tweetId} commentId={comment.id}/></p>
-            <p onClick={() => setShowReplies(!showReplies)} className="cursor-pointer">
+            <p 
+            onClick={() => toggleReplies(comment.id)} 
+            className="cursor-pointer">
               {comment.replies} replies</p>
             </div>
           
-          {showReplies && <Replies parentId={comment.id}/>}
+          {openReplies[comment.id] && 
+          <>
+            <RepliesInput />
+            <Replies parentId={comment.id}/>
+            </>
+          }
           </div>
       </div>
     )}
     </>
   )
-
 }

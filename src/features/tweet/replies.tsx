@@ -3,9 +3,8 @@ import { useReplies } from "@/hooks/tweet/useReplies";
 import { formatTweetDate } from "@/utils/Times";
 
 export function Replies({parentId}: {parentId: number}){
-
-
   const {replies} = useReplies(parentId)
+
   return (
     <>
       {replies?.map((reply)=> (
