@@ -4,7 +4,7 @@ import logodw from "@/assets/logodw.svg"
 import { cn } from "tailwind-cn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
-import { useUser } from "@/hooks/useUsers";
+import { useUser } from "@/hooks/user/useUsers";
 import { EditProfile } from "@/features/EditProfile/EditProfile";
 import { SuggestionCard } from "../../features/SuggestedForYou/SuggestionCard";
 

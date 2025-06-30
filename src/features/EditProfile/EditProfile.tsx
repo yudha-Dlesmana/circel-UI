@@ -1,7 +1,7 @@
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { useEffect, useState } from "react";
-import { useUser } from "@/hooks/useUsers";
+import { useUser } from "@/hooks/user/useUsers";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EditProfileDTO, EditProfileSchema} from "@/types/ProfileTypes";

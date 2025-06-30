@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { usePostComment } from "@/hooks/tweet/usePostComments";
-import { useUser } from "@/hooks/useUsers";
+import { useUser } from "@/hooks/user/useUsers";
 import { PostTweetsDTO, PostTweetsSchema } from "@/types/PostTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AvatarFallback } from "@radix-ui/react-avatar";

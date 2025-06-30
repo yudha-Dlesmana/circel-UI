@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { usePostReplies } from "@/hooks/tweet/usePostReplies"
-import { useUser } from "@/hooks/useUsers"
+import { useUser } from "@/hooks/user/useUsers"
 import { PostRepliesDTO, PostRepliesSchema } from "@/types/PostTypes"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect } from "react"

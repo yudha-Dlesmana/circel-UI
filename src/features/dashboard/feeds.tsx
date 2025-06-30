@@ -36,8 +36,8 @@ export function Feeds(){
           <div className="flex gap-3 items-center text-[#909090] text-xl">
             <p className="flex gap-1 items-center">
               <LikeTweetButton tweetId={tweets.id}/></p>
-            <p className="flex gap-1 items-center">
-              <AiOutlineComment/> {tweets.comments} comments</p>
+            <Link to={`/status/${tweets.id}`} className="flex gap-1 items-center">
+              <AiOutlineComment/> {tweets.comments} comments</Link>
             </div>
           </div>
       </div>
