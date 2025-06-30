@@ -2,6 +2,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { usePostComment } from "@/hooks/tweet/usePostComments";
 import { useUser } from "@/hooks/useUsers";
 import { PostTweetsDTO, PostTweetsSchema } from "@/types/PostTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,7 +14,7 @@ import { LuImagePlus } from "react-icons/lu";
 import TextareaAutosize from "react-textarea-autosize"
 import { toast } from "sonner";
 
-export function CommentInput(){
+export function CommentInput({tweetId}:{tweetId: number}){
   const {data} = useUser()
   const [preview, setPreview] = useState<string | undefined>(undefined)
   
@@ -22,6 +23,7 @@ export function CommentInput(){
     handleSubmit,
     formState: {errors},
     setValue,
+    reset
   } = useForm<PostTweetsDTO>({
     resolver: zodResolver(PostTweetsSchema),
     mode:"onTouched"
@@ -34,23 +36,20 @@ export function CommentInput(){
       setValue("image", file, {shouldValidate: true})
     }
   }
-  // const onSuccessCallback = () => {
-  //   reset(),
-  //   setPreview(undefined)
-  // }
 
-  // const {mutate, isPending} = usePostTweets(onSuccessCallback)
+  const onSuccessCallback = () => {
+    reset(),
+    setPreview(undefined)
+  }
+
+  const {mutate} = usePostComment( tweetId, onSuccessCallback)
 
   const submit = (data: PostTweetsDTO) => {
     const formData = new FormData()
     formData.append("text", data.text || "")
     if(data.image) formData. append("image", data.image)
     
-    for(const [key, value] of formData.entries()){
-      console.log(`${key}: ${value}`)
-    }
-    
-    // mutate(formData)
+    mutate(formData)
   }
 
   useEffect( () => {

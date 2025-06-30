@@ -19,7 +19,7 @@ export function Status(){
     <MoveLeft className="size-10" onClick={()=> navigate(-1)} /> 
     Status</h1>
     <Tweet tweetId={Number(id)}/>
-    <CommentInput/>
+    <CommentInput tweetId={Number(id)}/>
     <Comments tweetId={Number(id)} />
     </>
   )

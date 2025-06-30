@@ -19,6 +19,11 @@ export const PostTweetsSchema = z
 export type PostTweetsDTO = z.infer<typeof PostTweetsSchema>;
 export type PostTweesFormData = FormData;
 
+export const PostRepliesSchema = z.object({
+  text: z.string().nonempty(),
+});
+export type PostRepliesType = z.infer<typeof PostRepliesSchema>;
+
 export type PostDTO = {
   id: number;
   text: string;
