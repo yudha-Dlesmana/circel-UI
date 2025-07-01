@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSuggestion } from "./suggestionUserHooks";
 import { FollowButton } from "@/components/customUI/followButtons";
+import { Link } from "react-router";
 
 export function SuggestionCard(){
   const { data } = useSuggestion()
@@ -13,16 +14,18 @@ export function SuggestionCard(){
       <ul className="space-y-2">
         {data?.map((item) => (
           <li className="flex items-center gap-3">
-            <Avatar className="size-10">
-              <AvatarImage src={item.image}/>
-              <AvatarFallback className="text-lg font-bold text-[var(--primary-color)]">
-                {item.name.charAt(0)}</AvatarFallback>
-            </Avatar>
+            <Link to={`/profile/${item.username}`}>
+              <Avatar className="size-10">
+                <AvatarImage src={item.image}/>
+                <AvatarFallback className="text-lg font-bold text-[var(--primary-color)]">
+                  {item.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+            </Link>
             <div className="flex flex-1 text-sm items-center justify-between">
-              <div>
+              <Link to={`/profile/${item.username}`}>
                 <h1>{item.name}</h1>
                 <h1>{item.username}</h1>
-                </div>
+                </Link>
             </div>
             <FollowButton username={item.username}/>
 

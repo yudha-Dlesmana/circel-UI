@@ -3,24 +3,25 @@ import { MediaMapping } from "@/features/profile/MediaMapping";
 import { TweetMapping } from "@/features/profile/PostMapping";
 import { User } from "@/features/profile/user";
 import { useUserTweets } from "@/hooks/tweet/useUserTweet";
+import { useUserByUsername } from "@/hooks/user/useUserByUsername";
 import { useUser } from "@/hooks/user/useUsers";
 import { cn } from "@/lib/utils";
-import { useEffect } from "react";
-import { toast } from "sonner";
+import { useParams } from "react-router";
 
 export function Profile(){
-  const {user} = useUser()
-  const username = user?.username ?? "";
-  const {TweetUser, isLoading, error} = useUserTweets(username);
+  const { username: paramUsername } =useParams()
+  const { user: authUser, isLoading: authLoading, error: authError } = useUser()
+  const { UserByUsername, isLoading: userLoading, error: userError } = useUserByUsername(paramUsername ?? "")
+  const profile = paramUsername ? UserByUsername : authUser
+  const {TweetUser, isLoading: tweetLoading, error: tweetError} = useUserTweets(profile?.username ?? "");
 
-  useEffect(() => {
-    if (!user) toast.error("User not found");
-    if (error) toast.error("Failed to fetch tweets");
-  }, [user, error]);
+  if (authLoading || userLoading) return <h1>Loading Profile</h1>
+  if (authError || userError) return <h1>Failed to fetch Profile</h1>
 
-  if (!user || isLoading) {
-    return <div className="text-white p-4">Loading...</div>;
-  }
+  if ( !profile ) return<h1>Profile Not found</h1>;
+  
+  if (tweetLoading) return <h1>Loading Profile</h1>
+  if (tweetError) return <h1>Failed to fetch Profile</h1>
 
   const active = cn("text-[#FFFFFF] rounded-none",
       "data-[state=active]:bg-transparent", 
@@ -29,7 +30,7 @@ export function Profile(){
   
   return (
     <>
-    <User user={user}/>
+    <User user={profile}/>
     <Tabs defaultValue="AllPost">
       <TabsList className="
       w-full pb-0
@@ -42,8 +43,7 @@ export function Profile(){
       <TabsContent value="AllPost"><TweetMapping tweets={ TweetUser?? []}/></TabsContent>
       <TabsContent value="Media"><MediaMapping tweets={ TweetUser?? []}/></TabsContent>
       </Tabs>
-
     </>
-    
   )
 }
+

@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: "/search", element: <Search /> },
       { path: "/follow", element: <Follow /> },
-      { path: "/profile", element: <Profile />},
+      { path: "/profile/:username?", element: <Profile />},
       { path: "/status/:id", element: <Status/>},
     ]
   }
