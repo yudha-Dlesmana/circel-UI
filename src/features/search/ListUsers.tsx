@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSearch } from "./useSearch";
 import { FollowButton2 } from "@/components/customUI/followButtons";
+import { Link } from "react-router";
 
 export function ListUser({name}: {name: string}){
   const {data, isLoading, error} = useSearch(name)
@@ -14,14 +15,16 @@ export function ListUser({name}: {name: string}){
       <ul className="space-y-5">
         {data?.map((item) => (
           <li className="flex items-start gap-3">
-            <Avatar className="size-15">
-              <AvatarImage src={item.image}/>
-              <AvatarFallback className="text-lg font-bold text-[var(--primary-color)]">
-                {item.name.charAt(0)}</AvatarFallback>
-            </Avatar>
+            <Link to={`/profile/${item.username}`}>
+              <Avatar className="size-15">
+                <AvatarImage src={item.image}/>
+                <AvatarFallback className="text-lg font-bold text-[var(--primary-color)]">
+                  {item.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+            </Link>
             <div className="flex flex-1 text-sm items-center justify-between text-white">
               <div className="space-y-1">
-                <h1 className="text-base font-bold text-white">{item.name}</h1>
+                <Link to={`/profile/${item.username}`} className="text-base font-bold text-white">{item.name}</Link>
                 <h1 className="text-sm text-[var(--gray-color)]">{item.username}</h1>
                 <h1 className="text-sm">{item.bio}</h1>
                 </div>

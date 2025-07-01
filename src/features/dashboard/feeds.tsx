@@ -30,8 +30,8 @@ export function Feeds(){
             <h1>{formatTweetDate(tweets?.createAt.toLocaleString())}</h1>
             </div>
           <Link to={`/status/${tweets.id}`} className="flex flex-col gap-2">
-            <p className="text-white text-xl">{tweets.text}</p>
-            <img className="max-h-60" src={tweets.image} alt="" />
+            <p className="text-white text-xl break-words text-left">{tweets.text}</p>
+            <img className="max-h-60 object-contain self-start" src={tweets.image} alt="" />
             </Link>
           <div className="flex gap-3 items-center text-[#909090] text-xl">
             <p className="flex gap-1 items-center">
