@@ -59,7 +59,7 @@ export function CommentInput({tweetId}:{tweetId: number}){
   }, [errors])
 
   return (
-    <form className="border-b border-[var(--gray-color)] px-5 py-4"
+    <form className="border-b border-[var(--gray-color)] px-5 py-2"
       onSubmit={handleSubmit(submit)}>
       <div className="flex gap-2 items-center">
         <Avatar className="size-14">

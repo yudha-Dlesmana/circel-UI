@@ -1,40 +1,57 @@
 import { LikeTweetButton } from "@/components/customUI/likeButton";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { PostDTO } from "@/types/PostTypes";
 import { formatTweetDate } from "@/utils/Times";
-import { XCircleIcon } from "lucide-react";
-import { useState } from "react";
+import { AvatarFallback } from "@radix-ui/react-avatar";
 import { AiOutlineComment } from "react-icons/ai";
+import { CommentInput } from "../tweet/commentInput";
+import { Comments } from "../tweet/comments";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function MediaMapping({ tweets }: { tweets: PostDTO[] }) {
+
+
   return (
-    <div className="pt-3 px-5 grid grid-cols-3 gap-2">
-      {tweets.map((tweet) =>
-        tweet.image && <DetailImage tweet={tweet} />
+    <div className="grid grid-cols-3 gap-1 px-5 pt-3">
+      {tweets.map((tweet, i) =>
+        tweet.image && (
+          <DetailImage key={i} tweet={tweet}/>  
+        ) 
       )}
     </div>
   )
 }
 
 function DetailImage({ tweet }: { tweet: PostDTO }) {
-  const [showStatus, setShowStatus] = useState<boolean>(false)
-
   return (
     <Dialog>
       <DialogTrigger>
-        <img className="rounded" src={tweet.image} />
-        </DialogTrigger>
-      <DialogContent className="sm:max-w-max p-0">
-        <div className="flex gap-4">
+        <div className="aspect-square bg-white rounded flex items-center justify-center w-full h-full">
           <img 
-          className="object-contain rounded-l w-lg"
-          src={tweet.image} />
-          <div className="text-[#FFFFFF] flex w-full border-l p-4 gap-2">
+            src={tweet.image}
+            alt="tweet image"
+            className="object-contain rounded w-full h-full"
+          />
+        </div>
+        
+        </DialogTrigger>
+      <DialogContent className="sm:max-w-[90vw] h-[90vh] p-0">
+        <div className="flex">
+          <div className="aspect-square bg-white rounded-l flex items-center justify-center w-full max-h-[90vh]">
+            <img 
+              src={tweet.image}
+              alt="tweet image"
+              className="object-contain rounded w-full h-full"
+            />
+            </div>
+          <div className="text-[#FFFFFF] flex flex-col w-full h-[90vh] ">
+            <div className="flex border-b border-[var(--gray-color)] p-5 gap-4">
             <Avatar className="size-15">
               <AvatarImage src={tweet.userImage} />
+              <AvatarFallback>{tweet.name.charAt(0)}</AvatarFallback>
               </Avatar>
-            <div className="">
+            <div>
               <div className="flex gap-1 text-[#909090]">
                 <h1 className="font-semibold text-[#FFFFFF]">{tweet.name}</h1>
                 <h1 className="">{tweet.username}</h1>
@@ -42,23 +59,21 @@ function DetailImage({ tweet }: { tweet: PostDTO }) {
                 <h1>{formatTweetDate(tweet.createAt.toLocaleString())}</h1>
                 </div>
               <p>{tweet.text}</p>
-
-            <div className="">
-              <p className="flex gap-1 items-center">
-                <LikeTweetButton tweetId={tweet.id}/></p>
-              <div className="flex gap-1 items-center">
-                <AiOutlineComment/> {tweet.comments} comments</div>
+              <div className="flex gap-3">
+                <p className="flex gap-1 items-center">
+                  <LikeTweetButton tweetId={tweet.id}/></p>
+                <p className="flex gap-1 items-center">
+                  <AiOutlineComment/> {tweet.comments} comments</p>
+                </div>
               </div>
-              </div>
-
-
+            </div>      
+            <CommentInput tweetId={tweet.id}/>
+            <ScrollArea className="flex-1 overflow-auto">
+              <Comments tweetId={tweet.id}/>
+              </ScrollArea>
+            </div>
           </div>
-
-        </div>
-
-
       </DialogContent>
-
     </Dialog>
   )
 

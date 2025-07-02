@@ -22,7 +22,7 @@ export function TweetMapping({tweets} : {tweets: PostDTO[]}) {
             </div>
           <Link to={`/status/${tweet.id}`} className="flex flex-col gap-2">
             <p className="text-white text-xl break-words text-left">{tweet.text}</p>
-            <img className="max-h-60 object-contain self-start" src={tweet.image} alt="" />
+            <img className="max-w-60 object-contain self-start" src={tweet.image} alt="" />
             </Link>
           <div className="flex gap-3 items-center text-[#909090] text-xl">
             <p className="flex gap-1 items-center">
