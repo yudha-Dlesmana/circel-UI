@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
 import { ForgotFormDTO, forgotSchema } from "@/types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForgot } from "./ForgotHooks";
+import { useForgot } from "./useForgot";
 
 export function ForgotForm(){
   const {mutate, isPending} = useForgot()

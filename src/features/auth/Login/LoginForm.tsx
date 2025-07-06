@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form"
-import { LoginFormDTO, loginSchema } from "@/types/AuthTypes"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { NavLink } from "react-router"
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "@/features/auth/FormStyles"
 import { useLogin } from "./LoginHooks"
+import { LoginDTO, loginSchema } from "@/types/Auth/LoginTypes"
 
 export function LoginForm(){
 
@@ -14,12 +14,12 @@ export function LoginForm(){
     register, 
     handleSubmit, 
     formState: { errors }
-  } = useForm<LoginFormDTO>({
+  } = useForm<LoginDTO>({
     resolver: zodResolver(loginSchema),
     mode:"onChange" 
   })
 
-  const submit = (data: LoginFormDTO) => {
+  const submit = (data: LoginDTO) => {
     mutate(data)
   }
   

@@ -11,7 +11,7 @@ export function useUnfollow() {
     },
     onSuccess: () => {
       toast.success(`unfollowing user`);
-      queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["user"] });
       queryClient.invalidateQueries({ queryKey: ["following"] });
       queryClient.invalidateQueries({ queryKey: ["isFollowed"] });
     },

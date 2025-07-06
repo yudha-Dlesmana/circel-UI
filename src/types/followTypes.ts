@@ -1,6 +1,10 @@
-interface followTypes {
-  followingUsername: string;
-  followerUsername: string;
+interface CreateFollowType {
+  followingId: string;
+  followerId: string;
 }
 
-export type { followTypes };
+interface FollowType {
+  username: string;
+}
+
+export type { CreateFollowType, FollowType };

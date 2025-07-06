@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Followers } from "@/features/follows/followers";
-import { Followings } from "@/features/follows/following";
+import { Followers } from "@/features/follower/Followers";
+import { Followings } from "@/features/following/following";
 import { cn } from "@/lib/utils";
 
 export function Follow(){

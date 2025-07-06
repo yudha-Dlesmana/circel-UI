@@ -15,7 +15,7 @@ export function useFollow() {
       toast.success(
         `${data.followerUsername} following ${data.followingUsername}`
       );
-      queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["user"] });
       queryClient.invalidateQueries({ queryKey: ["following"] });
       queryClient.invalidateQueries({ queryKey: ["isFollowed"] });
     },
