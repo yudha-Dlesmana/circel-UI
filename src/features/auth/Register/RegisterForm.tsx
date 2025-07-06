@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
-import { RegisterFormDTO, registerSchema } from "@/types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRegister } from "./RegisterHooks";
+import { useRegister } from "./useRegister";
+import { RegisterDTO, registerSchema } from "./RegisterTypes";
 
 export function RegisterForm(){
   const {mutate, isPending} = useRegister()
@@ -11,17 +11,22 @@ export function RegisterForm(){
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<RegisterFormDTO>({
+  } = useForm<RegisterDTO>({
     resolver: zodResolver(registerSchema),
     mode: "onChange"
   })
 
-  const submit = (data: RegisterFormDTO) => {
+  const submit = (data: RegisterDTO) => {
     mutate(data) 
   }
 
   return(
     <form className= {formStyles} onSubmit={handleSubmit(submit)}>
+      <div className="flex flex-col">
+        <input type="text" placeholder="Name"
+        {...register("name")} className={inputStyles}/>
+        {errors.name && <p className={errorMessageStyles}>{errors.name.message}</p>}
+        </div>
       <div className="flex flex-col">
         <input type="text" placeholder="Email"
         {...register("email")} className={inputStyles}/>
