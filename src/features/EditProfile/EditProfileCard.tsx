@@ -9,7 +9,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { CircleX, ImagePlus, Trash2 } from "lucide-react";
 import { inputStyles, textareaStyles } from "@/features/auth/FormStyles";
 import { History } from "lucide-react";
-import { useEditProfile } from "./EditProfileHooks";
+import { useEditProfile } from "./useEditProfile";
 
 export function EditProfileCard(){
   const {user} = useUser()
