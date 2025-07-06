@@ -1,4 +1,8 @@
-import { LoginDTO, loginDataRes, loginErrRes } from "@/types/Auth/LoginTypes";
+import {
+  LoginDTO,
+  LoginDataRes,
+  LoginErrRes,
+} from "@/features/auth/Login/LoginTypes";
 import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
 import { useMutation } from "@tanstack/react-query";
@@ -9,7 +13,7 @@ import Cookie from "cookies-js";
 export function useLogin() {
   const { mutate, isPending } = useMutation({
     mutationFn: async (data: LoginDTO) => {
-      const res = await api.post<Response<loginDataRes>>("/login", data);
+      const res = await api.post<Response<LoginDataRes>>("/login", data);
       return res.data;
     },
     onSuccess: (data) => {
@@ -18,8 +22,8 @@ export function useLogin() {
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {
-        const resData = error.response?.data as Response<loginErrRes>;
-        toast.error(resData.data.message);
+        const errData = error.response?.data as Response<LoginErrRes>;
+        toast.error(errData.data.message);
       } else {
         console.error("Unexpected Error: ", error);
       }

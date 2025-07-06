@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { NavLink } from "react-router"
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "@/features/auth/FormStyles"
 import { useLogin } from "./useLogin"
-import { LoginDTO, loginSchema } from "@/types/Auth/LoginTypes"
+import { LoginDTO, loginSchema } from "@/features/auth/Login/LoginTypes"
 
 export function LoginForm(){
 

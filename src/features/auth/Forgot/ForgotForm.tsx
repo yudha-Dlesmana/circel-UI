@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ForgotDTO, forgotSchema } from "@/types/Auth/ForgotTypes";
+import { ForgotDTO, forgotSchema } from "@/features/auth/Forgot/ForgotTypes";
 import { useForgot } from "./useForgot";
 
 export function ForgotForm(){

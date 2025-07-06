@@ -1,4 +1,8 @@
-import { ForgotDTO, ForgotErrData } from "@/types/Auth/ForgotTypes";
+import {
+  ForgotDataRes,
+  ForgotDTO,
+  ForgotErrRes,
+} from "@/features/auth/Forgot/ForgotTypes";
 import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
 import { useMutation } from "@tanstack/react-query";
@@ -12,7 +16,10 @@ export function useForgot() {
     isPending,
   } = useMutation({
     mutationFn: async (data: ForgotDTO) => {
-      const res = await api.post<Response<unknown>>("/forgot-password", data);
+      const res = await api.post<Response<ForgotDataRes>>(
+        "/forgot-password",
+        data
+      );
       return res.data;
     },
     onSuccess: (data) => {
@@ -20,8 +27,8 @@ export function useForgot() {
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {
-        const resData = error.response?.data as Response<ForgotErrData>;
-        toast.error(resData.data.message);
+        const errData = error.response?.data as Response<ForgotErrRes>;
+        toast.error(errData.data.message);
       } else {
         console.error("Unexpected Error:", error);
       }

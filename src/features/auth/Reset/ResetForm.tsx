@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useReset } from "@/features/auth/Reset/useReset";
-import { ResetPasswordDTO, resetPasswordSchema } from "@/types/Auth/ResetTypes";
+import { ResetPasswordDTO, resetPasswordSchema } from "@/features/auth/Reset/ResetTypes";
 
 export function ResetForm({token}: {token:string}){
   const { mutate, isPending } = useReset()
