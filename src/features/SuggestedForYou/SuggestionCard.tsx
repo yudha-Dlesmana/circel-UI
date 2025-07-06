@@ -38,15 +38,13 @@ export function SuggestionCard(){
                 <AvatarImage src={item.image}/>
                 <AvatarFallback className="text-lg font-bold text-[var(--primary-color)]">
                   {item.name.charAt(0)}</AvatarFallback>
-                <Skeleton className="w-full h-full rounded-full" />
+                
               </Avatar>
             </Link>
             <div className="flex flex-1 text-sm items-center justify-between">
               <Link to={`/profile/${item.username}`}>
                 <h1>{item.name}</h1>
-                {isLoading && <Skeleton className="h-4 w-[120px]" />}
                 <h1>{item.username}</h1>
-                {isLoading && <Skeleton className="h-3 w-[100px]" />}
                 </Link>
             </div>
             <FollowButton username={item.username}/>

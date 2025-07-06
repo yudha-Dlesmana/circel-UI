@@ -39,7 +39,7 @@ export function ProfileCard(){
     <div className={backgoundStyle}>
       <h1 className="font-bold text-lg text-white mb-1">
         My Profile</h1>
-      <img src={BackgoundProfile} className="w-full h-25 rounded-md"/>
+      <img src={user?.background ||BackgoundProfile} className="w-full h-25 rounded-md"/>
 
       <Avatar className="size-20 -mt-10 ml-5 "> 
         <AvatarImage src={user?.image} className="" />
