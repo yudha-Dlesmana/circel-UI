@@ -12,11 +12,6 @@ export const registerSchema = z.object({
 });
 type RegisterFormDTO = z.infer<typeof registerSchema>;
 
-export const forgotSchema = z.object({
-  email: z.string().email(),
-});
-type ForgotFormDTO = z.infer<typeof forgotSchema>;
-
 export const resetSchema = z
   .object({
     password: z.string().min(6),
@@ -28,4 +23,4 @@ export const resetSchema = z
   });
 type ResetFormDTO = z.infer<typeof resetSchema>;
 
-export type { User, RegisterFormDTO, ForgotFormDTO, ResetFormDTO };
+export type { User, RegisterFormDTO, ResetFormDTO };

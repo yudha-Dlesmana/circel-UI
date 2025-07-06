@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
-import { ForgotFormDTO, forgotSchema } from "@/types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ForgotDTO, forgotSchema } from "@/types/Auth/ForgotTypes";
 import { useForgot } from "./useForgot";
 
 export function ForgotForm(){
@@ -11,12 +11,12 @@ export function ForgotForm(){
     register,
     handleSubmit,
     formState:{errors}
-  } = useForm<ForgotFormDTO>({
+  } = useForm<ForgotDTO>({
     resolver: zodResolver(forgotSchema),
     mode:"onChange"
   })
 
-  const submit = async (data: ForgotFormDTO) => {
+  const submit = async (data: ForgotDTO) => {
     mutate(data)
   }
 

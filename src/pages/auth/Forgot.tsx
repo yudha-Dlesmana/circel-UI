@@ -1,4 +1,4 @@
-import { Link } from "react-router"
+import { Link} from "react-router"
 import logo from "../../assets/logo.svg"
 import { ForgotForm } from "../../features/auth/Forgot/ForgotForm"
 

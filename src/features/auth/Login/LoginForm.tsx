@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-
 import { NavLink } from "react-router"
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "@/features/auth/FormStyles"
-import { useLogin } from "./LoginHooks"
+import { useLogin } from "./useLogin"
 import { LoginDTO, loginSchema } from "@/types/Auth/LoginTypes"
 
 export function LoginForm(){

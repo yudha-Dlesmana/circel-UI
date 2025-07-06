@@ -1,27 +1,31 @@
-import { ForgotFormDTO } from "@/types/AuthTypes";
+import { ForgotDTO, ForgotErrData } from "@/types/Auth/ForgotTypes";
+import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 
 export function useForgot() {
-  const { mutate, isPending } = useMutation({
-    mutationFn: async (data: ForgotFormDTO) => {
-      const res = await api.post("/forgot-password", data);
-      return res.data.message;
+  const {
+    mutate,
+    data: resetLink,
+    isPending,
+  } = useMutation({
+    mutationFn: async (data: ForgotDTO) => {
+      const res = await api.post<Response<unknown>>("/forgot-password", data);
+      return res.data;
     },
-    onSuccess: () => {
-      toast.success("Your password reset link has been sent.");
+    onSuccess: (data) => {
+      toast.success(data.message);
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {
-        const message =
-          error.response?.data.message || error.message || "Unknown Error";
-        toast.error(message);
+        const resData = error.response?.data as Response<ForgotErrData>;
+        toast.error(resData.data.message);
       } else {
         console.error("Unexpected Error:", error);
       }
     },
   });
-  return { mutate, isPending };
+  return { mutate, resetLink, isPending };
 }
