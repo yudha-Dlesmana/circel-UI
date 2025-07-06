@@ -1,26 +1,22 @@
 import { useForm } from "react-hook-form";
 import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
-import { ResetFormDTO, resetSchema } from "../../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "@/features/auth/Reset/ResetHooks";
-import { useSearchParams } from "react-router";
+import { useReset } from "@/features/auth/Reset/useReset";
+import { ResetPasswordDTO, resetPasswordSchema } from "@/types/Auth/ResetTypes";
 
-export function ResetForm(){
-  const { mutate, isPending } = useAuth()
-  const [searchParams] = useSearchParams()
-  const token = searchParams.get('token')
+export function ResetForm({token}: {token:string}){
+  const { mutate, isPending } = useReset()
   
   const {
     register,
     handleSubmit,
     formState: {errors}
-  } = useForm<ResetFormDTO>({
-    resolver: zodResolver(resetSchema),
+  } = useForm<ResetPasswordDTO>({
+    resolver: zodResolver(resetPasswordSchema),
     mode: "onChange"
   })
 
-  const submit = (data: ResetFormDTO) => {
-    if(!token){return}
+  const submit = (data: ResetPasswordDTO) => {
     mutate( {token, data} )
   }
 

@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register />},
       { path: "/forgot", element: <Forgot />},
-      { path: "/reset", element: <Reset />},
+      { path: "/reset/:token", element: <Reset />},
       { path: "/register/profile", element: <RegisterProfile/> },
     ]
   },

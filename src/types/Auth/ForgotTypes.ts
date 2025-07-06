@@ -5,6 +5,8 @@ export const forgotSchema = z.object({
 });
 export type ForgotDTO = z.infer<typeof forgotSchema>;
 
-export type ForgotErrData = {
+export type ForgotDataRes = {};
+
+export type ForgotErrRes = {
   message: string;
 };
