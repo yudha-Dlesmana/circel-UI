@@ -6,7 +6,7 @@ import { LoginForm } from "@/features/auth/Login/LoginForm"
 export function Login(){
   
   return( 
-    <div className="space-y-5 pt-32">
+    <div className="space-y-5 pt-25">
       <img src={logo} className="w-28"/>
       <h1 className="text-white
       font-bold text-3xl">

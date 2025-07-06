@@ -1,22 +1,20 @@
-import { cn } from "tailwind-cn"
+import { cn } from "tailwind-cn";
 
-export const errorMessageStyles= cn(
+export const errorMessageStyles = cn(
   "mt-1 text-sm text-[var(--red-color)]",
   "animate-fade-in"
-)
+);
 
-export const formStyles = cn(
-  "flex flex-col", 
-  "w-[412px] space-y-3")
+export const formStyles = cn("flex flex-col", "w-[412px] space-y-3");
 
-export const inputStyles =  cn(
+export const inputStyles = cn(
   "w-full",
   "p-2",
   "text-white placeholder-[var(--gray-color)]",
   "focus:outline-0 focus:border-[var(--primary-color)]",
   "rounded-md",
   "border-1 border-[var(--gray-color)]"
-)
+);
 
 export const textareaStyles = cn(
   "w-full",
@@ -26,7 +24,7 @@ export const textareaStyles = cn(
   "rounded-md",
   "border-1 border-[var(--gray-color)]",
   "resize-none"
-)
+);
 
 export const buttonStyles = cn(
   "bg-[var(--primary-color)]",
@@ -34,4 +32,4 @@ export const buttonStyles = cn(
   "text-white font-bold text-xl",
   "rounded-full",
   "hover:bg-[var(--hover-color)]"
-)
+);

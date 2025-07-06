@@ -9,7 +9,11 @@ import { Response } from "@/types/ResponseType";
 export function useRegister() {
   const navigate = useNavigate();
 
-  const { mutate, isPending } = useMutation({
+  const {
+    mutate,
+    data: registered,
+    isPending,
+  } = useMutation({
     mutationFn: async (data: RegisterDTO) => {
       const res = await api.post<Response<RegisterDataRes>>("/register", data);
       return res.data;
@@ -25,6 +29,7 @@ export function useRegister() {
   });
   return {
     mutate,
+    registered,
     isPending,
   };
 }

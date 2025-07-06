@@ -1,56 +1,83 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Camera } from "lucide-react"
+import { Camera, ImagePlus } from "lucide-react"
+import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { useState } from "react"
 import { errorMessageStyles } from "../FormStyles"
-import { useRegisterProfile } from "./RegisterProfileHooks"
-import { ProfileDTO, ProfileSchema } from "@/types/ProfileTypes"
+import { useRegisterProfile } from "./useRegisterProfile"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { RegisterProfileDTO, registerProfileSchema } from "./RegisterProfileTypes"
 
-export function RegisterProfileForm(){
-  const { mutate, isPending } = useRegisterProfile()
+export function RegisterProfileForm({token}: {token: string}){
+  const { mutate, isPending } = useRegisterProfile();
 
   const [preview, setPreview] = useState<string | undefined>(undefined)
+  const [previewBackground, setPreviewBackground] = useState<string | undefined>(undefined)
 
-  
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors }
-  } = useForm<ProfileDTO>({
-    resolver: zodResolver(ProfileSchema),
+  } = useForm<RegisterProfileDTO>({
+    resolver: zodResolver(registerProfileSchema),
     mode: "onChange"
   })
   
-  const handlerImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlerProfileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-
     if (file){
       setPreview(URL.createObjectURL(file))
-      setValue("image", file, { shouldValidate: true }) 
+      setValue("profile", file, { shouldValidate: true }) 
     } 
-
+  }
+  const handlerBackgroundChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file){
+      setPreviewBackground(URL.createObjectURL(file))
+      setValue("background", file, { shouldValidate: true }) 
+    } 
   }
 
-  const submit = (data: ProfileDTO) => {
+  const submit = (data: RegisterProfileDTO) => {
     const formData = new FormData()
-    formData.append('name', data.name);
-    formData.append('bio', data.bio);
-    if(data.image) formData.append('image', data.image)
-
-    mutate(formData)
+    formData.append('bio', data.bio ?? "");
+    if(data.profile) formData.append('profile', data.profile);
+    if(data.background) formData.append('background', data.background)
+    mutate( {token, formData} )
   }
 
   return(
-    <form className="flex w-[412px] space-x-5" onSubmit={handleSubmit(submit)}>
-      <div className="flex flex-col w-5/6 space-y-2">
-        <div>
-          <input {...register("name")} placeholder="Name" className="w-full p-2 text-white placeholder-[var(--gray-color)] focus:outline-0 focus:border-[var(--primary-color)] rounded-md border-1 border-[var(--gray-color)]"/>
-          {errors.name && <p className={errorMessageStyles}>{errors.name.message}</p>}
+    <form className="w-[412px] space-y-3" onSubmit={handleSubmit(submit)}>
+      <div>
+        <input id="backgound" type="file" className="hidden"  onChange={handlerBackgroundChange}/>
+        <label htmlFor="backgound" className="relative group cursor-pointer w-full block">
+          <img src={previewBackground || BackgoundProfile} 
+          className="max-h-40 w-full rounded-md"/>
+          <div className="absolute inset-0 bg-black/40 rounded-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute top-2 right-2">
+                <ImagePlus className="size-10 text-[var(--hover-color)]"/>
+              </div>
+            </div>
+          </label>
+        </div>
+      <div className="-mt-22 ml-7">
+        <input id="profile" type="file" className="hidden"  onChange={handlerProfileChange}/>
+        <label htmlFor="profile" 
+        className="relative group cursor-pointer w-fit block"> 
+        <Avatar className="size-35 object-cover"> 
+          <AvatarImage src={preview} />
+          <AvatarFallback className="text-[var(--primary-color)]">
+            <Camera className="size-12"/></AvatarFallback>
+          </Avatar>
+        <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           </div>
+          </label>
+          </div>
+      {errors.profile && <p className={errorMessageStyles}>{errors.profile.message}</p>}
+      <div className="flex flex-col space-y-2">
         <div>
-          <textarea {...register('bio')} placeholder="Bio" className="w-full p-2 
+          <textarea {...register('bio')} placeholder="Bio" className="w-full h-20 p-2 
           text-white placeholder-[var(--gray-color)] 
           focus:outline-0 focus:border-[var(--primary-color)] rounded-md
           border-1 border-[var(--gray-color)] resize-none"/> 
@@ -66,20 +93,7 @@ export function RegisterProfileForm(){
         >{isPending? "Loading ..." : "Create Profile" }</button>
         </div>
 
-      <input id="image" type="file" className="hidden"  onChange={handlerImageChange}/>
-      <label htmlFor="image" className="flex flex-col items-center gap-2">
-        <Avatar className="size-25">
-          <AvatarImage src={preview}/>
-          <AvatarFallback><Camera className="size-15" /></AvatarFallback>
-        </Avatar>
-        <button className="
-        bg-destructive hover:bg-red-700
-        px-2 py-1 
-        rounded-md
-        text-white font-bold text-sm" 
-        onClick={(e)=> {e.preventDefault(); setPreview(undefined)}}>Delete</button>
-        </label>
-      {errors.image && <p className={errorMessageStyles}>{errors.image.message}</p>}
+      
       
     </form>
   )

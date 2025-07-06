@@ -15,7 +15,7 @@ export function Reset(){
       <h1 className="text-white
       font-bold text-3xl">
         Reset Password</h1>
-      <ResetForm  token={token}/>
+      <ResetForm token={token}/>
     </div>
   )
 }
