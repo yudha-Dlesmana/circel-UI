@@ -6,6 +6,10 @@ export const loginSchema = z.object({
 });
 export type LoginDTO = z.infer<typeof loginSchema>;
 
-export type loginRes = {
+export type loginDataRes = {
   token: string;
+};
+
+export type loginErrRes = {
+  message: string;
 };
