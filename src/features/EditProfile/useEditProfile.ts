@@ -1,8 +1,8 @@
-import { EditProfileFormData } from "@/types/ProfileTypes";
 import { api } from "@/utils/Apis";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
+import { EditProfileFormData } from "./EditProfileType";
 
 export function useEditProfile(onClose: () => void) {
   const queryClient = useQueryClient();

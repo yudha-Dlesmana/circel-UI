@@ -5,7 +5,7 @@ import { cn } from "tailwind-cn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { useUser } from "@/hooks/user/useUsers";
-import { EditProfileCard } from "@/features/EditProfile/EditProfileCard";
+import { EditProfileDialog } from "@/features/EditProfile/EditProfileDialog";
 import { SuggestionCard } from "../../features/SuggestedForYou/SuggestionCard";
 import { useLocation } from "react-router";
 
@@ -41,14 +41,16 @@ export function ProfileCard(){
     <div className={backgoundStyle}>
       <h1 className="font-bold text-lg text-white mb-1">
         My Profile</h1>
-      <img src={user?.background ||BackgoundProfile} className="w-full h-25 rounded-md"/>
+      <div className="relative group block w-full max-h-30 overflow-hidden rounded-md">
+        <img src={user?.background ||BackgoundProfile} className="w-full rounded-md"/>
+        </div> 
 
       <Avatar className="size-20 -mt-10 ml-5 "> 
         <AvatarImage src={user?.image} className="" />
         <AvatarFallback className="text-[var(--primary-color)] text-2xl font-bold">
           {user?.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
-        <EditProfileCard/>
+        <EditProfileDialog/>
         
       <div>
         <h1 className="text-base font-bold text-white">{user?.name}</h1>

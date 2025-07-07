@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { EditProfile } from "../EditProfile/EditProfile"
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { MoveLeft } from "lucide-react"
 import { useNavigate } from "react-router"
@@ -23,7 +22,6 @@ export function User({user}: {user: UserType}){
           <AvatarFallback className="text-[var(--primary-color)] text-2xl font-bold">
             {user.name.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
-          <EditProfile/>
         <div className="mt-12">
           <h1 className="text-2xl font-bold text-white">{user.name}</h1>
           <p className="text-[var(--gray-color)]">{user.username}</p>
