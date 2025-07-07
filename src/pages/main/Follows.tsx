@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Followers } from "@/features/follower/Followers";
-import { Followings } from "@/features/following/following";
+// import { Followings } from "@/features/following/Following";
 import { cn } from "@/lib/utils";
 
 export function Follow(){
@@ -28,7 +28,7 @@ export function Follow(){
           <TabsTrigger value="following" className={active}>Following</TabsTrigger>
         </TabsList>
         <TabsContent value="follower"><Followers/></TabsContent>
-        <TabsContent value="following"><Followings/></TabsContent>
+        {/* <TabsContent value="following"><Followings/></TabsContent> */}
       </Tabs>
       
 

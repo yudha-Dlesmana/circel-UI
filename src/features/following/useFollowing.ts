@@ -1,14 +1,19 @@
-import { otherUserType } from "@/types/UserTypes";
+import { Response } from "@/types/ResponseType";
+import { Followings } from "./FollowingTypes";
 import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
 
 export function useFollowing() {
-  const { data, isLoading } = useQuery({
+  const {
+    data: followings,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["following"],
     queryFn: async () => {
-      const res = await api.get<otherUserType[]>("/following");
-      return res.data;
+      const res = await api.get<Response<Followings[]>>("/following");
+      return res.data.data;
     },
   });
-  return { data, isLoading };
+  return { followings, isLoading, error };
 }

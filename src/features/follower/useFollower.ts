@@ -1,18 +1,33 @@
+import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { FollowersPayload } from "./FollowerTypes";
 
 export function useFollower() {
   const {
     data: followers,
     isLoading,
+    fetchNextPage,
+    hasNextPage,
     error,
-  } = useQuery({
+  } = useInfiniteQuery({
     queryKey: ["follower"],
-    queryFn: async () => {
-      const res = await api.get("/followers");
-      return res.data;
-    },
+    queryFn: fetchFollower,
+    initialPageParam: undefined,
+    getNextPageParam: (lastPage) => lastPage.cursor || undefined,
   });
 
-  return { followers, isLoading, error };
+  return {
+    followers,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    error,
+  };
+}
+async function fetchFollower({ pageParam = "" }) {
+  const res = await api.get<Response<FollowersPayload>>("/followers", {
+    params: pageParam ? { cursor: pageParam } : {},
+  });
+  return res.data.data;
 }
