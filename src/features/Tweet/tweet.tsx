@@ -1,4 +1,4 @@
-import { LikeTweetButton } from "@/features/like/likeButton";
+import { LikeTweetButton } from "@/features/Like/likeButton";
 import { useTweets } from "@/features/Tweet/useTweets";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AiOutlineComment } from "react-icons/ai";

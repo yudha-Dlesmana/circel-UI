@@ -1,6 +1,6 @@
-import { useCheckCommentLiked, useCheckTweetLiked } from "@/features/like/useCheckLiked";
-import { useLikeTweet, useLikeComment } from "@/features/like/useLike";
-import { useRemoveLikeComment, useRemoveLikeTweet } from "@/features/like/useRemoveLike";
+import { useCheckCommentLiked, useCheckTweetLiked } from "@/features/Like/useCheckLiked";
+import { useLikeTweet, useLikeComment } from "@/features/Like/useLike";
+import { useRemoveLikeComment, useRemoveLikeTweet } from "@/features/Like/useRemoveLike";
 import { GoHeart } from "react-icons/go";
 import { GoHeartFill } from "react-icons/go";
 

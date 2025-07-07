@@ -1,4 +1,4 @@
-import { LikeCommentButton } from "@/features/like/likeButton";
+import { LikeCommentButton } from "@/features/Like/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useComments } from "@/features/comments/useComment";
 import { formatTweetDate } from "@/utils/Times";

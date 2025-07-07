@@ -1,4 +1,4 @@
-import { LikeTweetButton } from "@/features/like/likeButton";
+import { LikeTweetButton } from "@/features/Like/likeButton";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { PostDTO } from "@/types/PostTypes";
