@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useIsFollow(targetId: string) {
   const { data: checked, isLoading } = useQuery({
-    queryKey: ["isFollowed", targetId],
+    queryKey: ["isfollowed", targetId],
     queryFn: checkFollow,
   });
 

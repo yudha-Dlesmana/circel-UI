@@ -16,7 +16,7 @@ export function useFollow() {
       );
       queryClient.invalidateQueries({ queryKey: ["user"] });
       queryClient.invalidateQueries({ queryKey: ["following"] });
-      queryClient.invalidateQueries({ queryKey: ["isFollowed"] });
+      queryClient.invalidateQueries({ queryKey: ["isfollowed"] });
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {

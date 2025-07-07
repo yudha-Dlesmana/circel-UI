@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSearch } from "./useSearch";
-import { FollowButton2 } from "@/components/customUI/followButtons";
+import { FollowButton2 } from "@/features/Follow/followButtons";
 import { Link } from "react-router";
 
 export function ListUser({name}: {name: string}){

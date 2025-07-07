@@ -1,6 +1,6 @@
-import { useFollow } from "@/hooks/useFollows"
-import { useIsFollow } from "@/hooks/useIsFollows"
-import { useUnfollow } from "@/hooks/useUnfollow"
+import { useFollow } from "@/features/Follow/useFollows"
+import { useIsFollow } from "@/features/Follow/useIsFollows"
+import { useUnfollow } from "@/features/Follow/useUnfollow"
 
 export function FollowButton1({userId}: {userId: string}){
   const {checked} = useIsFollow(userId)

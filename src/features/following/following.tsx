@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useFollowing } from "./useFollowing"
-import { FollowButton2 } from "@/components/customUI/followButtons"
+import { FollowButton2 } from "@/features/Follow/followButtons"
 
 export function Followings(){
   const {data} = useFollowing()

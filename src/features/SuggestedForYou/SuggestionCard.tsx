@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSuggestion } from "./useSuggestion";
-import { FollowButton1 } from "@/components/customUI/followButtons";
+import { FollowButton1 } from "@/features/Follow/followButtons";
 import { Link } from "react-router";
 import { Skeleton } from "@/components/ui/skeleton";
 
