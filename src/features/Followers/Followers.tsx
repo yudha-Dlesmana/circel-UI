@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useFollower } from "./useFollower"
+import { useFollower } from "./useFollowers"
 import { FollowButton2 } from "../Follow/followButtons"
 import { PuffLoader } from "react-spinners"
 
@@ -44,7 +44,7 @@ export function Followers(){
 
       </ul>
       {hasNextPage && 
-      <div>
+      <div className="flex flex-col items-center">
         <button 
           onClick={() => {fetchNextPage()}}
           className="text-white mt-4 hover:underline"
