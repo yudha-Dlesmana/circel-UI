@@ -1,19 +1,27 @@
 import { Response } from "@/types/ResponseType";
 import { TweetsPayload } from "./Type/TweetsTypes";
 import { api } from "@/utils/Apis";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
-export function useTweets() {
+export function useTweetsInfinite() {
   const {
-    data: TweetsPayload,
+    data: InfiniteTweet,
     isLoading,
     error,
-  } = useQuery({
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery({
     queryKey: ["Tweets"],
-    queryFn: async () => {
-      const res = await api.get<Response<TweetsPayload>>("/tweets");
+    queryFn: async ({ pageParam }: { pageParam?: number }) => {
+      const res = await api.get<Response<TweetsPayload>>("/tweets", {
+        params: { cursor: pageParam },
+      });
       return res.data.data;
     },
+    initialPageParam: undefined as number | undefined,
+    getNextPageParam: (lastPage) => {
+      return lastPage.cursor ?? undefined;
+    },
   });
-  return { TweetsPayload, isLoading, error };
+  return { InfiniteTweet, isLoading, error, fetchNextPage, hasNextPage };
 }
