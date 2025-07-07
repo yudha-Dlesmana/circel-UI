@@ -2,28 +2,28 @@ import { useFollow } from "@/hooks/useFollows"
 import { useIsFollow } from "@/hooks/useIsFollows"
 import { useUnfollow } from "@/hooks/useUnfollow"
 
-export function FollowButton({username}: {username: string}){
-  const {data} = useIsFollow(username)
+export function FollowButton1({userId}: {userId: string}){
+  const {checked} = useIsFollow(userId)
   const { followUser } = useFollow()
   const { unfollowUser} = useUnfollow()
   return(
     <>
-    {data ? 
-    <button onClick={()=> unfollowUser({targetUsername: username})}>
+    {checked ? 
+    <button onClick={()=> unfollowUser({targetId: userId})}>
       unfollow</button>:
-    <button onClick={()=> followUser({targetUsername: username})}>
+    <button onClick={()=> followUser({targetId: userId})}>
       follow</button>
     }
     </>
   )
 }
 
-export function FollowButton2({username}: {username: string}){
-  const {data} = useIsFollow(username)
+export function FollowButton2({userId}: {userId: string}){
+  const {checked} = useIsFollow(userId)
   const { followUser } = useFollow()
   return(
     <>
-    {data ? 
+    {checked ? 
     <button className="
     text-[var(--gray-color)] font-bold 
     px-4 py-1 
@@ -37,7 +37,7 @@ export function FollowButton2({username}: {username: string}){
     hover:border-[var(--hover-color)]
     hover:text-[var(--hover-color)]
     "
-    onClick={()=> followUser({targetUsername: username})}
+    onClick={()=> followUser({targetId: userId})}
     >
       Follow</button>
     }

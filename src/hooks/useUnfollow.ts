@@ -6,8 +6,8 @@ import { toast } from "sonner";
 export function useUnfollow() {
   const queryClient = useQueryClient();
   const { mutate: unfollowUser, isPending } = useMutation({
-    mutationFn: async ({ targetUsername }: { targetUsername: string }) => {
-      await api.delete(`/unfollow/${targetUsername}`);
+    mutationFn: async ({ targetId }: { targetId: string }) => {
+      await api.delete(`/unfollow/${targetId}`);
     },
     onSuccess: () => {
       toast.success(`unfollowing user`);

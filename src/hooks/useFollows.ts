@@ -1,4 +1,3 @@
-import { followTypes } from "@/types/followTypes";
 import { api } from "@/utils/Apis";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -7,8 +6,8 @@ import { toast } from "sonner";
 export function useFollow() {
   const queryClient = useQueryClient();
   const { mutate: followUser, isPending } = useMutation({
-    mutationFn: async ({ targetUsername }: { targetUsername: string }) => {
-      const res = await api.post<followTypes>(`/follow/${targetUsername}`);
+    mutationFn: async ({ targetId }: { targetId: string }) => {
+      const res = await api.post(`/follow/${targetId}`);
       return res.data;
     },
     onSuccess: (data) => {

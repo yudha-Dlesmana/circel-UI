@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSuggestion } from "./useSuggestion";
-import { FollowButton } from "@/components/customUI/followButtons";
+import { FollowButton1 } from "@/components/customUI/followButtons";
 import { Link } from "react-router";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -9,6 +9,9 @@ export function SuggestionCard(){
 
   if(isError) return <h1>Error</h1>
   if(isLoading) return (
+    <div className="text-[#B2B2B2] bg-[#262626] py-3 px-4 rounded-lg">
+      <h1 className="font-bold text-lg text-white mb-1">
+        Suggested for you</h1>
   <ul className="space-y-2">
     {Array.from({ length: 3 }).map((_, i) => (
     <li key={i} className="flex items-center gap-3">
@@ -23,6 +26,7 @@ export function SuggestionCard(){
     </li>
     ))}
   </ul>
+  </div>
   )
 
   return(
@@ -47,7 +51,7 @@ export function SuggestionCard(){
                 <h1>{item.username}</h1>
                 </Link>
             </div>
-            <FollowButton username={item.username}/>
+            <FollowButton1 userId={item.id}/>
 
           </li>
         ))}
