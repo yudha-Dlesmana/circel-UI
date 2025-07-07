@@ -2,7 +2,7 @@ import {
   LoginDTO,
   LoginDataRes,
   LoginErrRes,
-} from "@/features/auth/Login/LoginTypes";
+} from "@/features/Auth/Login/LoginTypes";
 import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
 import { useMutation } from "@tanstack/react-query";

@@ -2,7 +2,7 @@ import {
   ForgotDataRes,
   ForgotDTO,
   ForgotErrRes,
-} from "@/features/auth/Forgot/ForgotTypes";
+} from "@/features/Auth/Forgot/ForgotTypes";
 import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
 import { useMutation } from "@tanstack/react-query";

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router"
 import logo from "@/assets/logo.svg"
-import { LoginForm } from "@/features/auth/Login/LoginForm"
+import { LoginForm } from "@/features/Auth/Login/LoginForm"
 
 
 export function Login(){

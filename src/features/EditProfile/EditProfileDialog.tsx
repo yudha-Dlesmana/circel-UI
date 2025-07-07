@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { BeatLoader } from "react-spinners"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { CircleX, ImagePlus } from "lucide-react";
-import { inputStyles, textareaStyles } from "@/features/auth/FormStyles";
+import { inputStyles, textareaStyles } from "@/features/Auth/FormStyles";
 import { useEditProfile } from "./useEditProfile";
 import { EditProfileDTO, EditProfileSchema } from "./EditProfileType";
 

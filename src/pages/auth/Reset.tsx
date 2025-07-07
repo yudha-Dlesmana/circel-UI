@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router"
 import logo from "../../assets/logo.svg"
-import { ResetForm } from "../../features/auth/Reset/ResetForm"
+import { ResetForm } from "../../features/Auth/Reset/ResetForm"
 
 export function Reset(){
   const {token} = useParams()

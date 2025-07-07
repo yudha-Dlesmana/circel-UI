@@ -1,6 +1,6 @@
 import { Link} from "react-router"
 import logo from "../../assets/logo.svg"
-import { ForgotForm } from "../../features/auth/Forgot/ForgotForm"
+import { ForgotForm } from "../../features/Auth/Forgot/ForgotForm"
 
 export function Forgot(){
   return (

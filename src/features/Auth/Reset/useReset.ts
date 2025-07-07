@@ -2,7 +2,7 @@ import {
   ResetPasswordDataRes,
   ResetPasswordDTO,
   ResetPasswordErrRes,
-} from "@/features/auth/Reset/ResetTypes";
+} from "@/features/Auth/Reset/ResetTypes";
 import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
 import { useMutation } from "@tanstack/react-query";
