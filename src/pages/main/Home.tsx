@@ -1,5 +1,5 @@
-import { Tweets } from "@/features/dashboard/Tweets";
-import { TweetsInput2 } from "@/features/dashboard/PostTweet";
+import { Tweets } from "@/features/Tweets/Tweets";
+import { TweetsInput2 } from "@/features/PostTweet/PostTweet";
 
 export function Home(){
   

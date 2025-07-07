@@ -8,7 +8,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
-import { TweetsInput1 } from "@/features/dashboard/PostTweet";
+import { TweetsInput1 } from "@/features/PostTweet/PostTweet";
 import Cookies from "cookies-js"
 import { useAuth } from "@/context/Auth";
 

@@ -1,5 +1,5 @@
 import { Response } from "@/types/ResponseType";
-import { TweetsPayload } from "./Type/TweetsTypes";
+import { TweetsPayload } from "./TweetsType";
 import { api } from "@/utils/Apis";
 import { useInfiniteQuery } from "@tanstack/react-query";
 

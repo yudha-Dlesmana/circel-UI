@@ -1,6 +1,6 @@
 import { LikeTweetButton } from "@/components/customUI/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useTweetsInfinite } from "@/features/dashboard/useTweet";
+import { useTweetsInfinite } from "@/features/Tweets/useTweet";
 import { formatTweetDate } from "@/utils/Times";
 
 import { AiOutlineComment } from "react-icons/ai";

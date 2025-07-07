@@ -5,8 +5,8 @@ import { PostDTO } from "@/types/PostTypes";
 import { formatTweetDate } from "@/utils/Times";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { AiOutlineComment } from "react-icons/ai";
-import { CommentInput } from "../tweet/commentInput";
-import { Comments } from "../tweet/comments";
+import { CommentInput } from "../Tweet/commentInput";
+import { Comments } from "../Tweet/comments";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function MediaMapping({ tweets }: { tweets: PostDTO[] }) {

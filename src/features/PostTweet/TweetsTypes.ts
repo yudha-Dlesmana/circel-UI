@@ -1,21 +1,5 @@
 import { z } from "zod";
 
-export type TweetsPayload = {
-  tweets: [
-    {
-      id: number;
-      text: string;
-      image: string;
-      createAt: Date;
-      username: string;
-      name: string;
-      userImage: string;
-      comments: string;
-    }
-  ];
-  cursor: number;
-};
-
 export const PostTweetSchema = z
   .object({
     text: z.string().nullable(),

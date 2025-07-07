@@ -2,7 +2,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { usePostTweets } from "@/features/dashboard/usePostTweet";
+import { usePostTweets } from "@/features/PostTweet/usePostTweet";
 import { useUser } from "@/hooks/user/useUsers";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { LuImagePlus } from "react-icons/lu";
 import TextareaAutosize from "react-textarea-autosize"
 import { toast } from "sonner";
-import { PostTweetDTO, PostTweetSchema } from "./Type/TweetsTypes";
+import { PostTweetDTO, PostTweetSchema } from "./TweetsTypes";
 
 export function TweetsInput1(){
   const {user} = useUser()
