@@ -1,4 +1,4 @@
-import { SearchUser } from "@/features/search/SearchUsers";
+import { SearchUser } from "@/features/Search/SearchUsers";
 import { useState } from "react";
 import { LuUserRoundSearch } from "react-icons/lu";
 import { useDebounce } from "use-debounce"
