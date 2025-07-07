@@ -12,7 +12,7 @@ export function usePostTweets(onSuccessCallback: () => void) {
       await api.post("/tweets", data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["feeds"] });
+      queryClient.invalidateQueries({ queryKey: ["Tweets"] });
       onSuccessCallback();
     },
     onError: (error) => {

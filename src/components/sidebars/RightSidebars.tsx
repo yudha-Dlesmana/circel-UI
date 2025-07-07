@@ -18,7 +18,9 @@ export function SidebarRight(){
   const hideSuggestion = location.pathname === "/profile"
 
   return (
-    <div className={cn("fixed",
+    <div className={cn(
+    "hidden, md:flex",
+    "fixed",
     "right-0 top-0 w-1/4 h-screen",
     "border-l border-[#3F3F3F]" ,
     "p-4 z-50",

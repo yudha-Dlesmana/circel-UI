@@ -2,9 +2,9 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { usePostTweets } from "@/hooks/tweet/usePostTweets";
+import { usePostTweets } from "@/features/dashboard/usePostTweet";
 import { useUser } from "@/hooks/user/useUsers";
-import { PostTweetsDTO, PostTweetsSchema } from "@/types/PostTypes";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { XCircleIcon } from "lucide-react";
@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { LuImagePlus } from "react-icons/lu";
 import TextareaAutosize from "react-textarea-autosize"
 import { toast } from "sonner";
+import { PostTweetDTO, PostTweetSchema } from "./Type/TweetsTypes";
 
 export function TweetsInput1(){
   const {user} = useUser()
@@ -24,8 +25,8 @@ export function TweetsInput1(){
     formState: {errors},
     setValue,
     reset
-  } = useForm<PostTweetsDTO>({
-    resolver: zodResolver(PostTweetsSchema),
+  } = useForm<PostTweetDTO>({
+    resolver: zodResolver(PostTweetSchema),
     mode:"onTouched"
   })
 
@@ -33,7 +34,7 @@ export function TweetsInput1(){
     const file = e.target.files?.[0];
     if (file) {
       setPreview(URL.createObjectURL(file))
-      setValue("image", file, {shouldValidate: true})
+      setValue("tweet", file, {shouldValidate: true})
     }
   }
   const onSuccessCallback = () => {
@@ -43,17 +44,17 @@ export function TweetsInput1(){
 
   const {mutate, isPending} = usePostTweets(onSuccessCallback)
 
-  const submit = (data: PostTweetsDTO) => {
+  const submit = (data: PostTweetDTO) => {
     const formData = new FormData()
     formData.append("text", data.text || "")
-    if(data.image) formData. append("image", data.image)
+    if(data.tweet) formData. append("tweet", data.tweet)
 
     mutate(formData)
   }
 
   useEffect( () => {
-    if(errors.image){
-      toast.error(errors.image.message)
+    if(errors.tweet){
+      toast.error(errors.tweet.message)
     }
   }, [errors])
 
@@ -100,8 +101,8 @@ export function TweetsInput2(){
     formState: {errors},
     setValue,
     reset
-  } = useForm<PostTweetsDTO>({
-    resolver: zodResolver(PostTweetsSchema),
+  } = useForm<PostTweetDTO>({
+    resolver: zodResolver(PostTweetSchema),
     mode:"onTouched"
   })
 
@@ -109,7 +110,7 @@ export function TweetsInput2(){
     const file = e.target.files?.[0];
     if (file) {
       setPreview(URL.createObjectURL(file))
-      setValue("image", file, {shouldValidate: true})
+      setValue("tweet", file, {shouldValidate: true})
     }
   }
   const onSuccessCallback = () => {
@@ -119,17 +120,17 @@ export function TweetsInput2(){
 
   const {mutate, isPending} = usePostTweets(onSuccessCallback)
 
-  const submit = (data: PostTweetsDTO) => {
+  const submit = (data: PostTweetDTO) => {
     const formData = new FormData()
     formData.append("text", data.text || "")
-    if(data.image) formData. append("image", data.image)
+    if(data.tweet) formData. append("tweet", data.tweet)
 
     mutate(formData)
   }
 
   useEffect( () => {
-    if(errors.image){
-      toast.error(errors.image.message)
+    if(errors.tweet){
+      toast.error(errors.tweet.message)
     }
   }, [errors])
 

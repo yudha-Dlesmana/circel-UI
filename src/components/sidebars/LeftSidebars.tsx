@@ -8,7 +8,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
-import { TweetsInput1 } from "@/features/dashboard/tweetsInputs";
+import { TweetsInput1 } from "@/features/dashboard/PostTweet";
 import Cookies from "cookies-js"
 import { useAuth } from "@/context/Auth";
 
@@ -17,7 +17,8 @@ const listMenuStyle = cn("text-white text-lg flex gap-4 items-center hover:text-
 export function SidebarLeft(){
   const {setToken} = useAuth()
   return ( 
-    <div className={cn("fixed",
+    <div className={cn(
+    "fixed",
     "left-0 top-0 w-1/6 h-screen",
     "border-r border-[#3F3F3F]", 
     "py-10 px-5 z-50", 
