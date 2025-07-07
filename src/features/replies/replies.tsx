@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useReplies } from "@/hooks/tweet/useReplies";
+import { useReplies } from "@/features/replies/useReplies";
 import { formatTweetDate } from "@/utils/Times";
 
 export function Replies({parentId}: {parentId: number}){

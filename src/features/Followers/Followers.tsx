@@ -23,7 +23,7 @@ export function Followers(){
       <ul className="space-y-5">
         {followers?.pages.map((page) => (
           page.followers.map((follower) => (
-            <li className="flex items-start gap-3">
+            <li key={follower.id} className="flex items-start gap-3">
             <Avatar className="size-15">
               <AvatarImage src={follower.image}/>
               <AvatarFallback className="text-lg font-bold text-[var(--primary-color)]">

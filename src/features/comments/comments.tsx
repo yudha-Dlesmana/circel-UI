@@ -1,10 +1,10 @@
-import { LikeCommentButton } from "@/components/customUI/likeButton";
+import { LikeCommentButton } from "@/features/like/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useComments } from "@/hooks/tweet/useComment";
+import { useComments } from "@/features/comments/useComment";
 import { formatTweetDate } from "@/utils/Times";
-import { Replies } from "./replies";
+import { Replies } from "../replies/replies";
 import { useState } from "react";
-import { RepliesInput } from "./repliesInput";
+import { RepliesInput } from "../replies/repliesInput";
 
 export function Comments({tweetId}: {tweetId: number}){
   const {comments, isLoading, error} = useComments(tweetId)

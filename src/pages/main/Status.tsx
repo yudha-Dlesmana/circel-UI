@@ -1,5 +1,5 @@
-import { CommentInput } from "@/features/Tweet/commentInput";
-import { Comments } from "@/features/Tweet/comments";
+import { CommentInput } from "@/features/comments/commentInput";
+import { Comments } from "@/features/comments/comments";
 import { Tweet } from "@/features/Tweet/tweet";
 import { MoveLeft } from "lucide-react";
 import { useNavigate, useParams } from "react-router"

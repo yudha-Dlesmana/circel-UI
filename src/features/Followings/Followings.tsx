@@ -22,7 +22,7 @@ export function Followings(){
       <ul className="space-y-5">
         {followings?.pages.map((page) => 
         page.followings.map((following) => 
-          <li className="flex items-start gap-3">
+          <li key={following.id} className="flex items-start gap-3">
             <Avatar className="size-15">
               <AvatarImage src={following.image}/>
               <AvatarFallback className="text-lg font-bold text-[var(--primary-color)]">

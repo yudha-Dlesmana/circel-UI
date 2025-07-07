@@ -1,12 +1,12 @@
-import { LikeTweetButton } from "@/components/customUI/likeButton";
+import { LikeTweetButton } from "@/features/like/likeButton";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { PostDTO } from "@/types/PostTypes";
 import { formatTweetDate } from "@/utils/Times";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { AiOutlineComment } from "react-icons/ai";
-import { CommentInput } from "../Tweet/commentInput";
-import { Comments } from "../Tweet/comments";
+import { CommentInput } from "../comments/commentInput";
+import { Comments } from "../comments/comments";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function MediaMapping({ tweets }: { tweets: PostDTO[] }) {

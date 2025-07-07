@@ -36,7 +36,7 @@ export function SuggestionCard(){
 
       <ul className="space-y-2">
         {suggestion?.map((item) => (
-          <li className="flex items-center gap-3">
+          <li key={item.id} className="flex items-center gap-3">
             <Link to={`/profile/${item.username}`}>
               <Avatar className="size-10">
                 <AvatarImage src={item.image}/>

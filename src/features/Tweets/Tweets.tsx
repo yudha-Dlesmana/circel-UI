@@ -1,4 +1,4 @@
-import { LikeTweetButton } from "@/components/customUI/likeButton";
+import { LikeTweetButton } from "@/features/like/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useTweetsInfinite } from "@/features/Tweets/useTweet";
 import { formatTweetDate } from "@/utils/Times";
@@ -46,9 +46,9 @@ export function Tweets(){
             )}
           </Link>
           <div className="flex gap-3 items-center text-[#909090] text-xl">
-            <p className="flex gap-1 items-center">
+            <span className="flex gap-1 items-center">
               <LikeTweetButton tweetId={tweet.id} />
-            </p>
+            </span>
             <Link
               to={`/status/${tweet.id}`}
               className="flex gap-1 items-center"

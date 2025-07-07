@@ -1,4 +1,4 @@
-import { LikeTweetButton } from "@/components/customUI/likeButton";
+import { LikeTweetButton } from "@/features/like/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PostDTO } from "@/types/PostTypes";
 import { formatTweetDate } from "@/utils/Times";

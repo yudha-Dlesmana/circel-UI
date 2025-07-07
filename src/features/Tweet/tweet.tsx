@@ -1,5 +1,5 @@
-import { LikeTweetButton } from "@/components/customUI/likeButton";
-import { useTweets } from "@/hooks/tweet/useTweets";
+import { LikeTweetButton } from "@/features/like/likeButton";
+import { useTweets } from "@/features/Tweet/useTweets";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AiOutlineComment } from "react-icons/ai";
 import { formatFullTweetDate } from "@/utils/Times";

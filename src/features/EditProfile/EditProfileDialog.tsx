@@ -153,7 +153,6 @@ export function EditProfileDialog(){
               className={inputStyles}/>
               {errors.name && <p>{errors.name.message}</p>}
               </div>
-
             <input type="text" placeholder="Username" {...register("username")}
             className={inputStyles}/>
             <textarea placeholder="Bio" {...register("bio")}
