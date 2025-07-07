@@ -9,10 +9,13 @@ import { CgProfile } from "react-icons/cg";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { TweetsInput } from "@/features/dashboard/tweetsInputs";
+import Cookies from "cookies-js"
+import { useAuth } from "@/context/Auth";
 
 const listMenuStyle = cn("text-white text-lg flex gap-4 items-center hover:text-[var(--hover-color)]")
 
 export function SidebarLeft(){
+  const {setToken} = useAuth()
   return ( 
     <div className={cn("fixed",
     "left-0 top-0 w-1/6 h-screen",
@@ -24,29 +27,18 @@ export function SidebarLeft(){
         <ListMenu />
         <CreatePostDialog/>
       </div>
-      <button className="flex items-center gap-1 hover:text-[var(--hover-color)]">
+      <button 
+      onClick={() => {
+        Cookies.expire('access-token')
+        setToken(null)
+      }}
+      className="flex items-center gap-1 hover:text-[var(--hover-color)]">
         <TbLogout2 className="size-8"/> LogOut
         </button>
     </div>
   )
 }
 
-function CreatePostDialog(){
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button className={cn("w-full py-1 rounded-full",
-          "bg-[var(--primary-color)] hover:bg-[var(--hover-color)]",
-          "text-white text-lg font-bold")}>
-            Create Post</button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-2xl gap-2"> 
-        <TweetsInput />
-        
-      </DialogContent>
-    </Dialog>
-  )
-}
 
 function ListMenu(){
   return (
@@ -68,6 +60,21 @@ function ListMenu(){
           <CgProfile className="size-8"/> Profile
         </Link></li>
       </ul>
-    
+  )
+}
+function CreatePostDialog(){
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className={cn("w-full py-1 rounded-full",
+          "bg-[var(--primary-color)] hover:bg-[var(--hover-color)]",
+          "text-white text-lg font-bold")}>
+            Create Post</button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-2xl gap-2"> 
+        <TweetsInput />
+        
+      </DialogContent>
+    </Dialog>
   )
 }

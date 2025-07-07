@@ -4,12 +4,16 @@ import { useAuth } from "@/context/Auth"
 
 export function AuthProtected(){
   const navigate = useNavigate()
-  const {token} = useAuth()
-  useEffect( () => {
-    if(token){
-      navigate('/')
+  const { token, isInitialized } = useAuth()
+
+  useEffect(() => {
+    if (!isInitialized) return
+    if (token) {
+      navigate("/")
     }
-  }, [token, navigate])
+  }, [token, isInitialized, navigate])
+
+  if (!isInitialized) return <div>Loading...</div>
   return(
     <Outlet/>
   )

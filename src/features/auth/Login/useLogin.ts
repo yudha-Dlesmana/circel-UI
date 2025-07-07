@@ -10,9 +10,11 @@ import axios from "axios";
 import { toast } from "sonner";
 import Cookie from "cookies-js";
 import { useNavigate } from "react-router";
+import { useAuth } from "@/context/Auth";
 
 export function useLogin() {
   const navigate = useNavigate();
+  const { setToken } = useAuth();
   const { mutate, isPending } = useMutation({
     mutationFn: async (data: LoginDTO) => {
       const res = await api.post<Response<LoginDataRes>>("/login", data);
@@ -20,6 +22,7 @@ export function useLogin() {
     },
     onSuccess: (data) => {
       Cookie.set("access-token", data.data.token);
+      setToken(data.data.token);
       navigate("/");
       toast.success(`${data.message}`);
     },
