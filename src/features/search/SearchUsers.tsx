@@ -2,18 +2,26 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSearch } from "./useSearch";
 import { FollowButton2 } from "@/features/Follow/followButtons";
 import { Link } from "react-router";
+import { PuffLoader } from "react-spinners";
 
-export function ListUser({name}: {name: string}){
-  const {data, isLoading, error} = useSearch(name)
+export function SearchUser({name}: {name: string}){
+  const {search, isLoading, error} = useSearch(name)
   
-  if(isLoading) return <h1>Loading</h1>
-  if(error) return <h1>Error</h1>
-  if(data?.length === 0 || !data) return <h1>User Not Found</h1>
+  if(isLoading) return (
+    <div className="flex justify-center mt-10">
+      <PuffLoader color="#04A51E" size={7}/>
+    </div>
+  )
+  if(error) return (
+    <div className="flex justify-center mt-10">
+      <h1 className="text-white text-xl">Error</h1>
+    </div>
+  )
 
   return (
     <div className="px-5">
       <ul className="space-y-5">
-        {data?.map((item) => (
+        {search?.map((item) => (
           <li className="flex items-start gap-3">
             <Link to={`/profile/${item.username}`}>
               <Avatar className="size-15">
@@ -28,7 +36,7 @@ export function ListUser({name}: {name: string}){
                 <h1 className="text-sm text-[var(--gray-color)]">{item.username}</h1>
                 <h1 className="text-sm">{item.bio}</h1>
                 </div>
-              <FollowButton2 username={item.username}/>
+              <FollowButton2 userId={item.id}/>
             </div>
           </li>
         ))}

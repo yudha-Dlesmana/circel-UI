@@ -1,4 +1,4 @@
-import { ListUser } from "@/features/search/ListUsers";
+import { SearchUser } from "@/features/search/SearchUsers";
 import { useState } from "react";
 import { LuUserRoundSearch } from "react-icons/lu";
 import { useDebounce } from "use-debounce"
@@ -19,7 +19,7 @@ export function Search(){
           onChange={(e) => {setName(e.target.value)}}
         />
         </div>
-      <ListUser name={value[0]}/>
+      <SearchUser name={value[0]}/>
     </>
   )
 }

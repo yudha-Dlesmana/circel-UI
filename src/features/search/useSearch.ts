@@ -1,21 +1,26 @@
-import { otherUserType } from "@/types/UserTypes";
 import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
+import { SearchUser } from "./SearchUserTypes";
+import { Response } from "@/types/ResponseType";
 
 export function useSearch(name: string) {
-  const { data, isLoading, error } = useQuery({
+  const {
+    data: search,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["search", name],
-    queryFn: search,
+    queryFn: searching,
   });
-  return { data, isLoading, error };
+  return { search, isLoading, error };
 }
 
-async function search({ queryKey }: { queryKey: [string, string] }) {
+async function searching({ queryKey }: { queryKey: [string, string] }) {
   const [, name] = queryKey;
-  const res = await api.get<otherUserType[]>("/search-user", {
+  const res = await api.get<Response<SearchUser[]>>("/search", {
     params: {
       name,
     },
   });
-  return res.data;
+  return res.data.data;
 }
