@@ -1,20 +1,23 @@
 import { IsLikesDTO } from "@/types/PostTypes";
+import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
 
-export function useIsLiked(tweetId: number) {
-  const { data, isLoading } = useQuery({
-    queryKey: ["isLiked", tweetId],
-    queryFn: checkLiked,
+export function useCheckTweetLiked(tweetId: number) {
+  const { data: TweetIsLiked, isLoading } = useQuery({
+    queryKey: ["TweetIsLiked", tweetId],
+    queryFn: checkTweetLiked,
   });
 
-  return { data, isLoading };
+  return { TweetIsLiked, isLoading };
 }
-async function checkLiked({ queryKey }: { queryKey: [string, number] }) {
+async function checkTweetLiked({ queryKey }: { queryKey: [string, number] }) {
   const [, tweetId] = queryKey;
 
-  const res = await api.get<IsLikesDTO>(`/isliked-tweet/${tweetId}`);
-  return res.data;
+  const res = await api.get<Response<{ isLiked: boolean; countlikes: number }>>(
+    `/isliked-tweet/${tweetId}`
+  );
+  return res.data.data;
 }
 
 export function useCheckCommentLiked(commentId: number) {

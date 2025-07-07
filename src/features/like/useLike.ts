@@ -1,18 +1,18 @@
+import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 
-export function useLike(tweetId: number) {
+export function useLikeTweet(tweetId: number) {
   const queryClient = useQueryClient();
   const { mutate: likeTweet } = useMutation({
     mutationFn: async () => {
-      const res = await api.post(`/like-tweet/${tweetId}`);
+      const res = await api.post<Response<{}>>(`/like-tweet/${tweetId}`);
       return res.data;
     },
     onSuccess: () => {
-      toast.success("liked");
-      queryClient.invalidateQueries({ queryKey: ["isLiked", tweetId] });
+      queryClient.invalidateQueries({ queryKey: ["TweetIsLiked", tweetId] });
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {
@@ -34,7 +34,6 @@ export function useLikeComment(tweetId: number, commentId: number) {
       return res.data;
     },
     onSuccess: () => {
-      toast.success("liked");
       queryClient.invalidateQueries({
         queryKey: ["CommentIsLiked", commentId],
       });

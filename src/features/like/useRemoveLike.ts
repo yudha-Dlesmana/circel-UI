@@ -3,15 +3,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 
-export function useUnlike(tweetId: number) {
+export function useRemoveLikeTweet(tweetId: number) {
   const queryClient = useQueryClient();
-  const { mutate: unlike } = useMutation({
+  const { mutate: removeTweetLike } = useMutation({
     mutationFn: async () => {
       await api.delete(`/remove-like-tweet/${tweetId}`);
     },
     onSuccess: () => {
-      toast.success("remove like");
-      queryClient.invalidateQueries({ queryKey: ["isLiked", tweetId] });
+      queryClient.invalidateQueries({ queryKey: ["TweetIsLiked", tweetId] });
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {
@@ -22,17 +21,16 @@ export function useUnlike(tweetId: number) {
       }
     },
   });
-  return { unlike };
+  return { removeTweetLike };
 }
 
 export function useRemoveLikeComment(commentId: number) {
   const queryClient = useQueryClient();
-  const { mutate: removeLikeComment } = useMutation({
+  const { mutate: removeCommentLike } = useMutation({
     mutationFn: async () => {
       await api.delete(`/remove-like-comment/${commentId}`);
     },
     onSuccess: () => {
-      toast.success("remove like");
       queryClient.invalidateQueries({
         queryKey: ["CommentIsLiked", commentId],
       });
@@ -46,5 +44,5 @@ export function useRemoveLikeComment(commentId: number) {
       }
     },
   });
-  return { removeLikeComment };
+  return { removeCommentLike };
 }

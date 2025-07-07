@@ -1,24 +1,28 @@
-import { useCheckCommentLiked, useIsLiked } from "@/hooks/like/useIsLiked";
-import { useLike, useLikeComment } from "@/hooks/like/uselike";
-import { useRemoveLikeComment, useUnlike } from "@/hooks/like/useUnlike";
+import { useCheckCommentLiked, useCheckTweetLiked } from "@/features/like/useCheckLiked";
+import { useLikeTweet, useLikeComment } from "@/features/like/useLike";
+import { useRemoveLikeComment, useRemoveLikeTweet } from "@/features/like/useRemoveLike";
 import { GoHeart } from "react-icons/go";
 import { GoHeartFill } from "react-icons/go";
 
 export function LikeTweetButton({tweetId}: {tweetId: number}){
-  const {data} = useIsLiked(tweetId);
-  const {likeTweet} = useLike(tweetId);
-  const {unlike} = useUnlike(tweetId)
+  const {TweetIsLiked} = useCheckTweetLiked(tweetId);
+  const {likeTweet} = useLikeTweet(tweetId);
+  const {removeTweetLike} = useRemoveLikeTweet(tweetId)
   return(
     <>
-    {data?.isLiked ? 
-    <p className="flex items-center gap-1 ">
-      <button className="text-red-600" onClick={()=> unlike()}>
+    {TweetIsLiked?.isLiked ? 
+    <span className="flex items-center gap-1">
+      <button 
+      className="text-red-600 cursor-pointer" 
+      onClick={()=> removeTweetLike()}>
         <GoHeartFill/></button>
-      {data?.countlikes}</p>:
-    <p className="flex items-center gap-1">
-      <button onClick={()=> likeTweet()}>
+      {TweetIsLiked?.countlikes}</span>:
+    <span className="flex items-center gap-1">
+      <button 
+      className="cursor-pointer"
+      onClick={()=> likeTweet()}>
         <GoHeart/> </button>
-      {data?.countlikes}</p>
+      {TweetIsLiked?.countlikes}</span>
     }
     </>
   )
@@ -27,13 +31,13 @@ export function LikeTweetButton({tweetId}: {tweetId: number}){
 export function LikeCommentButton({tweetId, commentId}: {tweetId: number, commentId: number}){
   const {CommentIsLiked} = useCheckCommentLiked(commentId);
   const {likeComment} = useLikeComment(tweetId, commentId);
-  const {removeLikeComment} = useRemoveLikeComment(commentId)
+  const {removeCommentLike} = useRemoveLikeComment(commentId)
 
   return(
     <>
     {CommentIsLiked?.isLiked ? 
     <p className="flex items-center gap-1 ">
-      <button className="text-red-600" onClick={()=> removeLikeComment()}>
+      <button className="text-red-600" onClick={()=> removeCommentLike()}>
         <GoHeartFill/></button>
       {CommentIsLiked?.countlikes}</p>:
     <p className="flex items-center gap-1">
