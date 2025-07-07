@@ -4,7 +4,7 @@ import { TweetMapping } from "@/features/profile/PostMapping";
 import { User } from "@/features/profile/user";
 import { useUserTweets } from "@/features/profile/useUserTweet";
 import { useUserByUsername } from "@/features/profile/useUserByUsername";
-import { useUser } from "@/hooks/user/useUsers";
+import { useUser } from "@/features/User/useUsers";
 import { cn } from "@/lib/utils";
 import { useParams } from "react-router";
 
