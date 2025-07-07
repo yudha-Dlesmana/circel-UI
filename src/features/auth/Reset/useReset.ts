@@ -19,7 +19,7 @@ export function useReset() {
       data: ResetPasswordDTO;
     }) => {
       const res = await api.patch<Response<ResetPasswordDataRes>>(
-        `/reset-password/${token}`,
+        `/reset/${token}`,
         data
       );
       return res.data;

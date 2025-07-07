@@ -5,8 +5,6 @@ import { Login } from "../pages/auth/Login";
 import { Register } from "../pages/auth/Register";
 import { Forgot } from "../pages/auth/Forgot";
 import { Reset } from "../pages/auth/Reset";
-import { RegisterProfile } from "@/pages/auth/RegisterProfile";
-
 
 import { MainProtected } from "@/components/protected/main";
 import { Home } from "../pages/main/Home";
@@ -30,7 +28,6 @@ export const router = createBrowserRouter([
   {
       Component: MainProtected,
       children: [
-      { path: "/profile", element: <RegisterProfile/> },
       { path: '/', element: <Home /> },
       { path: "/search", element: <Search /> },
       { path: "/follow", element: <Follow /> },

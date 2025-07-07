@@ -16,10 +16,7 @@ export function useForgot() {
     isPending,
   } = useMutation({
     mutationFn: async (data: ForgotDTO) => {
-      const res = await api.post<Response<ForgotDataRes>>(
-        "/forgot-password",
-        data
-      );
+      const res = await api.post<Response<ForgotDataRes>>("/forgot", data);
       return res.data;
     },
     onSuccess: (data) => {

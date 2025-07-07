@@ -1,14 +1,13 @@
 import { api } from "@/utils/Apis";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import Cookies from "cookies-js";
 import { RegisterDataRes, RegisterDTO } from "./RegisterTypes";
 import { Response } from "@/types/ResponseType";
+import { useNavigate } from "react-router";
 
 export function useRegister() {
   const navigate = useNavigate();
-
   const {
     mutate,
     data: registered,
@@ -20,7 +19,7 @@ export function useRegister() {
     },
     onSuccess: (data) => {
       Cookies.set("access-token", data.data.token);
-      navigate(`/profile/${data.data.token}`);
+      navigate("/");
       toast.success(data.message);
     },
     onError: (error) => {
