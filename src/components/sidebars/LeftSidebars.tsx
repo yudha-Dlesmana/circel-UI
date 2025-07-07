@@ -8,7 +8,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
-import { TweetsInput } from "@/features/dashboard/tweetsInputs";
+import { TweetsInput1 } from "@/features/dashboard/tweetsInputs";
 import Cookies from "cookies-js"
 import { useAuth } from "@/context/Auth";
 
@@ -72,7 +72,7 @@ function CreatePostDialog(){
             Create Post</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-2xl gap-2"> 
-        <TweetsInput />
+        <TweetsInput1 />
         
       </DialogContent>
     </Dialog>

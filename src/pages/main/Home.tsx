@@ -1,5 +1,5 @@
 import { Feeds } from "@/features/dashboard/feeds";
-import { TweetsInput } from "@/features/dashboard/tweetsInputs";
+import { TweetsInput2 } from "@/features/dashboard/tweetsInputs";
 
 export function Home(){
   
@@ -11,7 +11,7 @@ export function Home(){
         font-bold "
       >
         Home</h1>
-      <TweetsInput/>
+      <TweetsInput2/>
       <Feeds />
     </>
   )
