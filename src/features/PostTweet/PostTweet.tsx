@@ -1,4 +1,4 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,7 +6,6 @@ import { usePostTweets } from "@/features/PostTweet/usePostTweet";
 import { useUser } from "@/features/Profile/User/useUsers";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AvatarFallback } from "@radix-ui/react-avatar";
 import { XCircleIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -64,7 +63,8 @@ export function TweetsInput1(){
       <div className="flex gap-2 mb-">
         <Avatar className="size-15">
           <AvatarImage src={AuthUser?.image}/>
-          <AvatarFallback>{AuthUser?.name}</AvatarFallback>
+          <AvatarFallback className="text-[var(--primary-color)] text-3xl font-bold">
+            {AuthUser?.name.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
         <TextareaAutosize {...register("text")} placeholder="what is happening?!" className="resize-none w-full text-xl text-white px-3 focus:outline-0"/>
         <div className="flex gap-3 items-center">
@@ -140,7 +140,9 @@ export function TweetsInput2(){
       <div className="flex gap-2 mb-">
         <Avatar className="size-15">
           <AvatarImage src={AuthUser?.image}/>
-          <AvatarFallback>{AuthUser?.name}</AvatarFallback>
+          <AvatarFallback className="text-[var(--primary-color)] text-3xl font-bold">
+            {AuthUser?.name.charAt(0).toUpperCase()}</AvatarFallback>
+          
           </Avatar>
         <TextareaAutosize {...register("text")} placeholder="what is happening?!" className="resize-none w-full text-xl text-white px-3 focus:outline-0"/>
         <div className="flex gap-3 items-center">

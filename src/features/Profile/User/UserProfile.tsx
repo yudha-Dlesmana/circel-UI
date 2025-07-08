@@ -20,7 +20,7 @@ export function UserProfile({user}: {user: UserDataRes}){
         
         <Avatar className="size-40 -mt-20 ml-5 "> 
           <AvatarImage src={user.image} className="" />
-          <AvatarFallback className="text-[var(--primary-color)] text-2xl font-bold">
+          <AvatarFallback className="text-[var(--primary-color)] text-6xl font-bold">
             {user.name.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
         <div className="">

@@ -47,7 +47,7 @@ export function ProfileCard(){
 
       <Avatar className="size-20 -mt-10 ml-5 "> 
         <AvatarImage src={AuthUser?.image} className="" />
-        <AvatarFallback className="text-[var(--primary-color)] text-2xl font-bold">
+        <AvatarFallback className="text-[var(--primary-color)] text-4xl font-bold">
           {AuthUser?.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
         <EditProfileDialog/>

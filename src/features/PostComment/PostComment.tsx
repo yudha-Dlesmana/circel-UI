@@ -1,11 +1,10 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { usePostComment } from "@/features/PostComment/usePostComments";
 import { useUser } from "@/features/Profile/User/useUsers";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AvatarFallback } from "@radix-ui/react-avatar";
 import { XCircleIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -64,7 +63,8 @@ export function PostComment({tweetId}:{tweetId: number}){
       <div className="flex gap-2">
         <Avatar className="size-15">
           <AvatarImage src={AuthUser?.image}/>
-          <AvatarFallback>{AuthUser?.name.charAt(0)}</AvatarFallback>
+          <AvatarFallback className="text-[var(--primary-color)] text-4xl font-bold">
+            {AuthUser?.name.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
         <div className="w-full flex flex-col">
           <div className="w-full flex">
