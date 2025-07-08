@@ -10,10 +10,7 @@ export function useFollow() {
       const res = await api.post(`/follow/${targetId}`);
       return res.data;
     },
-    onSuccess: (data) => {
-      toast.success(
-        `${data.followerUsername} following ${data.followingUsername}`
-      );
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["user"] });
       queryClient.invalidateQueries({ queryKey: ["following"] });
       queryClient.invalidateQueries({ queryKey: ["isfollowed"] });

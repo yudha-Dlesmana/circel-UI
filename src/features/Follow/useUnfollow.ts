@@ -10,7 +10,6 @@ export function useUnfollow() {
       await api.delete(`/unfollow/${targetId}`);
     },
     onSuccess: () => {
-      toast.success(`unfollowing user`);
       queryClient.invalidateQueries({ queryKey: ["user"] });
       queryClient.invalidateQueries({ queryKey: ["following"] });
       queryClient.invalidateQueries({ queryKey: ["isfollowed"] });
