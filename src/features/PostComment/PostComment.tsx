@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { usePostComment } from "@/features/PostComment/usePostComments";
 import { useUser } from "@/features/Profile/User/useUsers";
-import { PostTweetsDTO, PostTweetsSchema } from "@/types/PostTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { XCircleIcon } from "lucide-react";
@@ -13,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { LuImagePlus } from "react-icons/lu";
 import TextareaAutosize from "react-textarea-autosize"
 import { toast } from "sonner";
+import { PostCommentDTO, PostCommentSchema } from "./PostCommentType";
 
 export function PostComment({tweetId}:{tweetId: number}){
   const {AuthUser} = useUser()
@@ -24,8 +24,8 @@ export function PostComment({tweetId}:{tweetId: number}){
     formState: {errors},
     setValue,
     reset
-  } = useForm<PostTweetsDTO>({
-    resolver: zodResolver(PostTweetsSchema),
+  } = useForm<PostCommentDTO>({
+    resolver: zodResolver(PostCommentSchema),
     mode:"onTouched"
   })
 
@@ -33,7 +33,7 @@ export function PostComment({tweetId}:{tweetId: number}){
     const file = e.target.files?.[0];
     if (file) {
       setPreview(URL.createObjectURL(file))
-      setValue("image", file, {shouldValidate: true})
+      setValue("comment", file, {shouldValidate: true})
     }
   }
 
@@ -42,49 +42,58 @@ export function PostComment({tweetId}:{tweetId: number}){
     setPreview(undefined)
   }
 
-  const {mutate} = usePostComment( tweetId, onSuccessCallback)
+  const {mutate, isPending} = usePostComment( tweetId, onSuccessCallback)
 
-  const submit = (data: PostTweetsDTO) => {
+  const submit = (data: PostCommentDTO) => {
     const formData = new FormData()
     formData.append("text", data.text || "")
-    if(data.image) formData. append("image", data.image)
+    if(data.comment) formData. append("comment", data.comment)
     
     mutate(formData)
   }
 
   useEffect( () => {
-    if(errors.image){
-      toast.error(errors.image.message)
+    if(errors.comment){
+      toast.error(errors.comment.message)
     }
   }, [errors])
 
   return (
     <form className="border-b border-[var(--gray-color)] px-5 py-2"
       onSubmit={handleSubmit(submit)}>
-      <div className="flex gap-2 items-center">
-        <Avatar className="size-14">
+      <div className="flex gap-2">
+        <Avatar className="size-15">
           <AvatarImage src={AuthUser?.image}/>
           <AvatarFallback>{AuthUser?.name.charAt(0)}</AvatarFallback>
           </Avatar>
-        <TextareaAutosize {...register("text")} 
-          className="resize-none w-full text-lg text-white px-3 focus:outline-0"
-          placeholder="Type your reply!" />
-        <div className="flex gap-3 items-center">
-          <Input id="image" type="file" accept="image/"
-          onChange={handlerImageChange} className="hidden"/>
-          <Label htmlFor="image">
-            <LuImagePlus className="size-6 text-[var(--primary-color)] hover:text-[var(--hover-color)]"/></Label>
-          <Button type="submit" className="text-base font-bold bg-[var(--primary-color)] hover:bg-[var(--hover-color)]">
-            Post</Button>
-          
+        <div className="w-full flex flex-col">
+          <div className="w-full flex">
+            <TextareaAutosize {...register("text")} 
+              className="resize-none w-full text-lg text-white p-2 focus:outline-0"
+              placeholder="Type your reply!" />
+            <div className="flex gap-3 items-center">
+              <Input id="image" type="file" accept="image/"
+              onChange={handlerImageChange} className="hidden"/>
+              <Label htmlFor="image">
+                <LuImagePlus className="size-6 text-[var(--primary-color)] hover:text-[var(--hover-color)]"/></Label>
+              {isPending ?
+              <Button disabled variant={"ghost"} className="text-base font-bold bg-[var(--primary-color)] hover:bg-[var(--hover-color)]">
+                Posting</Button> :
+
+              <Button type="submit" className="text-base font-bold bg-[var(--primary-color)] hover:bg-[var(--hover-color)]">
+                Post</Button>
+              }
+
+              </div>
           </div>
-      </div>
-        {preview && ( 
-          <div className="flex justify-center mb-2">
-            <img src={preview} className="max-h-60"/> 
-            <XCircleIcon onClick={()=>{setPreview(undefined)}} className="-ml-6 text-[var(--gray-color)] hover:text-[#dc2626]" />
-            </div>
-          )}
+          {preview && ( 
+            <div className="flex mx-2">
+              <img src={preview} className="max-h-60"/> 
+              <XCircleIcon onClick={()=>{setPreview(undefined)}} className="-ml-6 text-[var(--gray-color)] hover:text-[#dc2626]" />
+              </div>
+            )}
+          </div>
+        </div>
       </form>
   )
 }

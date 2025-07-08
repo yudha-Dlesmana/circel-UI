@@ -1,18 +1,18 @@
-import { PostTweesFormData } from "@/types/PostTypes";
 import { api } from "@/utils/Apis";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
+import { PostCommentFormData } from "./PostCommentType";
 
 export function usePostComment(tweetId: number, onSuccessCallback: () => void) {
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: async (data: PostTweesFormData) => {
+    mutationFn: async (data: PostCommentFormData) => {
       await api.post(`/comment/${tweetId}`, data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["comments"] });
+      queryClient.invalidateQueries({ queryKey: ["Comments"] });
       onSuccessCallback();
     },
     onError: (error) => {
