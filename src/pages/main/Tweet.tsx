@@ -1,4 +1,4 @@
-import { Comments } from "@/features/comments/Comments";
+import { Comments } from "@/features/Comments/Comments";
 import { PostComment } from "@/features/PostComment/PostComment";
 import { TweetDetail } from "@/features/TweetDetail/TweetDetail";
 import { MoveLeft } from "lucide-react";
