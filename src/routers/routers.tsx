@@ -11,7 +11,7 @@ import { Home } from "../pages/main/Home";
 import { Search } from "../pages/main/Searchs";
 import { Follow } from "../pages/main/Follows";
 import { Profile } from "../pages/main/Profiles";
-import { Status } from "@/pages/main/Status";
+import { Tweet } from "@/pages/main/Tweet";
 
 
 
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
       { path: "/search", element: <Search /> },
       { path: "/follow", element: <Follow /> },
       { path: "/profile/:username?", element: <Profile />},
-      { path: "/status/:id", element: <Status/>},
+      { path: "/status/:id", element: <Tweet/>},
     ]
   }
 

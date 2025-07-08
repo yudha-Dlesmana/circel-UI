@@ -3,7 +3,7 @@ import { Tweet } from "./TweetTypes";
 import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
 
-export function useTweets(tweetId: number) {
+export function useTweetDetail(tweetId: number) {
   const {
     data: tweet,
     isLoading,

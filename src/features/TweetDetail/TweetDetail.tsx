@@ -1,12 +1,12 @@
 import { LikeTweetButton } from "@/features/Like/likeButton";
-import { useTweets } from "@/features/tweet/useTweets";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AiOutlineComment } from "react-icons/ai";
 import { formatFullTweetDate } from "@/utils/Times";
+import { useTweetDetail } from "./useTweetDetail";
 
 
-export function Tweet({ tweetId }: { tweetId: number }) {
-  const { tweet, isLoading, error } = useTweets(tweetId);
+export function TweetDetail({ tweetId }: { tweetId: number }) {
+  const { tweet, isLoading, error } = useTweetDetail(tweetId);
 
   if(isLoading) return <h1> Loading ... </h1>
   if(error) return <h1> Error loading Tweet </h1>

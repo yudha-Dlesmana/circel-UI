@@ -1,10 +1,10 @@
 import { CommentInput } from "@/features/comments/commentInput";
 import { Comments } from "@/features/comments/comments";
-import { Tweet } from "@/features/tweet/tweet";
+import { TweetDetail } from "@/features/TweetDetail/TweetDetail";
 import { MoveLeft } from "lucide-react";
 import { useNavigate, useParams } from "react-router"
 
-export function Status(){
+export function Tweet(){
   const {id} = useParams();
   const navigate = useNavigate()
 
@@ -18,7 +18,7 @@ export function Status(){
     >
     <MoveLeft className="size-10" onClick={()=> navigate(-1)} /> 
     Status</h1>
-    <Tweet tweetId={Number(id)}/>
+    <TweetDetail tweetId={Number(id)}/>
     {/* <CommentInput tweetId={Number(id)}/>
     <Comments tweetId={Number(id)} /> */}
     </>
