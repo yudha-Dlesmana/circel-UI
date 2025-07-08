@@ -1,7 +1,7 @@
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { useEffect, useState } from "react";
-import { useUser } from "@/features/profile/useUsers";
+import { useUser } from "@/features/Profile/User/useUsers";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BeatLoader } from "react-spinners"

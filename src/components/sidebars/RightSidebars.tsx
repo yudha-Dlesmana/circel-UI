@@ -4,7 +4,7 @@ import logodw from "@/assets/logodw.svg"
 import { cn } from "tailwind-cn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
-import { useUser } from "@/features/profile/useUsers";
+import { useUser } from "@/features/Profile/User/useUsers";
 import { EditProfileDialog } from "@/features/EditProfile/EditProfileDialog";
 import { SuggestionCard } from "../../features/SuggestedForYou/SuggestionCard";
 import { useLocation } from "react-router";

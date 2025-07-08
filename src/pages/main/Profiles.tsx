@@ -1,10 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MediaMapping } from "@/features/profile/MediaMapping";
-import { TweetMapping } from "@/features/profile/PostMapping";
-import { User } from "@/features/profile/user";
-import { useUserTweets } from "@/features/profile/useUserTweet";
-import { useUserByUsername } from "@/features/profile/useUserByUsername";
-import { useUser } from "@/features/profile/useUsers";
+import { MediaMapping } from "@/features/Profile/UserTweets/MediaUserTweets";
+import { TweetMapping } from "@/features/Profile/UserTweets/AllUserTweets";
+import { UserProfile } from "@/features/Profile/User/UserProfile";
+import { useUserTweets } from "@/features/Profile/UserTweets/useUserTweet";
+import { useUserByUsername } from "@/features/Profile/User/useUserByUsername";
+import { useUser } from "@/features/Profile/User/useUsers";
 import { cn } from "@/lib/utils";
 import { useParams } from "react-router";
 
@@ -30,7 +30,7 @@ export function Profile(){
   
   return (
     <>
-    <User user={profile}/>
+    <UserProfile user={profile}/>
     <Tabs defaultValue="AllPost">
       <TabsList className="
       w-full pb-0

@@ -4,7 +4,7 @@ import { MoveLeft } from "lucide-react"
 import { useNavigate } from "react-router"
 import { UserDataRes } from "./UserTypes"
 
-export function User({user}: {user: UserDataRes}){
+export function UserProfile({user}: {user: UserDataRes}){
   const navigate = useNavigate()
     return(
       <div className="pt-10 px-5 text-[#FFFFFF]">
