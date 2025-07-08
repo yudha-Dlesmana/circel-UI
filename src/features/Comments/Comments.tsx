@@ -2,9 +2,9 @@ import { LikeCommentButton } from "@/features/Like/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useComments } from "@/features/Comments/useComments";
 import { formatTweetDate } from "@/utils/Times";
-import { Replies } from "../replies/replies";
+// import { Replies } from "../replies/replies";
 import { useState } from "react";
-import { PostReply } from "../postReplies/PostReply";
+import { PostReply } from "../PostReply/PostReply";
 
 export function Comments({tweetId}: {tweetId: number}){
   const {comments, isLoading, fetchNextPage, hasNextPage, error} = useComments(tweetId)

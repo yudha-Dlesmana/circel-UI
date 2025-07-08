@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { usePostReplies } from "@/features/postReplies/usePostReplies"
+import { usePostReply } from "@/features/PostReply/usePostReply"
 import { useUser } from "@/features/Profile/User/useUsers"
 import {  } from "@/types/PostTypes"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -8,7 +8,7 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
 import { toast } from "sonner"
-import { PostRepliesDTO, PostRepliesSchema } from "./replyTypes"
+import { PostReplyDTO, PostReplySchema } from "./ReplyTypes"
 
 export function PostReply({tweetId, parentId}: {tweetId: number, parentId: number}){
   const {AuthUser} = useUser()
@@ -17,8 +17,8 @@ export function PostReply({tweetId, parentId}: {tweetId: number, parentId: numbe
     handleSubmit,
     formState: {errors},
     reset
-  } = useForm<PostRepliesDTO>({
-    resolver: zodResolver(PostRepliesSchema),
+  } = useForm<PostReplyDTO>({
+    resolver: zodResolver(PostReplySchema),
     mode:"onTouched"
   })
   
@@ -29,9 +29,9 @@ export function PostReply({tweetId, parentId}: {tweetId: number, parentId: numbe
     }, [errors])
   
 
-  const {mutate} = usePostReplies(tweetId, parentId, reset )
+  const {mutate} = usePostReply(tweetId, parentId, reset )
 
-  const submit = (data: PostRepliesDTO) => {
+  const submit = (data: PostReplyDTO) => {
     const params = new URLSearchParams()
     params.append("text", data.text)
     mutate(params)
