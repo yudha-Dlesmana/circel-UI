@@ -1,4 +1,5 @@
 export type UserDataRes = {
+  id: string;
   username: string;
   name: string;
   email: string;

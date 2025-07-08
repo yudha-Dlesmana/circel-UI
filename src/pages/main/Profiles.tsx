@@ -13,7 +13,7 @@ export function Profile(){
   const { AuthUser, isLoading: authLoading, error: authError } = useUser()
   const { UserByUsername, isLoading: userLoading, error: userError } = useUserByUsername(paramUsername ?? "")
   const profile = paramUsername ? UserByUsername : AuthUser
-  const {UserTweets, isLoading: tweetLoading, error: tweetError} = useUserTweets(profile?.username ?? "");
+  const {UserTweets, isLoading: tweetLoading, error: tweetError} = useUserTweets(profile?.id ?? "");
 
   if (authLoading || userLoading) return <h1>Loading Profile</h1>
   if (authError || userError) return <h1>Failed to fetch Profile</h1>

@@ -35,10 +35,10 @@ async function getUserTweet({
   queryKey,
   pageParam,
 }: QueryFunctionContext<[string, string], number | undefined>) {
-  const [, username] = queryKey;
+  const [, userId] = queryKey;
   const cursor = pageParam;
 
-  const res = await api.get<Response<TweetsPayload>>(`/tweets/${username}`, {
+  const res = await api.get<Response<TweetsPayload>>(`/tweets/${userId}`, {
     params: { cursor },
   });
 
