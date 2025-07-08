@@ -1,4 +1,3 @@
-import { IsLikesDTO } from "@/types/PostTypes";
 import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
@@ -31,6 +30,8 @@ export function useCheckCommentLiked(commentId: number) {
 async function checkCommentLiked({ queryKey }: { queryKey: [string, number] }) {
   const [, commentId] = queryKey;
 
-  const res = await api.get<IsLikesDTO>(`/isliked-comment/${commentId}`);
-  return res.data;
+  const res = await api.get<Response<{ isLiked: boolean; countlikes: number }>>(
+    `/isliked-comment/${commentId}`
+  );
+  return res.data.data;
 }

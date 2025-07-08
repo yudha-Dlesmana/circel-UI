@@ -2,9 +2,10 @@ import { LikeCommentButton } from "@/features/Like/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useComments } from "@/features/Comments/useComments";
 import { formatTweetDate } from "@/utils/Times";
-import { Replies } from "../replies/replies";
+import { Replies } from "../Replies/Replies";
 import { useState } from "react";
 import { PostReply } from "../PostReply/PostReply";
+import { AiOutlineComment } from "react-icons/ai";
 
 export function Comments({tweetId}: {tweetId: number}){
   const {comments, isLoading, fetchNextPage, hasNextPage, error} = useComments(tweetId)
@@ -43,10 +44,11 @@ export function Comments({tweetId}: {tweetId: number}){
           
           <div className="flex gap-3 items-center text-[#909090]">
             <p className="flex gap-1 items-center">
-              <LikeCommentButton tweetId={tweetId} commentId={comment.id}/></p>
+              <LikeCommentButton commentId={comment.id}/></p>
             <p 
             onClick={() => toggleReplies(comment.id)} 
-            className="cursor-pointer">
+            className="cursor-pointer flex items-center gap-1">
+              <AiOutlineComment/>
               {comment.replies} replies</p>
             </div>
           

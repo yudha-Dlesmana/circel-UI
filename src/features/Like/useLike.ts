@@ -26,11 +26,11 @@ export function useLikeTweet(tweetId: number) {
   return { likeTweet };
 }
 
-export function useLikeComment(tweetId: number, commentId: number) {
+export function useLikeComment(commentId: number) {
   const queryClient = useQueryClient();
   const { mutate: likeComment } = useMutation({
     mutationFn: async () => {
-      const res = await api.post(`/like-comment/${tweetId}/${commentId}`);
+      const res = await api.post<Response<{}>>(`/like-comment/${commentId}`);
       return res.data;
     },
     onSuccess: () => {

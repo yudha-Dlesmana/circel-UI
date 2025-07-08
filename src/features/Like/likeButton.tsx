@@ -28,9 +28,9 @@ export function LikeTweetButton({tweetId}: {tweetId: number}){
   )
 }
 
-export function LikeCommentButton({tweetId, commentId}: {tweetId: number, commentId: number}){
+export function LikeCommentButton({commentId}: {commentId: number}){
   const {CommentIsLiked} = useCheckCommentLiked(commentId);
-  const {likeComment} = useLikeComment(tweetId, commentId);
+  const {likeComment} = useLikeComment(commentId);
   const {removeCommentLike} = useRemoveLikeComment(commentId)
 
   return(
