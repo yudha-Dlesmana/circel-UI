@@ -8,7 +8,7 @@ export function Replies({parentId}: {parentId: number}){
   return (
     <>
       {replies?.map((reply)=> (
-         <div key={reply.id} className="flex gap-2 pt-3 w-full">
+         <div key={reply.id} className="flex gap-4 pt-3 w-full">
           <Avatar className="size-13">
             <AvatarImage src={reply.userImage}/>
             <AvatarFallback>{reply.name.charAt(0)}</AvatarFallback>

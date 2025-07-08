@@ -40,7 +40,7 @@ export function PostReply({tweetId, parentId}: {tweetId: number, parentId: numbe
   return(
     <form className="w-full py-2  "
       onSubmit={handleSubmit(submit)}>
-      <div className="flex gap-2 items-start w-full">
+      <div className="flex gap-4 items-start w-full pb-4 border-b border-[var(--gray-color)]">
         <Avatar className="size-13">
           <AvatarImage src={AuthUser?.image}/>
           <AvatarFallback>{AuthUser?.name}</AvatarFallback>

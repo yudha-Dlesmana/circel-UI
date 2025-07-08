@@ -51,7 +51,7 @@ export function Comments({tweetId}: {tweetId: number}){
             </div>
           
           {openReplies[comment.id] && 
-          <div className="border-t border-[var(--gray-color)] gap-2 w-full max-w-2xl mx-auto">
+          <div className=" gap-2 w-full max-w-2xl mx-auto">
             <PostReply tweetId={tweetId} parentId={comment.id} />
             <Replies parentId={comment.id}/>
             </div>
