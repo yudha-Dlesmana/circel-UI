@@ -4,16 +4,16 @@ import { TweetMapping } from "@/features/profile/PostMapping";
 import { User } from "@/features/profile/user";
 import { useUserTweets } from "@/features/profile/useUserTweet";
 import { useUserByUsername } from "@/features/profile/useUserByUsername";
-import { useUser } from "@/features/User/useUsers";
+import { useUser } from "@/features/profile/useUsers";
 import { cn } from "@/lib/utils";
 import { useParams } from "react-router";
 
 export function Profile(){
   const { username: paramUsername } =useParams()
-  const { user: authUser, isLoading: authLoading, error: authError } = useUser()
+  const { AuthUser, isLoading: authLoading, error: authError } = useUser()
   const { UserByUsername, isLoading: userLoading, error: userError } = useUserByUsername(paramUsername ?? "")
-  const profile = paramUsername ? UserByUsername : authUser
-  const {TweetUser, isLoading: tweetLoading, error: tweetError} = useUserTweets(profile?.username ?? "");
+  const profile = paramUsername ? UserByUsername : AuthUser
+  const {UserTweets, isLoading: tweetLoading, error: tweetError} = useUserTweets(profile?.username ?? "");
 
   if (authLoading || userLoading) return <h1>Loading Profile</h1>
   if (authError || userError) return <h1>Failed to fetch Profile</h1>
@@ -40,8 +40,8 @@ export function Profile(){
         <TabsTrigger value="AllPost"  className={active}>All Post</TabsTrigger>
         <TabsTrigger value="Media" className={active}>Media</TabsTrigger>
         </TabsList>
-      <TabsContent value="AllPost"><TweetMapping tweets={ TweetUser?? []}/></TabsContent>
-      <TabsContent value="Media"><MediaMapping tweets={ TweetUser?? []}/></TabsContent>
+      <TabsContent value="AllPost"><TweetMapping tweets={ UserTweets }/></TabsContent>
+      <TabsContent value="Media"><MediaMapping tweets={ UserTweets}/></TabsContent>
       </Tabs>
     </>
   )

@@ -1,11 +1,11 @@
 import { LikeTweetButton } from "@/features/Like/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { PostDTO } from "@/types/PostTypes";
 import { formatTweetDate } from "@/utils/Times";
 import { AiOutlineComment } from "react-icons/ai";
 import { Link } from "react-router";
+import { Tweet } from "./TweetType";
 
-export function TweetMapping({tweets} : {tweets: PostDTO[]}) {
+export function TweetMapping({tweets} : {tweets: Tweet[]}) {
   return (
     tweets.map((tweet) => 
       <div key={tweet.id} className="flex gap-4 border-b border-[var(--gray-color)] px-5 py-4 ">

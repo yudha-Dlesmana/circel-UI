@@ -2,9 +2,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { MoveLeft } from "lucide-react"
 import { useNavigate } from "react-router"
-import { UserType } from "@/types/UserTypes"
+import { UserDataRes } from "./UserTypes"
 
-export function User({user}: {user: UserType}){
+export function User({user}: {user: UserDataRes}){
   const navigate = useNavigate()
     return(
       <div className="pt-10 px-5 text-[#FFFFFF]">
@@ -14,15 +14,16 @@ export function User({user}: {user: UserType}){
         flex items-center gap-3">
           <MoveLeft className="size-10" onClick={()=> navigate(-1)} />
           {user.name}</h1>
-        <img 
-        className="w-full h-40 rounded-md"
-        src={BackgoundProfile} />
+        <div className="relative group block w-full max-h-82 overflow-hidden rounded-md">
+          <img src={user.background ||BackgoundProfile} className="w-full rounded-md"/>
+          </div> 
+        
         <Avatar className="size-40 -mt-20 ml-5 "> 
           <AvatarImage src={user.image} className="" />
           <AvatarFallback className="text-[var(--primary-color)] text-2xl font-bold">
             {user.name.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
-        <div className="mt-12">
+        <div className="">
           <h1 className="text-2xl font-bold text-white">{user.name}</h1>
           <p className="text-[var(--gray-color)]">{user.username}</p>
           <p className="">{user.bio}</p>

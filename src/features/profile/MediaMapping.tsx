@@ -1,15 +1,15 @@
 import { LikeTweetButton } from "@/features/Like/likeButton";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { PostDTO } from "@/types/PostTypes";
 import { formatTweetDate } from "@/utils/Times";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { AiOutlineComment } from "react-icons/ai";
 import { CommentInput } from "../comments/commentInput";
 import { Comments } from "../comments/comments";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tweet } from "./TweetType";
 
-export function MediaMapping({ tweets }: { tweets: PostDTO[] }) {
+export function MediaMapping({ tweets }: { tweets: Tweet[] }) {
 
 
   return (
@@ -23,7 +23,7 @@ export function MediaMapping({ tweets }: { tweets: PostDTO[] }) {
   )
 }
 
-function DetailImage({ tweet }: { tweet: PostDTO }) {
+function DetailImage({ tweet }: { tweet: Tweet }) {
   return (
     <Dialog>
       <DialogTrigger>

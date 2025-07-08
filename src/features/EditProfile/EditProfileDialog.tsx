@@ -1,7 +1,7 @@
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import BackgoundProfile from '@/assets/BackgoundProfile.png'
 import { useEffect, useState } from "react";
-import { useUser } from "@/features/User/useUsers";
+import { useUser } from "@/features/profile/useUsers";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BeatLoader } from "react-spinners"
@@ -12,17 +12,17 @@ import { useEditProfile } from "./useEditProfile";
 import { EditProfileDTO, EditProfileSchema } from "./EditProfileType";
 
 export function EditProfileDialog(){
-  const {user} = useUser()
+  const {AuthUser} = useUser()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const {mutate, isPending} = useEditProfile( () =>  setIsOpen(false))
 
-  const [oriProfile, setOriProfile] = useState<string | undefined>(user?.image)
-  const [oriBackground, setOriBackgound] = useState<string | undefined>(user?.background)
+  const [oriProfile, setOriProfile] = useState<string | undefined>(AuthUser?.image)
+  const [oriBackground, setOriBackgound] = useState<string | undefined>(AuthUser?.background)
   
-  const [previewProfile, setPreviewProfile] = useState<string | undefined>(user?.image)
-  const [previewBackground, setPreviewBackground] = useState<string | undefined>(user?.background)
+  const [previewProfile, setPreviewProfile] = useState<string | undefined>(AuthUser?.image)
+  const [previewBackground, setPreviewBackground] = useState<string | undefined>(AuthUser?.background)
 
   const profileSrc = previewProfile === oriProfile ? oriProfile : previewProfile
   const backgroundSrc = previewBackground === oriBackground ? oriBackground : previewBackground
@@ -71,18 +71,18 @@ export function EditProfileDialog(){
   }
 
   useEffect(() => {
-    if(user){
+    if(AuthUser){
       reset({
-        name: user.name,
-        username: user.username,
-        bio: user.bio
+        name: AuthUser.name,
+        username: AuthUser.username,
+        bio: AuthUser.bio
       })
     }
-    setOriProfile(user?.image)
-    setPreviewProfile(user?.image)
-    setOriBackgound(user?.background)
-    setPreviewBackground(user?.background)
-  }, [isOpen, user, reset])
+    setOriProfile(AuthUser?.image)
+    setPreviewProfile(AuthUser?.image)
+    setOriBackgound(AuthUser?.background)
+    setPreviewBackground(AuthUser?.background)
+  }, [isOpen, AuthUser, reset])
 
   return(
     <Dialog open={isOpen} 
@@ -90,12 +90,12 @@ export function EditProfileDialog(){
         setIsOpen(open)
         if(!open){
           reset({
-            name: user?.name,
-            username: user?.username,
-            bio: user?.bio
+            name: AuthUser?.name,
+            username: AuthUser?.username,
+            bio: AuthUser?.bio
           })
-          setOriProfile(user?.image)
-          setPreviewProfile(user?.image)
+          setOriProfile(AuthUser?.image)
+          setPreviewProfile(AuthUser?.image)
         }
     }}>
       <DialogTrigger asChild>
@@ -121,7 +121,7 @@ export function EditProfileDialog(){
             <label
               htmlFor="Background" 
               className="relative group block w-full max-h-51 overflow-hidden rounded-md">
-              <img src={ backgroundSrc||BackgoundProfile} className="rounded-md"/>
+              <img src={ backgroundSrc ?? BackgoundProfile} className="rounded-md"/>
               <div className="absolute inset-0 bg-black/40 rounded-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity ">
                 <ImagePlus className="text-white size-7"/>
                 </div>
@@ -138,7 +138,7 @@ export function EditProfileDialog(){
                 > 
                 <AvatarImage src={profileSrc} />
                 <AvatarFallback className="text-[var(--primary-color)] text-2xl font-bold">
-                  {user?.name.charAt(0).toUpperCase()}</AvatarFallback>
+                  {AuthUser?.name.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <ImagePlus className="text-white"/>

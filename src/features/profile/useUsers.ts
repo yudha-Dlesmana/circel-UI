@@ -1,12 +1,11 @@
 import { Response } from "@/types/ResponseType";
-
+import { UserDataRes } from "./UserTypes";
 import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
-import { UserDataRes } from "./UserTypes";
 
 export function useUser() {
   const {
-    data: user,
+    data: AuthUser,
     isLoading,
     error,
   } = useQuery({
@@ -16,5 +15,5 @@ export function useUser() {
       return res.data.data;
     },
   });
-  return { user, isLoading, error };
+  return { AuthUser, isLoading, error };
 }

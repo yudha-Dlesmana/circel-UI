@@ -1,23 +1,46 @@
-import { PostDTO } from "@/types/PostTypes";
+import { Response } from "@/types/ResponseType";
 import { api } from "@/utils/Apis";
-import { useQuery } from "@tanstack/react-query";
+import {
+  InfiniteData,
+  QueryFunctionContext,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
+import { TweetsPayload } from "./TweetType";
 
 export function useUserTweets(username: string) {
   const {
-    data: TweetUser,
+    data: infiniteData,
     isLoading,
     error,
-  } = useQuery({
+  } = useInfiniteQuery<
+    TweetsPayload,
+    Error,
+    InfiniteData<TweetsPayload>,
+    [string, string],
+    number | undefined
+  >({
     queryKey: ["UserTweet", username],
     queryFn: getUserTweet,
+    initialPageParam: undefined,
+    getNextPageParam: (lastPage) => lastPage.cursor ?? undefined,
     enabled: !!username,
   });
-  return { TweetUser, isLoading, error };
+
+  const UserTweets = infiniteData?.pages.flatMap((p) => p.tweets) ?? [];
+
+  return { UserTweets, isLoading, error };
 }
 
-async function getUserTweet({ queryKey }: { queryKey: [string, string] }) {
+async function getUserTweet({
+  queryKey,
+  pageParam,
+}: QueryFunctionContext<[string, string], number | undefined>) {
   const [, username] = queryKey;
+  const cursor = pageParam;
 
-  const res = await api.get<PostDTO[]>(`/tweets/${username}`);
-  return res.data;
+  const res = await api.get<Response<TweetsPayload>>(`/tweets/${username}`, {
+    params: { cursor },
+  });
+
+  return res.data.data;
 }

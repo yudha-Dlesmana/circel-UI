@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { usePostTweets } from "@/features/PostTweet/usePostTweet";
-import { useUser } from "@/features/User/useUsers";
+import { useUser } from "@/features/profile/useUsers";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AvatarFallback } from "@radix-ui/react-avatar";
@@ -16,7 +16,7 @@ import { toast } from "sonner";
 import { PostTweetDTO, PostTweetSchema } from "./TweetsTypes";
 
 export function TweetsInput1(){
-  const {user} = useUser()
+  const {AuthUser} = useUser()
   const [preview, setPreview] = useState<string | undefined>(undefined)
   
   const {
@@ -63,8 +63,8 @@ export function TweetsInput1(){
       onSubmit={handleSubmit(submit)}>
       <div className="flex gap-2 mb-">
         <Avatar className="size-15">
-          <AvatarImage src={user?.image}/>
-          <AvatarFallback>{user?.name}</AvatarFallback>
+          <AvatarImage src={AuthUser?.image}/>
+          <AvatarFallback>{AuthUser?.name}</AvatarFallback>
           </Avatar>
         <TextareaAutosize {...register("text")} placeholder="what is happening?!" className="resize-none w-full text-xl text-white px-3 focus:outline-0"/>
         <div className="flex gap-3 items-center">
@@ -92,7 +92,7 @@ export function TweetsInput1(){
 }
 
 export function TweetsInput2(){
-  const {user} = useUser()
+  const {AuthUser} = useUser()
   const [preview, setPreview] = useState<string | undefined>(undefined)
   
   const {
@@ -139,8 +139,8 @@ export function TweetsInput2(){
       onSubmit={handleSubmit(submit)}>
       <div className="flex gap-2 mb-">
         <Avatar className="size-15">
-          <AvatarImage src={user?.image}/>
-          <AvatarFallback>{user?.name}</AvatarFallback>
+          <AvatarImage src={AuthUser?.image}/>
+          <AvatarFallback>{AuthUser?.name}</AvatarFallback>
           </Avatar>
         <TextareaAutosize {...register("text")} placeholder="what is happening?!" className="resize-none w-full text-xl text-white px-3 focus:outline-0"/>
         <div className="flex gap-3 items-center">

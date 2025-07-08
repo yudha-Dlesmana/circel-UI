@@ -1,4 +1,5 @@
-import { UserType } from "@/types/UserTypes";
+import { Response } from "@/types/ResponseType";
+import { UserDataRes } from "./UserTypes";
 import { api } from "@/utils/Apis";
 import { useQuery } from "@tanstack/react-query";
 
@@ -17,6 +18,6 @@ export function useUserByUsername(username: string) {
 async function getUserByUsername({ queryKey }: { queryKey: [string, string] }) {
   const [, username] = queryKey;
 
-  const res = await api.get<UserType>(`/user/${username}`);
-  return res.data;
+  const res = await api.get<Response<UserDataRes>>(`/user/${username}`);
+  return res.data.data;
 }
