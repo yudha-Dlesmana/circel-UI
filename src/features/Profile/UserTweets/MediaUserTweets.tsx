@@ -4,8 +4,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { formatTweetDate } from "@/utils/Times";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { AiOutlineComment } from "react-icons/ai";
-import { CommentInput } from "../../comments/commentInput";
-import { Comments } from "../../comments/comments";
+import { CommentInput } from "../../PostComment/PostComment";
+import { Comments } from "../../comments/Comments";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tweet } from "./TweetType";
 

@@ -2,7 +2,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { usePostComment } from "@/features/comments/usePostComments";
+import { usePostComment } from "@/features/PostComment/usePostComments";
 import { useUser } from "@/features/Profile/User/useUsers";
 import { PostTweetsDTO, PostTweetsSchema } from "@/types/PostTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,7 +14,7 @@ import { LuImagePlus } from "react-icons/lu";
 import TextareaAutosize from "react-textarea-autosize"
 import { toast } from "sonner";
 
-export function CommentInput({tweetId}:{tweetId: number}){
+export function PostComment({tweetId}:{tweetId: number}){
   const {AuthUser} = useUser()
   const [preview, setPreview] = useState<string | undefined>(undefined)
   
