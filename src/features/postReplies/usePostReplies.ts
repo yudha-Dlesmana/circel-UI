@@ -1,8 +1,8 @@
-import { PostRepliesSearchParam } from "@/types/PostTypes";
 import { api } from "@/utils/Apis";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
+import { PostRepliesSearchParam } from "./replyTypes";
 
 export function usePostReplies(
   tweetId: number,
@@ -12,7 +12,7 @@ export function usePostReplies(
   const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: async (data: PostRepliesSearchParam) => {
-      await api.post(`/replies/${tweetId}/${parentId}`, data, {
+      await api.post(`/reply/${tweetId}/${parentId}`, data, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },

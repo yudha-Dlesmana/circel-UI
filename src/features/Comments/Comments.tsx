@@ -4,7 +4,7 @@ import { useComments } from "@/features/Comments/useComments";
 import { formatTweetDate } from "@/utils/Times";
 import { Replies } from "../replies/replies";
 import { useState } from "react";
-import { RepliesInput } from "../replies/repliesInput";
+import { PostReply } from "../postReplies/PostReply";
 
 export function Comments({tweetId}: {tweetId: number}){
   const {comments, isLoading, fetchNextPage, hasNextPage, error} = useComments(tweetId)
@@ -52,8 +52,8 @@ export function Comments({tweetId}: {tweetId: number}){
           
           {openReplies[comment.id] && 
           <>
-            <RepliesInput tweetId={tweetId} parentId={comment.id} />
-            <Replies parentId={comment.id}/>
+            <PostReply tweetId={tweetId} parentId={comment.id} />
+            {/* <Replies parentId={comment.id}/> */}
             </>
           }
           </div>
