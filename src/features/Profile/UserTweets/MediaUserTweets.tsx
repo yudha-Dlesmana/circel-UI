@@ -4,7 +4,6 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { formatTweetDate } from "@/utils/Times";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { AiOutlineComment } from "react-icons/ai";
-import { CommentInput } from "../../PostComment/PostComment";
 import { Comments } from "../../comments/Comments";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tweet } from "./TweetType";
@@ -67,7 +66,7 @@ function DetailImage({ tweet }: { tweet: Tweet }) {
                 </div>
               </div>
             </div>      
-            <CommentInput tweetId={tweet.id}/>
+            {/* <CommentInput tweetId={tweet.id}/> */}
             <ScrollArea className="flex-1 overflow-auto">
               <Comments tweetId={tweet.id}/>
               </ScrollArea>

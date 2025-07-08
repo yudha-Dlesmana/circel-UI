@@ -5,7 +5,7 @@ import {
   QueryFunctionContext,
   useInfiniteQuery,
 } from "@tanstack/react-query";
-import { TweetsPayload } from "./TweetType";
+import { TweetsResData } from "./TweetType";
 
 export function useUserTweets(username: string) {
   const {
@@ -13,9 +13,9 @@ export function useUserTweets(username: string) {
     isLoading,
     error,
   } = useInfiniteQuery<
-    TweetsPayload,
+    TweetsResData,
     Error,
-    InfiniteData<TweetsPayload>,
+    InfiniteData<TweetsResData>,
     [string, string],
     number | undefined
   >({
@@ -38,7 +38,7 @@ async function getUserTweet({
   const [, userId] = queryKey;
   const cursor = pageParam;
 
-  const res = await api.get<Response<TweetsPayload>>(`/tweets/${userId}`, {
+  const res = await api.get<Response<TweetsResData>>(`/tweets/${userId}`, {
     params: { cursor },
   });
 

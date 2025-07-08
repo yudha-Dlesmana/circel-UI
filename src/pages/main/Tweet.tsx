@@ -1,4 +1,3 @@
-import { PostComment } from "@/features/PostComment/PostComment";
 import { Comments } from "@/features/comments/Comments";
 import { TweetDetail } from "@/features/TweetDetail/TweetDetail";
 import { MoveLeft } from "lucide-react";
@@ -19,8 +18,8 @@ export function Tweet(){
     <MoveLeft className="size-10" onClick={()=> navigate(-1)} /> 
     Status</h1>
     <TweetDetail tweetId={Number(id)}/>
-    <PostComment tweetId={Number(id)}/>
-    {/* <Comments tweetId={Number(id)} /> */}
+    {/* <PostComment tweetId={Number(id)}/> */}
+    <Comments tweetId={Number(id)} />
     </>
   )
 }

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { RepliesInput } from "../replies/repliesInput";
 
 export function Comments({tweetId}: {tweetId: number}){
-  const {comments, isLoading, error} = useComments(tweetId)
+  const {comments, isLoading, fetchNextPage, hasNextPage, error} = useComments(tweetId)
 
   const [openReplies, setOpenReplies] = useState<Record<number, boolean>>({})
 
@@ -25,7 +25,7 @@ export function Comments({tweetId}: {tweetId: number}){
     <>
     {comments?.map((comment) => 
       <div key={comment.id} className="flex gap-4 border-b border-[var(--gray-color)] px-5 py-4 ">
-        <Avatar className="size-14">
+        <Avatar className="size-15">
           <AvatarImage src={comment.userImage}/>
           <AvatarFallback>{comment.name.charAt(0)}</AvatarFallback>
           </Avatar>
@@ -59,6 +59,16 @@ export function Comments({tweetId}: {tweetId: number}){
           </div>
       </div>
     )}
+    {hasNextPage && 
+    <div className="flex flex-col items-center">
+      <button
+        onClick={() => fetchNextPage()}
+        className="text-white mt-4 hover:underline"
+        >
+        Show more
+        </button>
+    </div>
+    }
     </>
   )
 }

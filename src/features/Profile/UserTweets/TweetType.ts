@@ -1,4 +1,4 @@
-export type TweetsPayload = {
+export type TweetsResData = {
   tweets: Tweet[];
   cursor: number | undefined;
 };
