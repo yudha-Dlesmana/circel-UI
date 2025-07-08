@@ -38,25 +38,26 @@ export function PostReply({tweetId, parentId}: {tweetId: number, parentId: numbe
   }
 
   return(
-    <form className="border-t py-2"
+    <form className="w-full py-2  "
       onSubmit={handleSubmit(submit)}>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-start w-full">
         <Avatar className="size-13">
           <AvatarImage src={AuthUser?.image}/>
           <AvatarFallback>{AuthUser?.name}</AvatarFallback>
           </Avatar>
-        <TextareaAutosize {...register("text")} 
-          className="resize-none w-full text-sm text-white px-3 focus:outline-0"
-          placeholder="Type your reply!" />
-        <Button 
-          className="
-          px-2
-          text-sm font-bold 
-          bg-[var(--primary-color)] hover:bg-[var(--hover-color)]"
-          type="submit" >
-          Reply</Button>
+        <div className="flex w-full gap-2 min-w-0">
+          <TextareaAutosize {...register("text")} 
+            className="resize-none w-full  text-white  focus:outline-0"
+            placeholder="Type your reply!" />
+          <Button 
+            className="
+            px-2
+            text-sm font-bold 
+            bg-[var(--primary-color)] hover:bg-[var(--hover-color)]"
+            type="submit" >
+            Reply</Button>
         </div>
-
+        </div>
     </form>
   )
 }

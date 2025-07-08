@@ -2,7 +2,7 @@ import { LikeCommentButton } from "@/features/Like/likeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useComments } from "@/features/Comments/useComments";
 import { formatTweetDate } from "@/utils/Times";
-// import { Replies } from "../replies/replies";
+import { Replies } from "../replies/replies";
 import { useState } from "react";
 import { PostReply } from "../PostReply/PostReply";
 
@@ -51,10 +51,10 @@ export function Comments({tweetId}: {tweetId: number}){
             </div>
           
           {openReplies[comment.id] && 
-          <>
+          <div className="border-t border-[var(--gray-color)] gap-2 w-full max-w-2xl mx-auto">
             <PostReply tweetId={tweetId} parentId={comment.id} />
-            {/* <Replies parentId={comment.id}/> */}
-            </>
+            <Replies parentId={comment.id}/>
+            </div>
           }
           </div>
       </div>

@@ -1,22 +1,45 @@
-import { RepliesDTO } from "@/types/PostTypes";
 import { api } from "@/utils/Apis";
-import { useQuery } from "@tanstack/react-query";
+import {
+  InfiniteData,
+  QueryFunctionContext,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
+import { RepliesResData } from "./RepliesTypes";
+import { Response } from "@/types/ResponseType";
 
 export function useReplies(parentId: number) {
   const {
-    data: replies,
+    data: infiniteData,
     isLoading,
+    fetchNextPage,
+    hasNextPage,
     error,
-  } = useQuery({
+  } = useInfiniteQuery<
+    RepliesResData,
+    Error,
+    InfiniteData<RepliesResData>,
+    [string, number],
+    number | undefined
+  >({
     queryKey: ["replies", parentId],
-    queryFn: getComment,
+    queryFn: getReplies,
+    initialPageParam: undefined,
+    getNextPageParam: (lastPage) => lastPage.cursor ?? undefined,
   });
-  return { replies, isLoading, error };
+  const replies = infiniteData?.pages.flatMap((p) => p.replies) ?? [];
+
+  return { replies, isLoading, fetchNextPage, hasNextPage, error };
 }
 
-async function getComment({ queryKey }: { queryKey: [string, number] }) {
+async function getReplies({
+  queryKey,
+  pageParam,
+}: QueryFunctionContext<[string, number], number | undefined>) {
   const [, parentId] = queryKey;
+  const cursor = pageParam;
 
-  const res = await api.get<RepliesDTO[]>(`/replies/${parentId}`);
-  return res.data;
+  const res = await api.get<Response<RepliesResData>>(`/replies/${parentId}`, {
+    params: { cursor },
+  });
+  return res.data.data;
 }
