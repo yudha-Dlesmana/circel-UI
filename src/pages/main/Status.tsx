@@ -1,6 +1,6 @@
 import { CommentInput } from "@/features/comments/commentInput";
 import { Comments } from "@/features/comments/comments";
-import { Tweet } from "@/features/Tweet/tweet";
+import { Tweet } from "@/features/tweet/tweet";
 import { MoveLeft } from "lucide-react";
 import { useNavigate, useParams } from "react-router"
 
@@ -19,8 +19,8 @@ export function Status(){
     <MoveLeft className="size-10" onClick={()=> navigate(-1)} /> 
     Status</h1>
     <Tweet tweetId={Number(id)}/>
-    <CommentInput tweetId={Number(id)}/>
-    <Comments tweetId={Number(id)} />
+    {/* <CommentInput tweetId={Number(id)}/>
+    <Comments tweetId={Number(id)} /> */}
     </>
   )
 }
