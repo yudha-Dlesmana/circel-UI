@@ -33,9 +33,9 @@ export function ResetForm({token}: {token:string}){
         {
           isPending? 
             <span>
-              Create New Password</span> :
+              Creating New Password</span> :
             <span>
-              ... new password</span>
+              Reset Password</span>
         }
         </button>
       </form>

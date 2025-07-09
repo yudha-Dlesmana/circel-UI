@@ -6,10 +6,10 @@ import { LoginForm } from "@/features/Auth/Login/LoginForm"
 export function Login(){
   
   return( 
-    <div className="space-y-5 pt-25">
+    <div className="space-y-5 pt-25 ">
       <img src={logo} className="w-28"/>
       <h1 className="text-white
-      font-bold text-3xl">
+      font-bold text-2xl">
         Login to Circle</h1>
       <LoginForm />
       <p className="text-white">

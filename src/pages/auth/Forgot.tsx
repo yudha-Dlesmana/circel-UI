@@ -6,11 +6,11 @@ export function Forgot(){
   return (
     <div className="space-y-5 pt-25">
       <img src={logo} className="w-28"/>
-      <h1 className="text-white
-      font-bold text-3xl">
+      <h1 className="
+      font-bold text-2xl">
         Forgot Password</h1> 
       <ForgotForm />
-      <p className="text-white">
+      <p>
       Already have an account? <Link to="/login" className="
       text-[var(--primary-color)]
       hover:text-[var(--hover-color)]

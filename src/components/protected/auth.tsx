@@ -15,6 +15,9 @@ export function AuthProtected(){
 
   if (!isInitialized) return <div>Loading...</div>
   return(
-    <Outlet/>
+    <div className="md:w-[30vw] text-white">
+      <Outlet/>
+      </div>
+
   )
 }

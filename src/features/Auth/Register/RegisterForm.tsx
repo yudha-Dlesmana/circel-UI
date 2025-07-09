@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { buttonStyles, errorMessageStyles, formStyles, inputStyles } from "../FormStyles";
+import { buttonStyles, errorMessageStyles, inputStyles } from "../FormStyles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRegister } from "./useRegister";
 import { RegisterDTO, registerSchema } from "./RegisterTypes";
@@ -21,7 +21,7 @@ export function RegisterForm(){
   }
 
   return(
-    <form className= {formStyles} onSubmit={handleSubmit(submit)}>
+    <form className="flex flex-col w-full space-y-3" onSubmit={handleSubmit(submit)}>
       <div className="flex flex-col">
         <input type="text" placeholder="Name"
         {...register("name")} className={inputStyles}/>

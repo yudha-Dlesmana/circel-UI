@@ -5,7 +5,7 @@ export const errorMessageStyles = cn(
   "animate-fade-in"
 );
 
-export const formStyles = cn("flex flex-col", "w-[412px] space-y-3");
+export const formStyles = cn("flex flex-col", "w-full space-y-3");
 
 export const inputStyles = cn(
   "w-full",
