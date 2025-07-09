@@ -19,9 +19,8 @@ export function SidebarRight(){
 
   return (
     <div className={cn(
-    "hidden, md:flex",
     "fixed",
-    "right-0 top-0 w-1/4 h-screen",
+    "right-0 top-0 w-[30vw] h-screen",
     "border-l border-[#3F3F3F]" ,
     "p-4 z-50",
     "flex flex-col gap-2")}>

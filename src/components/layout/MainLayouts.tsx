@@ -12,7 +12,7 @@ export function Main({children} : {children: ReactNode}){
   return (
     <>
       <SidebarLeft/>
-      <div className="w-full pl-[16.7%] pr-[25%]">
+      <div className="w-full pl-[15vw] pr-[30vw]">
         <main className="">
           {children}
           </main>
